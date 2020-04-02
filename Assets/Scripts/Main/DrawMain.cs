@@ -236,33 +236,33 @@ public class DrawMain : MonoBehaviour
         }
     }
 
-    void StartRecording()
-    {
-        Debug.Log("StartRecording");
-        // // Create a recording clock
-        // clock = new RealtimeClock();
-        // // Start recording
-        // recorder = new MP4Recorder(640, 480, 2);
-        // // Create a camera input to record the main camera
-        // cameraInput = new CameraInput(recorder, clock, Camera.main);
-        // // Create an audio input to record the scene's AudioListener
-        // // audioInput = new AudioInput(recorder, clock, Camera.main.GetComponent<AudioListener>());
-        // audioInput = null;
-    }
+    // void StartRecording()
+    // {
+    //     Debug.Log("StartRecording");
+    //     // Create a recording clock
+    //     clock = new RealtimeClock();
+    //     // Start recording
+    //     recorder = new MP4Recorder(640, 480, 2);
+    //     // Create a camera input to record the main camera
+    //     cameraInput = new CameraInput(recorder, clock, Camera.main);
+    //     // Create an audio input to record the scene's AudioListener
+    //     // audioInput = new AudioInput(recorder, clock, Camera.main.GetComponent<AudioListener>());
+    //     audioInput = null;
+    // }
 
-    async void StopRecording()
-    {
-        Debug.Log("StopRecording");
-        // clock = null;
-        // // Destroy the recording inputs
-        // cameraInput.Dispose();
-        // // audioInput.Dispose();
-        // // Stop recording
-        // // recorder.FinishWriting();
-        // var path = await recorder.FinishWriting();
-        // // Playback recording
-        // Debug.Log($"Saved recording to: {path}");
-        // recorder = null;
-    	// new NativeShare().AddFile(path).SetSubject("Subject goes here").SetText("Hello world!").Share();
-    }
+    // async void StopRecording()
+    // {
+    //     Debug.Log("StopRecording");
+    //     clock = null;
+    //     // Destroy the recording inputs
+    //     cameraInput.Dispose();
+    //     // audioInput.Dispose();
+    //     // Stop recording
+    //     // recorder.FinishWriting();
+    //     var path = await recorder.FinishWriting();
+    //     // Playback recording
+    //     Debug.Log($"Saved recording to: {path}");
+    //     recorder = null;
+    // 	new NativeShare().AddFile(path).SetSubject("Subject goes here").SetText("Hello world!").Share();
+    // }
 }

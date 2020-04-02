@@ -162,7 +162,7 @@ MonoBehaviour:
     - materialName: Maziora
       textureType: 0
       baseColor: {r: 1, g: 0, b: 1, a: 1}
-      subColor: {r: 0, g: 0, b: 0, a: 0}
+      subColor: {r: 0.49803922, g: 0, b: 1, a: 0}
       minSize: 0.1
       maxSize: 0.1
       randomSeed: 12345

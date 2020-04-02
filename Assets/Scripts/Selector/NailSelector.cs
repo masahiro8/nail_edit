@@ -47,6 +47,11 @@ public class NailSelector : MonoBehaviour
             var meshRenderer = obj.GetComponent<MeshRenderer>();
             meshRenderer.material = Resources.Load<Material>("Materials/" + materialData.materialName);
             meshRenderer.material.SetColor(GlobalParam.colorName, materialData.baseColor);
+            if (materialData.subColor == Color.clear) {
+                meshRenderer.material.SetColor(GlobalParam.subColorName, materialData.baseColor);
+            } else {
+                meshRenderer.material.SetColor(GlobalParam.subColorName, materialData.subColor);
+            }
         }
 
         scrollRect.OnValueChangedAsObservable()

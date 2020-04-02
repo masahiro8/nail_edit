@@ -27,6 +27,11 @@ public partial class NailObject : MonoBehaviour
         var material = Resources.Load<Material>("Materials/" + data.materialName);
         meshRenderer.material = material;
         meshRenderer.material.SetColor(GlobalParam.colorName, data.baseColor);
+        if (data.subColor == Color.clear) {
+            meshRenderer.material.SetColor(GlobalParam.subColorName, data.baseColor);
+        } else {
+            meshRenderer.material.SetColor(GlobalParam.subColorName, data.subColor);
+        }
 
         switch (data.textureType) {
             case NailTextureType.None:
