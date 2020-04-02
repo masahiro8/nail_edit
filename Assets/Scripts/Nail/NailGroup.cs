@@ -1,0 +1,119 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public partial class NailGroup : MonoBehaviour
+{
+    public GameObject prefab;
+    public int orgTexWidth = 960; // 元画像のテクスチャの幅
+    public int orgTexHeight = 1280; // 元画像のテクスチャの高さ
+    public int minX;
+    public int maxX;
+    public int minY;
+    public int maxY;
+    public int texWidth; // テクスチャの幅
+    public int texHeight; // テクスチャの高さ
+    public float cx;
+    public float cy;
+    public float aspect;
+    public Vector3 center;
+
+    public NailRecord nailData;
+
+    // // Start is called before the first frame update
+    // void Start()
+    // {
+    //     for (var i = 0; i < 1; i++) {
+    //         var obj = Instantiate(prefab, transform);
+    //         obj.transform.localPosition = Vector3.zero;
+    //     }
+    // }
+
+    // 作成
+    public void UpdateMesh(string modelName, int[] data, Texture orgTexture)
+    {
+        // 一時的に適当に入れておく
+        if (nailData == null) {
+            nailData = DataTable.Nail.list[0];
+        }
+
+        name = modelName;
+        // texture = tex;
+        CalcRect(data);
+        UpdateTexture(data, orgTexture);
+        CreateMesh(data);
+
+        // 位置調整
+        transform.localPosition = center;
+
+        // 表示判定
+        // meshRenderer.gameObject.SetActive(!isHighLight || nailData.hasHighLightTexture);
+
+        for (var i = 0; i < nailData.materials.Length; i++) {
+            var obj = i < transform.childCount
+                ? transform.GetChild(i).gameObject // すでにある場合はそれを使う
+                : Instantiate(prefab, transform);
+            transform.GetChild(i).gameObject.SetActive(true);
+            obj.transform.localPosition = Vector3.forward * i * -0.1f;
+            var nailObject = obj.GetComponent<NailObject>();
+            nailObject.UpdateData(this, nailData.materials[i]);
+        }
+
+        for (var i = nailData.materials.Length; i < transform.childCount; i++) {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    // 中心および縦横の計算
+    private void CalcRect(int[] data)
+    {
+        // クリッピング
+        minX = data[0];
+        maxX = minX;
+        minY = data[1];
+        maxY = minY;
+        for (int i = 2; i < data.Length; i += 2) {
+            if (minX > data[i + 0]) {
+                minX = data[i + 0];
+            }
+            if (maxX < data[i + 0]) {
+                maxX = data[i + 0];
+            }
+            if (minY > data[i + 1]) {
+                minY = data[i + 1];
+            }
+            if (maxY < data[i + 1]) {
+                maxY = data[i + 1];
+            }
+            // minX = Mathf.Min(minX, data[i + 0]);
+            // maxX = Mathf.Min(maxX, data[i + 0]);
+            // minY = Mathf.Min(minY, data[i + 1]);
+            // maxY = Mathf.Min(maxY, data[i + 1]);
+        }
+        texWidth = maxX - minX;
+        texHeight = maxY - minY;
+
+        // アスペクト比
+        aspect = (float)orgTexWidth / (float)orgTexHeight;
+
+        // 中心
+        cx = (float)(maxX + minX) / 2;
+        cy = (float)(maxY + minY) / 2;
+
+        center = new Vector3(
+            (cx / (float)orgTexWidth - 0.5f) * aspect,
+            -(cy / (float)orgTexHeight - 0.5f),
+            0);
+    }
+
+    // テクスチャを更新
+    public void UpdateData(NailRecord data)
+    {
+        nailData = data;
+        // var material = Resources.Load<Material>("Materials/" + data.materialName);
+        // meshRenderer.material = material;
+        // foreach (Transform t in transform) {
+        //     t.GetComponent<NailObject>().ResetData(this);
+        // }
+    }
+}

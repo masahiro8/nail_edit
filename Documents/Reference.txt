@@ -1,0 +1,90 @@
+--
+
+Unity上でDarkMode判定
+https://gist.github.com/mao-test-h/b1cea20820832499a7e7942589db7e48
+
+Unity & iOS Dark Mode
+https://forum.unity.com/threads/unity-ios-dark-mode.805344/
+
+偏光性塗料「マジョーラ」の魅力
+http://www.syoshi-lab.sakura.ne.jp/sympo2006/abstract/kouguti.pdf
+
+[OpenGL] マジョーラ風の反射モデルを考えてみた
+http://qwertyfk.blog16.fc2.com/blog-entry-9.html
+
+Naming Conventions For Partial Class Files
+https://stackoverflow.com/questions/1478610/naming-conventions-for-partial-class-files
+
+Unity 半透明描画するサーフェースシェーダー
+https://qiita.com/beinteractive/items/fc80a42388581473db4d
+
+Unity Unlit/Transparent でアルファ値を外から設定したいシェーダー
+https://qiita.com/beinteractive/items/2dd81a9221cbc6cff754
+
+【Unity2018】 ShaderGraphで遊ぼう！その1
+https://notargs.hateblo.jp/entry/2018/05/08/073630
+
+Scriptable Render Pipeline（SRP）についてちょっと調べてみた
+http://edom18.hateblo.jp/entry/2019/03/13/113437
+
+NatCorder - Video Recording API
+https://assetstore.unity.com/packages/tools/integration/natcorder-video-recording-api-102645
+
+Native Share for Android & iOS
+https://assetstore.unity.com/packages/tools/integration/native-share-for-android-ios-112731?locale=ja-JP
+
+How I can share a video with Unity (Android & iOS)
+https://forum.unity.com/threads/how-i-can-share-a-video-with-unity-android-ios.521872/
+
+[Unity uGUI] スクロールビューの基本と軽量なスクロールリストビューの作り方
+https://qiita.com/k7a/items/7db3a41e39923fd8a3b3
+
+GetPixels of RenderTexture
+https://answers.unity.com/questions/27968/getpixels-of-rendertexture.html
+
+[Unity2D]長方形のTexture2Dのデータから中央部分を正方形に切り出したい
+https://qiita.com/harhogefoo/items/91fd13a8ab0a51def7e4
+
+RegexOptions 列挙型
+https://docs.microsoft.com/ja-jp/dotnet/api/system.text.regularexpressions.regexoptions?view=netframework-4.8
+
+NumPyのファンシーインデックス（リストによる選択と代入）
+https://note.nkmk.me/python-numpy-fancy-indexing/
+
+PCのwebcamを使い、リアルタイムのハンドトラッキング体験
+https://github.com/metalwhale/hand_tracking
+
+Build TensorFlow Lite for iOS
+https://www.tensorflow.org/lite/guide/build_ios
+
+How to build TensorFlow Lite native with custom operators?
+https://stackoverflow.com/questions/56418698/how-to-build-tensorflow-lite-native-with-custom-operators
+
+TensorFlow Liteのカスタムオペレーション
+https://note.com/npaka/n/n8fe72b8fc968
+
+tensorflow lite add custom op
+https://stackoverflow.com/questions/53150047/tensorflow-lite-add-custom-op
+
+Unable to load the hand detection model #35
+https://github.com/google/mediapipe/issues/35
+
+TFLite failed to allocate tensors when changing the input size #23399
+https://github.com/tensorflow/tensorflow/issues/23399
+
+2019インターン紹介: MediaPipeを用いたモバイル向けリアルタイム手指トラッキングを動かしてみる
+https://tech-blog.optim.co.jp/entry/2019/08/27/163000
+
+Share the `SavedModel(s)` for the `hand_landmark.tflite`, ` hand_landmark_3d.tflite` and `palm_detection.tflite` models #29
+https://github.com/google/mediapipe/issues/29
+
+【Unity】WebCamTextureを使ってみた
+https://kandycodings.jp/2019/02/17/unidev-webcam/
+
+[Unity] WebCamTextureの設定で元々のカメラ解像度を使いたい
+http://blog.be-style.jpn.com/article/54215683.html
+
+[Hand tracking] Simplifying it with Python #414
+https://github.com/google/mediapipe/issues/414
+
+--

@@ -1,0 +1,249 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47ed20d9b46b4d0489f1e1fb408950a, type: 3}
+  m_Name: NailTable
+  m_EditorClassIdentifier: 
+  list:
+  - name: Test
+    materials:
+    - materialName: Transparent
+      textureType: 0
+      baseColor: {r: 1, g: 0.27450982, b: 0.54901963, a: 0.5882353}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+    - materialName: Lame
+      textureType: 2
+      baseColor: {r: 1, g: 1, b: 0, a: 1}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 64
+    - materialName: Lame
+      textureType: 3
+      baseColor: {r: 0, g: 1, b: 1, a: 1}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.03
+      maxSize: 0.03
+      randomSeed: 12346
+      randomCount: 256
+  - name: Test 2
+    materials:
+    - materialName: NoiseNormal
+      textureType: 0
+      baseColor: {r: 0, g: 0.46666667, b: 0.45659724, a: 1}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 0
+      randomCount: 0
+    - materialName: Lame
+      textureType: 4
+      baseColor: {r: 0.4056604, g: 0.4056604, b: 0.2238786, a: 1}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 128
+  - name: NoiseSpec
+    materials:
+    - materialName: NoiseSpec
+      textureType: 0
+      baseColor: {r: 0.5176471, g: 0.14901961, b: 0.2784314, a: 1}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: NoiseSpec 2
+    materials:
+    - materialName: NoiseSpec
+      textureType: 0
+      baseColor: {r: 0.1490196, g: 0.32426, b: 0.5176471, a: 1}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: NoiseNormal
+    materials:
+    - materialName: NoiseNormal
+      textureType: 0
+      baseColor: {r: 0.83137256, g: 0.6901961, b: 0.4117647, a: 1}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: NoiseNormal 2
+    materials:
+    - materialName: NoiseNormal
+      textureType: 0
+      baseColor: {r: 0.4117647, g: 0.83137256, b: 0.56417894, a: 1}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Mirror
+    materials:
+    - materialName: Mirror
+      textureType: 0
+      baseColor: {r: 1, g: 0.43529412, b: 0.7058824, a: 1}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Mirror 1
+    materials:
+    - materialName: Mirror
+      textureType: 0
+      baseColor: {r: 0.43529412, g: 0.5137255, b: 0.627451, a: 1}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Mirror 2
+    materials:
+    - materialName: Mirror
+      textureType: 0
+      baseColor: {r: 0.14509805, g: 0.58431375, b: 0.5882353, a: 1}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Transparent 1
+    materials:
+    - materialName: Transparent
+      textureType: 0
+      baseColor: {r: 0.49019608, g: 0.24705882, b: 1, a: 0.59607846}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Transparent 2
+    materials:
+    - materialName: Transparent
+      textureType: 0
+      baseColor: {r: 1, g: 0.24705881, b: 0.37637436, a: 0.59607846}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Transparent 3
+    materials:
+    - materialName: Transparent
+      textureType: 0
+      baseColor: {r: 0.44933417, g: 1, b: 0.24705881, a: 0.59607846}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Maziora
+    materials:
+    - materialName: Maziora
+      textureType: 0
+      baseColor: {r: 1, g: 0, b: 1, a: 1}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Nail-13
+    materials:
+    - materialName: Mirror
+      textureType: 0
+      baseColor: {r: 0, g: 0, b: 0, a: 0}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Nail-14
+    materials:
+    - materialName: Mirror
+      textureType: 0
+      baseColor: {r: 0, g: 0, b: 0, a: 0}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Nail-15
+    materials:
+    - materialName: Mirror
+      textureType: 0
+      baseColor: {r: 0, g: 0, b: 0, a: 0}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Nail-16
+    materials:
+    - materialName: Mirror
+      textureType: 0
+      baseColor: {r: 0, g: 0, b: 0, a: 0}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Nail-17
+    materials:
+    - materialName: Mirror
+      textureType: 0
+      baseColor: {r: 0, g: 0, b: 0, a: 0}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Nail-18
+    materials:
+    - materialName: Mirror
+      textureType: 0
+      baseColor: {r: 0, g: 0, b: 0, a: 0}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Nail-19
+    materials:
+    - materialName: Mirror
+      textureType: 0
+      baseColor: {r: 0, g: 0, b: 0, a: 0}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+  - name: Nail-20
+    materials:
+    - materialName: Mirror
+      textureType: 0
+      baseColor: {r: 0, g: 0, b: 0, a: 0}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
