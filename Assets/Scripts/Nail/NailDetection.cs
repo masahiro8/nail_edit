@@ -19,7 +19,7 @@ public class NailDetection : MonoBehaviour
     //     data = Resources.Load("sample_result") as TextAsset;
     // }
 
-    public void Invoke(Texture webcam, WebCamDevice device)
+    public void Invoke(Texture webcam)
     {
         var matches = Regex.Matches(DebugPhoto.Instance.PhotoFileJson,
             @"\[[^\[]*?\]",
