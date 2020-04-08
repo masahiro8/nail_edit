@@ -1,5 +1,20 @@
 --
 
+UGUI Super ScrollView
+https://assetstore.unity.com/packages/tools/gui/ugui-super-scrollview-86572?locale=ja-JP
+
+FancyScrollView
+https://github.com/setchi/FancyScrollView
+
+Change variables of Stretch Rect Transform
+https://answers.unity.com/questions/894220/change-variables-of-stretch-rect-transform.html
+
+二つのベクトルがつくる角度を求める
+https://ngroku.com/?p=5086
+
+Detect when a property is changed on a ScriptableObject Asset
+https://answers.unity.com/questions/413516/detect-when-a-property-is-changed-on-a-scriptableo.html
+
 Unity上でDarkMode判定
 https://gist.github.com/mao-test-h/b1cea20820832499a7e7942589db7e48
 

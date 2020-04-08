@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b24586c6bab94f8583c21205959423e, type: 3}
+  m_Name: CategoryTable
+  m_EditorClassIdentifier: 
+  list:
+  - name: Soulful color
+    type: 0
+  - name: Lagoon color
+    type: 1
+  - name: Milky color
+    type: 2
+  - name: Galactic color
+    type: 3
+  - name: Chic color
+    type: 4
+  - name: Dusty pastel color
+    type: 5
+  - name: Ethnic color
+    type: 6
+  - name: Relaxing color
+    type: 7
+  - name: Pinkish color
+    type: 8
+  - name: Luxury color
+    type: 9
+  - name: Sheer pearl color
+    type: 10
+  - name: Juicy color
+    type: 11
+  - name: Earth color
+    type: 12
+  - name: Vivid color
+    type: 13
+  - name: Classic color
+    type: 14
+  - name: Mode color
+    type: 15
+  - name: Nude color
+    type: 16
+  - name: Aurora Glitter color
+    type: 17
+  - name: Frozen sugar
+    type: 18
+  - name: Pastel snow
+    type: 19
+  - name: Party flake
+    type: 20
+  - name: Fur mode
+    type: 21
+  - name: Art liner
+    type: 22
+  - name: "\u30CD\u30A4\u30EB\u30DB\u30EA\u30C3\u30AF 24_7"
+    type: 23

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e79c77e862444ffbc330a2bcd7f6bc, type: 3}
+  m_Name: MenuTable
+  m_EditorClassIdentifier: 
+  list:
+  - name: "\u304A\u6C17\u306B\u5165\u308A\u30EA\u30B9\u30C8"
+    icon: {fileID: 2800000, guid: c451752e838dc49dea036317fd25c2f0, type: 3}
+  - name: "\u6301\u3063\u3066\u3044\u308B\u30EA\u30B9\u30C8"
+    icon: {fileID: 2800000, guid: c451752e838dc49dea036317fd25c2f0, type: 3}
+  - name: "\u30B9\u30C8\u30A2\u9078\u629E"
+    icon: {fileID: 2800000, guid: c451752e838dc49dea036317fd25c2f0, type: 3}
+  - name: "\u304A\u77E5\u3089\u305B"
+    icon: {fileID: 2800000, guid: c451752e838dc49dea036317fd25c2f0, type: 3}
+  - name: "Push\u901A\u77E5\u8A2D\u5B9A"
+    icon: {fileID: 2800000, guid: c451752e838dc49dea036317fd25c2f0, type: 3}
+  - name: "\u30A2\u30D7\u30EA\u306B\u3064\u3044\u3066"
+    icon: {fileID: 0}
+  - name: "\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC\u30DD\u30EA\u30B7\u30FC"
+    icon: {fileID: 0}
+  - name: "\u5229\u7528\u898F\u7D04"
+    icon: {fileID: 0}
+  - name: "\u5229\u7528\u898F\u7D04"
+    icon: {fileID: 0}
+  - name: "\u5229\u7528\u898F\u7D04"
+    icon: {fileID: 0}
+  - name: "\u5229\u7528\u898F\u7D04"
+    icon: {fileID: 0}
+  - name: "\u5229\u7528\u898F\u7D04"
+    icon: {fileID: 0}
+  - name: "\u5229\u7528\u898F\u7D04"
+    icon: {fileID: 0}
+  - name: "\u5229\u7528\u898F\u7D04"
+    icon: {fileID: 0}
+  - name: "\u5229\u7528\u898F\u7D04"
+    icon: {fileID: 0}
+  - name: "\u5229\u7528\u898F\u7D04"
+    icon: {fileID: 0}
+  - name: "\u5229\u7528\u898F\u7D04"
+    icon: {fileID: 0}
+  - name: "\u5229\u7528\u898F\u7D04"
+    icon: {fileID: 0}

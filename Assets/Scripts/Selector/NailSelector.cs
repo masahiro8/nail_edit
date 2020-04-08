@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using SuperScrollView;
 
 public class NailSelector : MonoBehaviour
 {
@@ -29,34 +30,33 @@ public class NailSelector : MonoBehaviour
 
         // nailDetection.baseColor = nailTable.list[0].baseColor;
 
-        // スクロールバーのアイテム
-        for (var i = 0; i < DataTable.Nail.list.Length; i++) {
-            var obj = Instantiate(itemPrefab, scrollRect.content);
-            var item = obj.GetComponent<NailItem>();
-            item.UpdateContext(this, i);
-        }
+        // // スクロールバーのアイテム
+        // for (var i = 0; i < DataTable.Nail.list.Length; i++) {
+        //     var obj = Instantiate(itemPrefab, scrollRect.content);
+        //     var item = obj.GetComponent<NailItem>();
+        //     item.UpdateContext(this, i);
+        // }
 
-        // 爪のモデル
-        for (var i = 0; i < DataTable.Nail.list.Length; i++) {
-            var obj = Instantiate(modelPrefab, transform);
-            obj.transform.localRotation = Quaternion.Euler(-30, 180, 60);
-            obj.transform.localScale = Vector3.one * 4f;
+        // // 爪のモデル
+        // for (var i = 0; i < DataTable.Nail.list.Length; i++) {
+        //     var obj = Instantiate(modelPrefab, transform);
+        //     obj.transform.localRotation = Quaternion.Euler(-30, 180, 60);
+        //     obj.transform.localScale = Vector3.one * 4f;
 
-            var data = DataTable.Nail.list[i];
-            var materialData = data.materials[0];
-            var meshRenderer = obj.GetComponent<MeshRenderer>();
-            meshRenderer.material = Resources.Load<Material>("Materials/" + materialData.materialName);
-            meshRenderer.material.SetColor(GlobalParam.colorName, materialData.baseColor);
-            if (materialData.subColor == Color.clear) {
-                meshRenderer.material.SetColor(GlobalParam.subColorName, materialData.baseColor);
-            } else {
-                meshRenderer.material.SetColor(GlobalParam.subColorName, materialData.subColor);
-            }
-        }
+        //     var data = DataTable.Nail.list[i];
+        //     var materialData = data.materials[0];
+        //     var meshRenderer = obj.GetComponent<MeshRenderer>();
+        //     materialData.SetMaterial(meshRenderer);
+        // }
 
-        scrollRect.OnValueChangedAsObservable()
-            .Subscribe(v => UpdateLayer(v))
-            .AddTo(gameObject);
+        // scrollRect.OnValueChangedAsObservable()
+        //     .Subscribe(v => UpdateLayer(v))
+        //     .AddTo(gameObject);
+
+        var listView = scrollRect.GetComponent<LoopListView2>();
+        listView.InitListView(
+            DataTable.Nail.list.Length,
+            OnGetItemByIndex);
     }
 
     // スクロールしたのでアイテムを更新
@@ -83,5 +83,30 @@ public class NailSelector : MonoBehaviour
         res.y = 0;
         res.z = 0;
         return res;
+    }
+
+    LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int index)
+    {
+        if (index < 0 || index >= DataTable.Nail.list.Length)
+        {
+            return null;
+        }
+
+        var itemData = DataTable.Nail.list[index];
+        if (itemData == null)
+        {
+            return null;
+        }
+        LoopListViewItem2 item = listView.NewListViewItem("NailItem");
+        var itemScript = item.GetComponent<NailItem>();
+        if (item.IsInitHandlerCalled == false)
+        {
+            item.IsInitHandlerCalled = true;
+            // itemScript.Init();
+        }
+
+        // itemScript.SetItemData(itemData, index);
+        itemScript.UpdateContext(this, index);
+        return item;
     }
 }

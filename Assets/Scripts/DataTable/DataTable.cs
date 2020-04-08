@@ -19,23 +19,32 @@ public class DataTable : MonoBehaviour
         }
     }
 
+    public ParamTable _Param;
+    public static ParamTable Param {
+        get { return Instance._Param; }
+    }
+
+    public MenuTable _Menu;
+    public static MenuTable Menu {
+        get { return Instance._Menu; }
+    }
+
     public NailTable _Nail;
     public static NailTable Nail {
         get { return Instance._Nail; }
     }
 
-    // public static BaseRecord[] GetList(DataType type)
-    // {
-    //     switch (type) {
-    //     case DataType.Nail:
-    //         return Nail.list;
-    //     default:
-    //         return Nail.list;
-    //     }
-    // }
+    public CategoryTable _Category;
+    public static CategoryTable Category {
+        get { return Instance._Category; }
+    }
 
 	private void Setup()
     {
-		_Nail = Resources.Load<NailTable>("NailTable");
+        var folder = "Data/";
+		_Param = Resources.Load<ParamTable>(folder + "ParamTable");
+		_Menu = Resources.Load<MenuTable>(folder + "MenuTable");
+		_Nail = Resources.Load<NailTable>(folder + "NailTable");
+		_Category = Resources.Load<CategoryTable>(folder + "CategoryTable");
 	}
 }

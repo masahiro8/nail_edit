@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using SuperScrollView;
 
-public class NailItem : MonoBehaviour
+public class NailItem : LoopListViewItem2
 {
     public Text numberText;
     public Text titleText;
     public Button button;
+    public Image image;
 
     public void UpdateContext(NailSelector selector, int n)
     {
@@ -24,6 +26,9 @@ public class NailItem : MonoBehaviour
         var data = DataTable.Nail.list[n];
         numberText.text = "No." + (n + 1).ToString();
         titleText.text = data.name;
+        if (data.materials.Length > 0) {
+            image.color = data.materials[0].baseColor;
+        }
 
         // var material = Resources.Load<Material>("Materials/" + data.materialName);
 

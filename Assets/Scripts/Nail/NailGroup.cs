@@ -50,12 +50,16 @@ public partial class NailGroup : MonoBehaviour
         // meshRenderer.gameObject.SetActive(!isHighLight || nailData.hasHighLightTexture);
 
         for (var i = 0; i < nailData.materials.Length; i++) {
-            var obj = i < transform.childCount
-                ? transform.GetChild(i).gameObject // すでにある場合はそれを使う
-                : Instantiate(prefab, transform);
-            transform.GetChild(i).gameObject.SetActive(true);
-            obj.transform.localPosition = Vector3.forward * i * -0.1f;
-            var nailObject = obj.GetComponent<NailObject>();
+            NailObject nailObject = null;
+            if (i < transform.childCount) {
+                // すでにある場合はそれを使う
+                nailObject = transform.GetChild(i).GetComponent<NailObject>();
+            } else {
+                // 新規作成
+                nailObject = Instantiate(prefab, transform).GetComponent<NailObject>();
+                nailObject.transform.localPosition = Vector3.forward * i * -0.1f;
+            }
+            nailObject.gameObject.SetActive(true);
             nailObject.UpdateData(this, nailData.materials[i]);
         }
 
