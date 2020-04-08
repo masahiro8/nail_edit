@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using TensorFlowLite;
 using UniRx;
-using NatCorder;
-using NatCorder.Clocks;
-using NatCorder.Inputs;
 
 
 public class DrawMain : MonoBehaviour
@@ -21,10 +17,7 @@ public class DrawMain : MonoBehaviour
     [SerializeField] RawImage cameraView = null;
     [SerializeField] RawImage texView = null;
 
-    [SerializeField] PalmDetection palmDetection = null;
-    [SerializeField] HandLandmark handLandmark = null;
     [SerializeField] public NailDetection nailDetection = null;
-    [SerializeField] public NailDetectionTest nailDetectionTest = null;
 
     System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
@@ -33,11 +26,6 @@ public class DrawMain : MonoBehaviour
     List<WebCamTexture> webcamTextures = new List<WebCamTexture>();
 
     bool isProcessing = false;
-
-    IClock clock;
-    IMediaRecorder recorder;
-    CameraInput cameraInput;
-    AudioInput audioInput;
 
     void Start()
     {
@@ -63,19 +51,6 @@ public class DrawMain : MonoBehaviour
         if (camButton) {
             camButton.OnClickAsObservable()
                 .Subscribe(_ => ChangeCamera())
-                .AddTo(gameObject);
-        }
-
-        if (recButton) {
-            recButton.OnClickAsObservable()
-                .SubscribeOnMainThread()
-                .Subscribe(_ => {
-                    if (clock == null) {
-                        StartRecording();
-                    } else {
-                        StopRecording();
-                    }
-                })
                 .AddTo(gameObject);
         }
 
@@ -263,36 +238,6 @@ public class DrawMain : MonoBehaviour
         if (outputTextView) {
             outputTextView.text = sb.ToString();
         }
-    }
-
-    void StartRecording()
-    {
-        Debug.Log("StartRecording");
-        // Create a recording clock
-        clock = new RealtimeClock();
-        // Start recording
-        recorder = new MP4Recorder(640, 480, 2);
-        // Create a camera input to record the main camera
-        cameraInput = new CameraInput(recorder, clock, Camera.main);
-        // Create an audio input to record the scene's AudioListener
-        // audioInput = new AudioInput(recorder, clock, Camera.main.GetComponent<AudioListener>());
-        audioInput = null;
-    }
-
-    async void StopRecording()
-    {
-        Debug.Log("StopRecording");
-        clock = null;
-        // Destroy the recording inputs
-        cameraInput.Dispose();
-        // audioInput.Dispose();
-        // Stop recording
-        // recorder.FinishWriting();
-        var path = await recorder.FinishWriting();
-        // Playback recording
-        Debug.Log($"Saved recording to: {path}");
-        recorder = null;
-    	new NativeShare().AddFile(path).SetSubject("Subject goes here").SetText("Hello world!").Share();
     }
 
     void OpenMenu()
