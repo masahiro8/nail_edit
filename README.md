@@ -1,26 +1,75 @@
-# Unityでのビルドに関して
+# ネイルデータのエディットに関して
 
----
-
-# TensowFlow LiteのFrameworkのビルドに関して
-
-bazelは1.1.0を使用。
-ただしカスタムオペレータを使わなくなったので以下未使用。
+Unityエディターで下記のシーンを開いて再生します。
 
 ```
-% git clone https://github.com/google/mediapipe
+Assets/Scenes/NailEdit.unity
 ```
 
-```
-% git clone https://github.com/tensorflow/tensorflow
-% cd ~/Work/tensorflow
-% bazel build -c opt --cxxopt=--std=c++11 tensorflow/lite/c:libtensorflowlite_c.so
-% cp ~/Work/tensorflow/bazel-bin/tensorflow/lite/c/libtensorflowlite_c.so ~/Work/Camera04/Assets/TensorFlowLite/Plugins/macOS/libtensorflowlite_c.bundle
-```
+```List```のSizeが登録されているデータの数です。
+Sizeを変更すると個数を増減できます。
+すでに設定済みのデータを右クリックして「Duplicate Array Element」を洗濯すると複製して増やすこともできます。
 
-```
-% bazel build -c opt --cpu ios_arm64 --copt -Os --copt -DTFLITE_GPU_BINARY_RELEASE --copt -fvisibility=hidden --copt=-fembed-bitcode --linkopt -s --strip always --cxxopt=-std=c++14 //tensorflow/lite/delegates/gpu:tensorflow_lite_gpu_framework --apple_platform_type=ios
-% cp ~/Work/tensorflow/bazel-bin/tensorflow/lite/delegates/gpu/tensorflow_lite_gpu_framework.zip ~/Work/Camera04/Assets/TensorFlowLite/Plugins/iOS/tensorflow_lite_gpu_framework.framework
-```
+```Materials```のSizeを変更するとラメの個数を増やすことができます。
+
+## 基本データ
+
+- ```Name```
+    名称です。
+- ```Category Types```
+    カテゴリです。現在対応中です。
+
+## マテリアル用
+
+- ```Material Name```
+    使用するマテリアルです。現在は二種類で、```NailBase```がベース用、```NailLame```が上に被せるラメ用です。
+- ```Base Color```
+    全体の色です。
+- ```Sub Color```
+    中央に向かって色を変化させたい場合に設定します。黒以外に設定すると有効になります。
+- ```Shadow Color```
+    影になる部分の色を設定します。黒以外に設定すると有効になります。
+- ```Normal Height```
+    表面の凹凸の度合いです。0だと滑らかで、1だと凹凸が激しくなり反射光が拡散します。
+- ```Normal Size```
+    表面の凹凸の密集度です。0に近づくほど荒くなり、値を大きくすると目が細かくなります。
+- ```Noise```
+    表面の色にノイズを混ぜます。0だとノイズなしで、1に近づくほど強くなります。
+- ```Emission Rate```
+    爪の暗い部分の色で、0〜1で指定します。0の場合は黒、1の場合は```Base Color```と同じ色になります。
+- ```Metallic```
+    表面の金属度の設定で、0〜1で指定します。1に近づくほど金属的になります。
+- ```Smoothness```
+    反射光の設定で、0〜1で指定します。0だとざらざらした表面になり、1だとツルッとした表面になります。
+
+## テクスチャ用
+
+これらのパラメータの変更は処理にやや時間がかかるため、瞬間的に動作が少し遅くなります。
+
+- ```Texture Type```
+    模様のパターンが変わります。
+- ```Min Size```, ```Max Size```
+    模様の大きさです。画面の大きさに対する割合として0〜1で指定し、1の場合は画面全体の大きさになります。```Min Size```と```Max Size```の間でランダムな長さになります。
+- ```Random Seed```
+    ランダムのパターンが変わります。
+- ```Random Count```
+    模様の個数を変化させます。
+
+## 模様のパターン
+
+```Texture Type```で指定する値です。
+
+- ```None```
+    模様なし
+- ```Light```
+    手の画像から明るい部分を切り出した画像
+- ```Triangle```
+    三角形
+- ```Circle```
+    円
+- ```Line```
+    細い線
+- ```Streaks```
+    凹んだ溝の表現
 
 ---
