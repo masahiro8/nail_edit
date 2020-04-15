@@ -13,54 +13,54 @@ MonoBehaviour:
   m_Name: NailTable
   m_EditorClassIdentifier: 
   list:
-  - name: Test
+  - name: Test 1-1 Pink
     categoryTypes: 00000000
     materials:
-    - materialName: Transparent
-      baseColor: {r: 1, g: 0.27450982, b: 0.54901963, a: 0.5882353}
+    - materialName: NailBase
+      baseColor: {r: 0.6509434, g: 0.33468318, b: 0.4299944, a: 0.9137255}
       subColor: {r: 0, g: 0, b: 0, a: 0}
-      normalHeight: 0
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
+      normalHeight: 0.48
+      normalSize: 2.23
       noise: 0
       emissionRate: 0.8
-      smoothness: 0.8
+      metallic: 0.87
+      smoothness: 0.52
       textureType: 0
       minSize: 0.1
       maxSize: 0.1
       randomSeed: 12345
       randomCount: 32
-    - materialName: NailLame
-      baseColor: {r: 1, g: 1, b: 0, a: 1}
+  - name: Test 1-2 Blue
+    categoryTypes: 00000000
+    materials:
+    - materialName: NailBase
+      baseColor: {r: 0.11372549, g: 0.29803923, b: 0.5568628, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
-      normalHeight: 0
+      shadowColor: {r: 0.07409222, g: 0.18845783, b: 0.3490566, a: 0}
+      normalHeight: 0.43
+      normalSize: 2.34
       noise: 0
       emissionRate: 0
-      smoothness: 0.8
-      textureType: 3
+      metallic: 0.64
+      smoothness: 0.52
+      textureType: 0
       minSize: 0.1
       maxSize: 0.1
       randomSeed: 12345
-      randomCount: 64
-    - materialName: NailLame
-      baseColor: {r: 0, g: 1, b: 1, a: 1}
-      subColor: {r: 0, g: 0, b: 0, a: 0}
-      normalHeight: 0
-      noise: 0
-      emissionRate: 0
-      smoothness: 0.8
-      textureType: 3
-      minSize: 0.03
-      maxSize: 0.03
-      randomSeed: 12346
-      randomCount: 256
+      randomCount: 32
   - name: Test 2
     categoryTypes: 00000000
     materials:
     - materialName: NailBase
       baseColor: {r: 0.3915094, g: 0.62331533, b: 1, a: 0.6117647}
       subColor: {r: 0.13794944, g: 0.41920358, b: 0.9433962, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0.8
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -70,9 +70,12 @@ MonoBehaviour:
     - materialName: NailLame
       baseColor: {r: 0.6273585, g: 0.70815843, b: 1, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0.5
+      normalSize: 0.7
       noise: 0
       emissionRate: 0.4
+      metallic: 0.5
       smoothness: 0.4
       textureType: 2
       minSize: 0.02
@@ -85,9 +88,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0.4056604, g: 0.19326274, b: 0.31721985, a: 0.6117647}
       subColor: {r: 0.46226418, g: 0.16789782, b: 0.25671536, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0.8
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -97,9 +103,12 @@ MonoBehaviour:
     - materialName: NailLame
       baseColor: {r: 1, g: 0.63529414, b: 0.7343652, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0.5
+      normalSize: 0.7
       noise: 0
       emissionRate: 0.4
+      metallic: 0.5
       smoothness: 0.4
       textureType: 2
       minSize: 0.02
@@ -109,9 +118,12 @@ MonoBehaviour:
     - materialName: NailLame
       baseColor: {r: 0.24528302, g: 0.4079444, b: 0.9811321, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0.5
+      normalSize: 0.7
       noise: 0
       emissionRate: 0.4
+      metallic: 0.5
       smoothness: 0.4
       textureType: 2
       minSize: 0.02
@@ -124,9 +136,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0.23921569, g: 0.30062187, b: 0.4056604, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0.5
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -136,9 +151,12 @@ MonoBehaviour:
     - materialName: NailLame
       baseColor: {r: 0.5377358, g: 0.5377358, b: 0.23082057, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0.5
+      normalSize: 0.7
       noise: 0
       emissionRate: 0.3
+      metallic: 0.5
       smoothness: 0.4
       textureType: 4
       minSize: 0.06
@@ -151,9 +169,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0.41585082, g: 0.990566, b: 0.9413047, a: 0.6862745}
       subColor: {r: 0, g: 0.71280336, b: 1, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0.8
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -163,9 +184,12 @@ MonoBehaviour:
     - materialName: NailLame
       baseColor: {r: 0.6745283, g: 0.9966751, b: 1, a: 0.94509804}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0.3
+      normalSize: 0.7
       noise: 0
       emissionRate: 0.9
+      metallic: 0.5
       smoothness: 0.4
       textureType: 3
       minSize: 0.01
@@ -178,9 +202,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0.42352942, g: 0.6422202, b: 0.69803923, a: 0.54509807}
       subColor: {r: 0.2226771, g: 0.26110205, b: 0.33962262, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0.8
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -190,9 +217,12 @@ MonoBehaviour:
     - materialName: NailLame
       baseColor: {r: 0.754361, g: 0.9534348, b: 0.9811321, a: 1}
       subColor: {r: 0.7654414, g: 0.93732196, b: 0.9716981, a: 1}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0.8
+      normalSize: 0.7
       noise: 0
       emissionRate: 0.4
+      metallic: 0.5
       smoothness: 0.4
       textureType: 3
       minSize: 0.02
@@ -205,9 +235,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0.5800238, g: 0.5849056, b: 0.013794942, a: 1}
       subColor: {r: 0.7075472, g: 0.6465039, b: 0, a: 1}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0.1
+      normalSize: 0.7
       noise: 0.1
       emissionRate: 0.5
+      metallic: 0
       smoothness: 0.8
       textureType: 5
       minSize: 0.1
@@ -217,9 +250,12 @@ MonoBehaviour:
     - materialName: NailLame
       baseColor: {r: 1, g: 0.9662454, b: 0.6933962, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0.5
+      normalSize: 0.7
       noise: 0
       emissionRate: 0.6
+      metallic: 0.5
       smoothness: 0.8
       textureType: 3
       minSize: 0.01
@@ -232,9 +268,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0.5176471, g: 0.14901961, b: 0.2784314, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0.2
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -247,9 +286,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0.1490196, g: 0.32426, b: 0.5176471, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0.2
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -262,9 +304,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0.83137256, g: 0.6901961, b: 0.4117647, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0.164
+      normalSize: 0.7
       noise: 0.2
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -277,9 +322,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0.4117647, g: 0.83137256, b: 0.56417894, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0.164
+      normalSize: 0.7
       noise: 0.2
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -292,9 +340,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 1, g: 0.43529412, b: 0.7058824, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -307,9 +358,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0.43529412, g: 0.5137255, b: 0.627451, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -322,9 +376,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0.14509805, g: 0.58431375, b: 0.5882353, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -337,9 +394,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0.49019608, g: 0.24705882, b: 1, a: 0.59607846}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -352,9 +412,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 1, g: 0.24705881, b: 0.37637436, a: 0.59607846}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -367,9 +430,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0.44933417, g: 1, b: 0.24705881, a: 0.59607846}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -382,9 +448,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 1, g: 0, b: 1, a: 1}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -397,9 +466,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -412,9 +484,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -427,9 +502,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -442,9 +520,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -457,9 +538,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -472,9 +556,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -487,9 +574,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1
@@ -502,9 +592,12 @@ MonoBehaviour:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
       subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
       normalHeight: 0
+      normalSize: 0.7
       noise: 0
       emissionRate: 0
+      metallic: 0
       smoothness: 0.8
       textureType: 0
       minSize: 0.1

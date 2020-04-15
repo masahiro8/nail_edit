@@ -4,12 +4,15 @@
 public class NailMaterialRecord
 {
     // マテリアル用
-    public string materialName = "Mirror";
+    public string materialName = "NailBase";
     public Color baseColor = Vector4.one;
     public Color subColor = Vector4.zero;
+    public Color shadowColor = Vector4.zero;
     public float normalHeight = 0;
+    public float normalSize = 0.7f;
     public float noise = 0;
     public float emissionRate = 0;
+    public float metallic = 0;
     public float smoothness = 0.8f;
 
     // テクスチャ用
@@ -50,9 +53,16 @@ public class NailMaterialRecord
         } else {
             renderer.material.SetColor(DataTable.Param.subColorName, subColor);
         }
+        if (shadowColor.r == 0 && shadowColor.g == 0 && shadowColor.b == 0) {
+            renderer.material.SetColor("_ShadowColor", baseColor * emissionRate);
+        } else {
+            renderer.material.SetColor("_ShadowColor", shadowColor);
+        }
         renderer.material.SetFloat("_Noise", noise);
         renderer.material.SetFloat("_NormalHeight", normalHeight);
-        renderer.material.SetFloat("_EmissionRate", emissionRate);
+        renderer.material.SetFloat("_NormalSize", normalSize);
+        // renderer.material.SetFloat("_EmissionRate", emissionRate);
+        renderer.material.SetFloat("_Metallic", metallic);
         renderer.material.SetFloat("_Smoothness", smoothness);
     }
 
