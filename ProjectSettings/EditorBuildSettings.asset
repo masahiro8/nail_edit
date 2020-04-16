@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main.unity
+    path: Assets/Scenes/NailEdit.unity
     guid: 7a847b052ca2a42cea38aa73ce91a791
   m_configObjects: {}

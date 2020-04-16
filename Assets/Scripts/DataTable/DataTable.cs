@@ -29,6 +29,11 @@ public class DataTable : MonoBehaviour
         get { return Instance._Menu; }
     }
 
+    public MyListTable _MyList;
+    public static MyListTable MyList {
+        get { return Instance._MyList; }
+    }
+
     public NailTable _Nail;
     public static NailTable Nail {
         get { return Instance._Nail; }
@@ -39,12 +44,19 @@ public class DataTable : MonoBehaviour
         get { return Instance._Category; }
     }
 
+    public TutorialTable _Tutorial;
+    public static TutorialTable Tutorial {
+        get { return Instance._Tutorial; }
+    }
+
 	private void Setup()
     {
         var folder = "Data/";
 		_Param = Resources.Load<ParamTable>(folder + "ParamTable");
 		_Menu = Resources.Load<MenuTable>(folder + "MenuTable");
+		_MyList = Resources.Load<MyListTable>(folder + "MyListTable");
 		_Nail = Resources.Load<NailTable>(folder + "NailTable");
 		_Category = Resources.Load<CategoryTable>(folder + "CategoryTable");
+		_Tutorial = Resources.Load<TutorialTable>(folder + "TutorialTable");
 	}
 }

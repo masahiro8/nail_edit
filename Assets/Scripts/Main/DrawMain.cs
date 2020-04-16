@@ -154,19 +154,21 @@ public class DrawMain : MonoBehaviour
         if (!isProcessing) {
             isProcessing = true;
             float startTime = Time.realtimeSinceStartup;
-            // var webcam = webcamTextures[webcamIndex];
-            // var device = WebCamTexture.devices[deviceIndexes[webcamIndex]];
-            // palmDetection.Invoke(webcam, device);
-            // handLandmark.Resize(webcam, palmDetection);
-            // handLandmark.Invoke(webcam, device);
-            // nailDetection.Invoke(texView.texture, device);
+
+            if (webcamTextures.Count > 0) {
+                var webcam = webcamTextures[webcamIndex];
+                var device = WebCamTexture.devices[deviceIndexes[webcamIndex]];
+                // palmDetection.Invoke(webcam, device);
+                // handLandmark.Resize(webcam, palmDetection);
+                // handLandmark.Invoke(webcam, device);
+            }
+
             nailDetection.Invoke(texView.texture);
 
-            // nailDetectionTest.Invoke(texView.texture, device);
-
-            // palmDetection.DebugTexture();
-            // handLandmark.DebugTexture();
-            // nailDetectionTest.DebugTexture();
+            if (webcamTextures.Count > 0) {
+                // palmDetection.DebugTexture();
+                // handLandmark.DebugTexture();
+            }
             DebugDisp();
             isProcessing = false;
         }
@@ -174,9 +176,9 @@ public class DrawMain : MonoBehaviour
 
     void ChangeCamera()
     {
+        DebugPhoto.Instance.AddIndex();
+        cameraView.texture = Resources.Load(DebugPhoto.Instance.PhotoFileName) as Texture2D;
         if (webcamTextures.Count == 0) {
-            DebugPhoto.Instance.AddIndex();
-            cameraView.texture = Resources.Load(DebugPhoto.Instance.PhotoFileName) as Texture2D;
             return;
         }
         if (webcamTextures[webcamIndex].isPlaying) {

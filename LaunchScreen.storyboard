@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ff9-mC-xGS" userLabel="Square">
+                                <rect key="frame" x="0.0" y="79" width="414" height="738"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Data/Raw/LaunchImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="lvT-eW-lh5">
+                                        <rect key="frame" x="0.0" y="353" width="414" height="32"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="lvT-eW-lh5" firstAttribute="width" secondItem="ff9-mC-xGS" secondAttribute="width" multiplier="1:1" id="4dm-dC-m5P"/>
+                                    <constraint firstAttribute="width" secondItem="ff9-mC-xGS" secondAttribute="height" multiplier="385:686" id="CF7-QX-3pZ"/>
+                                    <constraint firstItem="lvT-eW-lh5" firstAttribute="centerY" secondItem="ff9-mC-xGS" secondAttribute="centerY" id="Yba-Y0-lk9"/>
+                                    <constraint firstItem="lvT-eW-lh5" firstAttribute="centerX" secondItem="ff9-mC-xGS" secondAttribute="centerX" id="gav-YV-RqO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ff9-mC-xGS" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="E1c-9W-VT5"/>
+                            <constraint firstItem="ff9-mC-xGS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="GMs-Vz-3yL"/>
+                            <constraint firstItem="ff9-mC-xGS" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" priority="750" id="NcF-YX-Q1N"/>
+                            <constraint firstItem="ff9-mC-xGS" firstAttribute="width" relation="lessThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="width" id="ZI7-4B-lxg"/>
+                            <constraint firstItem="ff9-mC-xGS" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" priority="750" id="rze-cI-gIW"/>
+                            <constraint firstItem="ff9-mC-xGS" firstAttribute="height" relation="lessThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="height" id="wAY-GM-w5S"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Data/Raw/LaunchImage.png" width="16" height="16"/>
+    </resources>
+</document>

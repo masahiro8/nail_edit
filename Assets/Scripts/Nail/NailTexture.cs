@@ -78,8 +78,8 @@ public class NailTexture : MonoBehaviour
                         ref normals,
                         x, y, size);
                     break;
-                case NailTextureType.Line:
-                    DrawLine(
+                case NailTextureType.Lines:
+                    DrawLines(
                         ref pixels,
                         ref normals,
                         x, y, size, r);
@@ -89,6 +89,12 @@ public class NailTexture : MonoBehaviour
                         ref pixels,
                         ref normals,
                         x);
+                    break;
+                case NailTextureType.HorizontalLine:
+                    DrawOneLine(
+                        ref pixels,
+                        ref normals,
+                        x, y, size, r);
                     break;
                 default:
                     break;
@@ -212,7 +218,7 @@ public class NailTexture : MonoBehaviour
         }
     }
 
-    private void DrawLine(ref Color[] pixels, ref Color[] normals, int x, int y, int size, float r)
+    private void DrawLines(ref Color[] pixels, ref Color[] normals, int x, int y, int size, float r)
     {
         var c = (float)size / 2;
         var c2 = c * c;
@@ -296,6 +302,30 @@ public class NailTexture : MonoBehaviour
             normals[n2].r = 0.5f + nv2.x;
             normals[n2].g = 0.5f + nv2.y;
             normals[n2].b = 0.5f + nv2.z;
+        }
+    }
+
+    private void DrawOneLine(ref Color[] pixels, ref Color[] normals, int x, int y, int size, float r2)
+    {
+        // 中心の線の法線
+        var r = (float)90 / 180 * Mathf.PI;
+        var nv1 = new Vector3(Mathf.Cos(r), Mathf.Sin(r), 0);
+        var nv2 = -nv1;
+
+        for (int iy = 0; iy < size; iy++) {
+            for (int ix = 0; ix < texWidth; ix++) {
+                var n = (iy + y) * texWidth + ix;
+                pixels[n].a = 1;
+                if (iy == 0) {
+                    normals[n].r = 0.5f + nv1.x;
+                    normals[n].g = 0.5f + nv1.y;
+                    normals[n].b = 0.5f + nv1.z;
+                } else if (iy == size - 1) {
+                    normals[n].r = 0.5f + nv2.x;
+                    normals[n].g = 0.5f + nv2.y;
+                    normals[n].b = 0.5f + nv2.z;
+                }
+            }
         }
     }
 }

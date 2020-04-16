@@ -7,6 +7,7 @@ public enum NailTextureType
     Light,
     Triangle,
     Circle,
-    Line,
+    Lines,
     Streaks,
+    HorizontalLine,
 }

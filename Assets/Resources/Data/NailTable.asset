@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - name: Test 1-1 Pink
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.6509434, g: 0.33468318, b: 0.4299944, a: 0.9137255}
@@ -32,7 +32,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Test 1-2 Blue
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.11372549, g: 0.29803923, b: 0.5568628, a: 1}
@@ -50,7 +50,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Test 2
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.3915094, g: 0.62331533, b: 1, a: 0.6117647}
@@ -83,7 +83,7 @@ MonoBehaviour:
       randomSeed: 12375
       randomCount: 200
   - name: Test 3
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.4056604, g: 0.19326274, b: 0.31721985, a: 0.6117647}
@@ -131,7 +131,7 @@ MonoBehaviour:
       randomSeed: 12375
       randomCount: 40
   - name: Test 4
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.23921569, g: 0.30062187, b: 0.4056604, a: 1}
@@ -164,7 +164,7 @@ MonoBehaviour:
       randomSeed: 12375
       randomCount: 160
   - name: Test 5
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.41585082, g: 0.990566, b: 0.9413047, a: 0.6862745}
@@ -197,7 +197,7 @@ MonoBehaviour:
       randomSeed: 12375
       randomCount: 260
   - name: Test 7
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.42352942, g: 0.6422202, b: 0.69803923, a: 0.54509807}
@@ -230,7 +230,7 @@ MonoBehaviour:
       randomSeed: 12375
       randomCount: 1600
   - name: Test 8
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.5800238, g: 0.5849056, b: 0.013794942, a: 1}
@@ -262,8 +262,41 @@ MonoBehaviour:
       maxSize: 0.01
       randomSeed: 12
       randomCount: 400
+  - name: Test 9
+    categoryType: 0
+    materials:
+    - materialName: NailBase
+      baseColor: {r: 0.6509434, g: 0.33468318, b: 0.4299944, a: 0.9137255}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
+      normalHeight: 0.48
+      normalSize: 2.23
+      noise: 0
+      emissionRate: 0.8
+      metallic: 0.87
+      smoothness: 0.52
+      textureType: 0
+      minSize: 0.1
+      maxSize: 0.1
+      randomSeed: 12345
+      randomCount: 32
+    - materialName: NailLame
+      baseColor: {r: 1, g: 0.99532413, b: 0.4764151, a: 0.9137255}
+      subColor: {r: 0, g: 0, b: 0, a: 0}
+      shadowColor: {r: 0, g: 0, b: 0, a: 0}
+      normalHeight: 0.164
+      normalSize: 1
+      noise: 0
+      emissionRate: 0.8
+      metallic: 0.5
+      smoothness: 0.4
+      textureType: 6
+      minSize: 0.03
+      maxSize: 0.03
+      randomSeed: 12347
+      randomCount: 1
   - name: NailBase
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.5176471, g: 0.14901961, b: 0.2784314, a: 1}
@@ -281,7 +314,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: NailBase 2
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.1490196, g: 0.32426, b: 0.5176471, a: 1}
@@ -299,7 +332,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: NailBase
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.83137256, g: 0.6901961, b: 0.4117647, a: 1}
@@ -317,7 +350,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: NailBase 2
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.4117647, g: 0.83137256, b: 0.56417894, a: 1}
@@ -335,7 +368,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Mirror
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 1, g: 0.43529412, b: 0.7058824, a: 1}
@@ -353,7 +386,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Mirror 1
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.43529412, g: 0.5137255, b: 0.627451, a: 1}
@@ -371,7 +404,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Mirror 2
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.14509805, g: 0.58431375, b: 0.5882353, a: 1}
@@ -389,7 +422,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Transparent 1
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.49019608, g: 0.24705882, b: 1, a: 0.59607846}
@@ -407,7 +440,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Transparent 2
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 1, g: 0.24705881, b: 0.37637436, a: 0.59607846}
@@ -425,7 +458,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Transparent 3
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 0.44933417, g: 1, b: 0.24705881, a: 0.59607846}
@@ -443,7 +476,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Maziora
-    categoryTypes: 00000000
+    categoryType: 0
     materials:
     - materialName: NailBase
       baseColor: {r: 1, g: 0, b: 1, a: 1}
@@ -461,7 +494,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Nail-13
-    categoryTypes: 01000000
+    categoryType: 1
     materials:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
@@ -479,7 +512,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Nail-14
-    categoryTypes: 01000000
+    categoryType: 1
     materials:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
@@ -497,7 +530,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Nail-15
-    categoryTypes: 01000000
+    categoryType: 1
     materials:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
@@ -515,7 +548,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Nail-16
-    categoryTypes: 01000000
+    categoryType: 1
     materials:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
@@ -533,7 +566,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Nail-17
-    categoryTypes: 01000000
+    categoryType: 1
     materials:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
@@ -551,7 +584,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Nail-18
-    categoryTypes: 01000000
+    categoryType: 1
     materials:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
@@ -569,7 +602,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Nail-19
-    categoryTypes: 01000000
+    categoryType: 1
     materials:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
@@ -587,7 +620,7 @@ MonoBehaviour:
       randomSeed: 12345
       randomCount: 32
   - name: Nail-20
-    categoryTypes: 01000000
+    categoryType: 1
     materials:
     - materialName: NailBase
       baseColor: {r: 0, g: 0, b: 0, a: 0}
