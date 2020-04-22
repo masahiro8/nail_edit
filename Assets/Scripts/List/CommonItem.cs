@@ -12,13 +12,23 @@ public class CommonItem : MonoBehaviour
     public RawImage[] image;
     public SVGImage[] svgImage;
     public Button[] button;
+    public RawImage selectedBar;
 
+    private CompositeDisposable disposableBag = new CompositeDisposable();
     private RectTransform textRectTransform = null;
     private Vector2 textOffsetMin1;
     private Vector2 textOffsetMin2;
 
+    void OnDestroy()
+    {
+        disposableBag.Clear();
+    }
+
     public void UpdateContext(ItemType itemType, CommonList selector, int n)
     {
+        // それまでの講読を中止
+        disposableBag.Clear();
+
         switch (itemType) {
             case ItemType.NailSelect:
                 UpdateNail(selector, n);
@@ -26,8 +36,11 @@ public class CommonItem : MonoBehaviour
             case ItemType.MainMenu:
                 UpdateMenu(selector, n);
                 break;
-            case ItemType.MyList:
-                UpdateFavorite(selector, n);
+            case ItemType.MyList1:
+                UpdateFavorite(selector, MyListType.Favorite, n);
+                break;
+            case ItemType.MyList2:
+                UpdateFavorite(selector, MyListType.Have, n);
                 break;
             case ItemType.MyListSelect:
                 UpdateFavoriteSelect(selector, n);
@@ -38,8 +51,36 @@ public class CommonItem : MonoBehaviour
             case ItemType.ToturialDot:
                 UpdateDot(selector, n);
                 break;
+            case ItemType.NailCategory:
+                UpdateCategory(selector, n);
+                break;
             default:
                 break;
+        }
+
+        // ボタンタップ時の挙動
+        if (button.Length > 0) {
+            var disposable = button[0].OnClickAsObservable()
+                .Subscribe(b => {
+                    selector.itemIndex.Value = n;
+                });
+            disposableBag.Add(disposable);
+        }
+
+        // 選択状態バーを移動させる
+        if (selectedBar) {
+            selectedBar.enabled = n == selector.itemIndex.Value;
+            var disposable = selector.itemIndex
+                .Zip(selector.itemIndex.Skip(1), (x, y) => new System.Tuple<int, int>(x, y))
+                .Subscribe(value => {
+                    selectedBar.enabled = n == value.Item2;
+                    if (n == value.Item2) {
+                        transform.SetAsLastSibling(); // 最前面に移動
+                        selectedBar.rectTransform.DOAnchorPosX((value.Item1 - value.Item2) * selectedBar.rectTransform.rect.width, 0);
+                        selectedBar.rectTransform.DOAnchorPosX(0, DataTable.Param.selectedBarDuration);
+                    }
+                });
+            disposableBag.Add(disposable);
         }
     }
 
@@ -55,14 +96,14 @@ public class CommonItem : MonoBehaviour
         }
 
         var data = DataTable.Menu.list[n];
-        text[0].text = data.name;
+        text[0].text = data.name.Localized();
         image[0].texture = data.icon;
         image[0].enabled = data.icon != null;
 
         textRectTransform.offsetMin = data.icon == null ? textOffsetMin1 : textOffsetMin2;
 
         // ボタンタップ時の挙動
-        button[0].OnClickAsObservable()
+        var disposable = button[0].OnClickAsObservable()
             .Subscribe(b => {
                 Debug.Log(text[0].text + ": " + b);
                 switch (n) {
@@ -74,10 +115,6 @@ public class CommonItem : MonoBehaviour
                         break;
                     case 6:
                     case 7:
-                        // var webViewGameObject = new GameObject("UniWebView");
-                        // // webViewGameObject.transform.parent = transform;
-                        // var webView = webViewGameObject.AddComponent<UniWebView>();
-                        // webView.Frame = new Rect(0, 0, Screen.width, Screen.height);
                         selector.transform.parent.parent.GetComponent<MainMenuList>().OpenWebView(data.url);
                         break;
                     case 8:
@@ -86,99 +123,72 @@ public class CommonItem : MonoBehaviour
                     default:
                         break;
                 }
-            })
-            .AddTo(gameObject);
+            });
+        disposableBag.Add(disposable);
     }
 
-    public void UpdateFavorite(CommonList selector, int n)
+    public void UpdateFavorite(CommonList selector, MyListType mlType, int n)
     {
-        var data = DataTable.Nail.list[n];
-        text[0].text = data.name;
-        // image[0].texture = data.icon;
-
-        // ボタンタップ時の挙動
-        button[0].OnClickAsObservable()
-            .Subscribe(b => {
-                Debug.Log(text[0].text + ": " + b);
-            })
-            .AddTo(gameObject);
+        var index = DataTable.MyList.filterdList[(int)mlType].Value[n];
+        var data = DataTable.NailInfo.list[index];
+        text[0].text = data.productCode;
     }
 
     public void UpdateFavoriteSelect(CommonList selector, int n)
     {
         var data = DataTable.MyList.list[n];
-        text[0].text = data.name;
-        // image[0].texture = data.icon;
-
-        image[0].enabled = n == selector.itemIndex.Value;
-        selector.itemIndex
-            .Zip(selector.itemIndex.Skip(1), (x, y) => new System.Tuple<int, int>(x, y))
-            .Subscribe(value => {
-                // Debug.Log(n + ": " + value.Item1 + "->" + value.Item2);
-                // image[0].enabled = n != value;
-                image[0].enabled = n == value.Item2;
-                if (n == value.Item2) {
-                    transform.SetAsLastSibling(); // 最前面に移動
-                    image[0].rectTransform.DOAnchorPosX((value.Item1 - value.Item2) * image[0].rectTransform.rect.width, 0);
-                    image[0].rectTransform.DOAnchorPosX(0, DataTable.Param.duration);
-                }
-            })
-            .AddTo(gameObject);
-
-        // ボタンタップ時の挙動
-        button[0].OnClickAsObservable()
-            .Subscribe(b => {
-                Debug.Log(text[0].text + ": " + b);
-                selector.itemIndex.Value = n;
-            })
-            .AddTo(gameObject);
+        text[0].text = data.name.Localized();
     }
 
     public void UpdateTutorial(CommonList selector, int n)
     {
         var data = DataTable.Tutorial.list[n];
         image[0].texture = data.image;
-
-        // ボタンタップ時の挙動
-        button[0].OnClickAsObservable()
-            .Subscribe(b => {
-                if (n == 3) {
-                    selector.transform.parent.gameObject.SetActive(false);
-                    SaveName.TutorialDone.SetBool(true);
-                }
-            })
-            .AddTo(gameObject);
     }
 
     public void UpdateDot(CommonList selector, int n)
     {
         var data = DataTable.Tutorial.list[n];
-        selector.itemIndex
+        var disposable = selector.itemIndex
             .Subscribe(value => {
                 svgImage[0].enabled = n != value;
                 svgImage[1].enabled = n == value;
-            })
-            .AddTo(gameObject);
+            });
+        disposableBag.Add(disposable);
     }
 
     public void UpdateNail(CommonList selector, int n)
     {
-        var data = DataTable.Nail.list[n];
-        text[0].text = "No." + (n + 1).ToString();
-        text[1].text = data.name;
-        if (data.materials.Length > 0) {
-            image[0].color = data.materials[0].baseColor;
-        }
+        var index = DataTable.NailInfo.showList[n];
+        var data = DataTable.NailInfo.list[index];
+        // text[0].text = "No." + data.index;
+        text[0].text = data.colorNumber;
 
-        // ボタンタップ時の挙動
-        var nailSelector = selector.GetComponent<NailSelectList>();
-        button[0].OnClickAsObservable()
-            .Subscribe(b => {
-                foreach (Transform t in nailSelector.main.nailDetection.transform) {
-                    t.GetComponent<NailGroup>().UpdateData(DataTable.Nail.list[n]);
-                }
-                // Debug.Log("Click: " + data.name);
-            })
-            .AddTo(gameObject);
+        // テスト
+        var nailData = Resources.Load<NailMaterialTable>("Data/NailMaterial/" + data.fileName);
+        if (nailData) {
+            svgImage[0].enabled = nailData.list.Length > 0; // new
+        } else {
+            svgImage[0].enabled = false; // new
+        }
+        svgImage[1].enabled = n % 10 == 0; // dot
+
+        // var key = data.productCode.Substring(0, 4) + "_" + data.colorNumber;
+        // var texBottle = Resources.Load("Textures/NailBottle/" + data.fileName) as Texture2D;
+        var texSample = Resources.Load<Texture2D>("Textures/NailSample/" + data.fileName);
+        if (texSample) {
+            image[0].texture = texSample;
+            image[0].SetNativeSize();
+            image[0].enabled = true;
+        } else {
+            image[0].enabled = false;
+        }
+    }
+
+    public void UpdateCategory(CommonList selector, int n)
+    {
+        var index = DataTable.Category.showList[n];
+        var data = DataTable.Category.list[index];
+        text[0].text = data.name.Localized();
     }
 }

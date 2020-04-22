@@ -3,7 +3,14 @@ using UnityEngine;
 
 public enum CategoryType
 {
-    SoulfulColor,
+    // エラー判定用
+    None,
+
+    // マイリスト
+    Favorite = 1000,
+    Have,
+
+    SoulfulColor = 2000,
     LagoonColor,
     MilkyColor,
     GalacticColor,
@@ -27,6 +34,10 @@ public enum CategoryType
     FurMode,
     ArtLiner,
     NailHolic24_7,
+
+    // 未使用
+    FutureMetallic = 3000,
+    JungleGlitter,
 }
 
 // public static partial class EnumExtensions

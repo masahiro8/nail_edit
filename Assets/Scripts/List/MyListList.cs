@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,9 +41,10 @@ public class MyListList : MonoBehaviour
         orgColor = backgroundImage.color;
         // CloseMenu();
 
-        // メニュー作成
+        // 閉じておく
         CloseMenu();
 
+        // お気に入りと持っているの切り替え時
         selectList.itemIndex
             .Zip(selectList.itemIndex.Skip(1), (x, y) => new System.Tuple<int, int>(x, y))
             .Subscribe(value => {
@@ -55,6 +57,20 @@ public class MyListList : MonoBehaviour
                 scrollSnap.GoToPanel(value.Item2);
             })
             .AddTo(gameObject);
+
+        // お気に入りが更新されたので表示リストを更新する
+        foreach (MyListType type in Enum.GetValues(typeof(MyListType))) {
+            var i = (int)type;
+            var scrollRect = frameList.GetComponent<ScrollRect>();
+            var commonList = scrollRect.content.GetChild(i).GetChild(0).GetComponent<CommonList>();
+            commonList.itemType = type.GetItemType();
+            DataTable.MyList.filterdList[i]
+                .Subscribe(l => {
+                    // var commonList = frameList.GetComponent<CommonList>();
+                    commonList.Reset();
+                })
+                .AddTo(gameObject);
+        }
     }
 
     // 開く
@@ -62,6 +78,10 @@ public class MyListList : MonoBehaviour
     {
         CompleteAnimation();
 
+        // リストを更新
+        DataTable.MyList.Reset((MyListType)n);
+
+        // 選択状態を更新
         selectList.itemIndex.Value = n;
 
         // アニメーションを見せないために強制移動

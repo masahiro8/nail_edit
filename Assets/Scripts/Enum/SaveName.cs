@@ -4,6 +4,7 @@ using UnityEngine;
 public enum SaveName
 {
     TutorialDone,
+    MyListItem,
 }
 
 public static partial class EnumExtensions
@@ -12,6 +13,12 @@ public static partial class EnumExtensions
     public static bool GetBool(this SaveName type)
     {
         return PlayerPrefs.GetInt(type.ToString(), 0) != 0;
+    }
+
+    // 取得
+    public static bool GetBool(this SaveName type, string key)
+    {
+        return PlayerPrefs.GetInt(type.ToString() + key, 0) != 0;
     }
 
     // 取得
@@ -30,6 +37,13 @@ public static partial class EnumExtensions
     public static void SetBool(this SaveName type, bool value)
     {
         PlayerPrefs.SetInt(type.ToString(), value ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    // 保存
+    public static void SetBool(this SaveName type, string key, bool value)
+    {
+        PlayerPrefs.SetInt(type.ToString() + key, value ? 1 : 0);
         PlayerPrefs.Save();
     }
 

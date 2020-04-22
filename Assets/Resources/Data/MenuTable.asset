@@ -13,28 +13,28 @@ MonoBehaviour:
   m_Name: MenuTable
   m_EditorClassIdentifier: 
   list:
-  - name: "\u304A\u6C17\u306B\u5165\u308A\u30EA\u30B9\u30C8"
+  - name: Favorites list
     icon: {fileID: 2800000, guid: dd05f67492b7145d58a072f4abb136d9, type: 3}
     url: 
-  - name: "\u6301\u3063\u3066\u3044\u308B\u30EA\u30B9\u30C8"
+  - name: Belongings list
     icon: {fileID: 2800000, guid: dd05f67492b7145d58a072f4abb136d9, type: 3}
     url: 
-  - name: "\u30B9\u30C8\u30A2\u9078\u629E"
+  - name: Store selection
     icon: {fileID: 2800000, guid: c451752e838dc49dea036317fd25c2f0, type: 3}
     url: 
-  - name: "\u304A\u77E5\u3089\u305B"
+  - name: Notice
     icon: {fileID: 2800000, guid: c451752e838dc49dea036317fd25c2f0, type: 3}
     url: 
-  - name: "Push\u901A\u77E5\u8A2D\u5B9A"
+  - name: Push notification settings
     icon: {fileID: 2800000, guid: c451752e838dc49dea036317fd25c2f0, type: 3}
     url: 
-  - name: "\u30A2\u30D7\u30EA\u306B\u3064\u3044\u3066"
+  - name: About this app
     icon: {fileID: 0}
     url: 
-  - name: "\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC\u30DD\u30EA\u30B7\u30FC"
+  - name: Privacy policy
     icon: {fileID: 0}
     url: https://www.kose.co.jp/jp/ja/privacy_policy/
-  - name: "\u5229\u7528\u898F\u7D04"
+  - name: Terms of service
     icon: {fileID: 0}
     url: https://maison.kose.co.jp/site/p/rule.aspx
   - name: "\u5229\u7528\u898F\u7D04"

@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using SuperScrollView;
+using DG.Tweening;
 
 public class NailSelectList : MonoBehaviour
 {
@@ -12,71 +15,129 @@ public class NailSelectList : MonoBehaviour
     // public GameObject itemPrefab;
     // public GameObject modelPrefab;
     public DrawMain main;
+    public CommonList nailList;
+    public CommonList categoryList;
+    public CommonItem detailItem;
+    // public Button[] favButton;
+    // public ReactiveProperty<int> favFlag = new ReactiveProperty<int>(-1);
+
+    private bool detailShow = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        UpdateContext();
+        // var favFlag = Enumerable
+        //     .Repeat<ReactiveProperty<int>>(new ReactiveProperty<int>(-1), Enum.GetValues(typeof(MyListType)).Length)
+        //     .ToArray();
+        var max = Enum.GetValues(typeof(MyListType)).Length;
+        ReactiveProperty<int>[] favFlag = new ReactiveProperty<int>[max];
+        //     new ReactiveProperty<int>(-1),
+        //     new ReactiveProperty<int>(-1),
+        // };
+
+        // お気に入りボタン
+        // foreach (MyListType type in Enum.GetValues(typeof(MyListType))) {
+        //     var i = (int)type;
+        for (var i = 0; i < max; i++) {
+            var useFlag = new ReactiveProperty<int>(-1);
+            favFlag[i] = useFlag;
+            var type = (MyListType)i;
+            for (var j = 0; j < 2; j++) { // オンオフ
+                var orgFlag = j;
+                var button = detailItem.button[j + 2 + i * 2];
+                // ボタンを押した時にお気に入りフラグを更新
+                button.OnClickAsObservable()
+                    .Subscribe(_ => {
+                        useFlag.Value = orgFlag;
+                        SetFavorite(type, orgFlag == 1);
+                        DataTable.MyList.Reset(type);
+                    })
+                    .AddTo(button.gameObject);
+
+                // お気に入りフラグ更新時に表示状態を更新
+                useFlag
+                    .Subscribe(b => {
+                        // Debug.Log("type: " + i + "," + type);
+                        button.gameObject.SetActive(b != orgFlag && nailList.itemIndex.Value > -1);
+                    })
+                    .AddTo(button.gameObject);
+            }
+        }
+
+        // カテゴリ選択時に変更
+        categoryList.itemIndex
+            .Subscribe(n => {
+                var index = DataTable.Category.showList[n];
+                var data = DataTable.Category.list[index];
+                DataTable.NailInfo.UpdateCategory(data.type);
+                nailList.Reset();
+            })
+            .AddTo(gameObject);
+
+        // ネイル選択時にモデルも変更
+        nailList.itemIndex
+            .Where(n => n > -1)
+            .Subscribe(n => {
+                UpdateDetail();
+                // Debug.Log("Click: " + data.name);
+                foreach (MyListType type in Enum.GetValues(typeof(MyListType))) {
+                    var i = (int)type;
+                    var index = DataTable.NailInfo.showList[nailList.itemIndex.Value];
+                    var data = DataTable.NailInfo.list[index];
+                    favFlag[i].Value = data.IsMyList(type) ? 1 : 0;
+                }
+            })
+            .AddTo(gameObject);
+
+        // 詳細ビューを拡大縮小させる
+        detailItem.button[0].OnClickAsObservable()
+            .Subscribe(_ => UpdateDetailShow())
+            .AddTo(detailItem.gameObject);
+
+        UpdateDetailShow();
     }
 
-    // Update is called once per frame
-    void UpdateContext()
+    private void UpdateDetail()
     {
-        // // Debug.Log("scrollRect.viewport.rect: " + scrollRect.viewport.rect);
-        // Debug.Log("GetComponent<RectTransform>().sizeDelta: " + scrollRect.GetComponent<RectTransform>().sizeDelta);
-        // scrollRect.content.sizeDelta = new Vector2(
-        //     (float)list.Length * itemWidth - scrollRect.GetComponent<RectTransform>().sizeDelta.x,
-        //     scrollRect.content.rect.height);
+        var index = DataTable.NailInfo.showList[nailList.itemIndex.Value];
+        var data = DataTable.NailInfo.list[index];
 
-        // nailDetection.baseColor = nailTable.list[0].baseColor;
+        foreach (Transform t in main.nailDetection.transform) {
+            t.GetComponent<NailGroup>().UpdateData(DataTable.NailInfo.list[index]);
+        }
 
-        // // スクロールバーのアイテム
-        // for (var i = 0; i < DataTable.Nail.list.Length; i++) {
-        //     var obj = Instantiate(itemPrefab, scrollRect.content);
-        //     var item = obj.GetComponent<NailItem>();
-        //     item.UpdateContext(this, i);
-        // }
+        detailItem.text[0].text = data.productName;
+        detailItem.text[1].text = data.subName;
+        detailItem.text[2].text = data.productCode;
 
-        // // 爪のモデル
-        // for (var i = 0; i < DataTable.Nail.list.Length; i++) {
-        //     var obj = Instantiate(modelPrefab, transform);
-        //     obj.transform.localRotation = Quaternion.Euler(-30, 180, 60);
-        //     obj.transform.localScale = Vector3.one * 4f;
-
-        //     var data = DataTable.Nail.list[i];
-        //     var materialData = data.materials[0];
-        //     var meshRenderer = obj.GetComponent<MeshRenderer>();
-        //     materialData.SetMaterial(meshRenderer);
-        // }
-
-        // scrollRect.OnValueChangedAsObservable()
-        //     .Subscribe(v => UpdateLayer(v))
-        //     .AddTo(gameObject);
+        var texBottle = Resources.Load("Textures/NailBottle/" + data.fileName) as Texture2D;
+        if (texBottle) {
+            detailItem.image[0].texture = texBottle;
+            detailItem.image[0].SetNativeSize();
+            detailItem.image[0].enabled = true;
+        } else {
+            detailItem.image[0].enabled = false;
+        }
     }
 
-    // // スクロールしたのでアイテムを更新
-    // public void UpdateLayer(Vector2 p)
-    // {
-    //     // Debug.Log("Scroll: " + p);
-    //     // Debug.Log("Scroll1: " + scrollView.normalizedPosition);
-    //     // Vector3 p2 = p;
-    //     for (var i = 0; i < transform.childCount; i++) {
-    //         var item = scrollRect.content.GetChild(i).GetComponent<CommonItem>();
-    //         var rectTransform = item.button[0].GetComponent<RectTransform>();
-    //         var p2 = rectTransform.position;
-    //         p2.z -= 5;
-    //         transform.GetChild(i).localPosition = p2;
-    //         // var per = (float)i / (float)(transform.childCount - 1);
-    //         // transform.GetChild(i).localPosition = GetPosition(p, per);
-    //     }
-    // }
- 
-    // public Vector3 GetPosition(Vector2 p, float per)
-    // {
-    //     Vector3 res = p;
-    //     res.x = (p.x - per) * -10;
-    //     res.y = 0;
-    //     res.z = 0;
-    //     return res;
-    // }
+    private void UpdateDetailShow()
+    {
+        detailShow = !detailShow;
+        if (DOTween.IsTweening(detailItem)) {
+            detailItem.DOComplete();
+        }
+        detailItem.transform
+            .DOScale(Vector3.one * (detailShow ? 1f : 0.3f), DataTable.Param.duration);
+    }
+
+    private void SetFavorite(MyListType type, bool flag)
+    {
+        var index = DataTable.NailInfo.showList[nailList.itemIndex.Value];
+        var data = DataTable.NailInfo.list[index];
+
+        var key = type.ToString() + data.productCode;
+        // SaveName.FavoriteItem.SetBool(data.name, !SaveName.FavoriteItem.GetBool(data.name));
+        SaveName.MyListItem.SetBool(key, flag);
+        Debug.Log("SetFavorite -> " + key + ": " + SaveName.MyListItem.GetBool(key));
+    }
 }

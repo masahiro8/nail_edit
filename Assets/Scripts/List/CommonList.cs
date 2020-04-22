@@ -9,16 +9,20 @@ using SuperScrollView;
 public class CommonList : MonoBehaviour
 {
     public ItemType itemType;
-    // public ScrollRect scrollRect;
+    public int initialIndex = 0;
 
-    public ReactiveProperty<int> itemIndex = new ReactiveProperty<int>(0);
+    public ReactiveProperty<int> itemIndex = new ReactiveProperty<int>(-1);
 
     private string itemName = "CommonItem";
+    private ScrollRect scrollRect;
+    private LoopListView2 listView;
 
     void Awake()
     {
-        var scrollRect = GetComponent<ScrollRect>();
-        var listView = scrollRect.GetComponent<LoopListView2>();
+        itemIndex.Value = initialIndex;
+        scrollRect = GetComponent<ScrollRect>();
+        listView = scrollRect.GetComponent<LoopListView2>();
+
         if (listView) {
             // LoopListView2を使う
             listView.InitListView(
@@ -37,12 +41,13 @@ public class CommonList : MonoBehaviour
             }
         }
 
+        // プレファブはcontent内にある最初のものを使う
         if (scrollRect.content.childCount > 0) {
             itemName = scrollRect.content.GetChild(0).name;
         }
     }
 
-    LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int index)
+    private LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int index)
     {
         if (index < 0 || index >= listView.ItemTotalCount)
         {
@@ -66,5 +71,13 @@ public class CommonList : MonoBehaviour
         // itemScript.SetItemData(itemData, index);
         itemScript.UpdateContext(itemType, this, index);
         return item;
+    }
+
+    public void Reset()
+    {
+        if (listView) {
+            listView.SetListItemCount(itemType.GetCount());
+            listView.RefreshAllShownItem();
+        }
     }
 }

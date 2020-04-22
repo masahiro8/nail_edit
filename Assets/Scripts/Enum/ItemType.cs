@@ -6,11 +6,13 @@ public enum ItemType
 {
     NailSelect,
     MainMenu,
-    MyList,
+    MyList1,
     MyListSelect,
     Toturial,
     ToturialDot,
     MyListFrame,
+    NailCategory,
+    MyList2,
 }
 
 public static partial class EnumExtensions
@@ -20,17 +22,21 @@ public static partial class EnumExtensions
     {
         switch (type) {
             case ItemType.NailSelect:
-                return DataTable.Nail.list.Length;
+                return DataTable.NailInfo.showList.Length;
             case ItemType.MainMenu:
                 return DataTable.Menu.list.Length;
-            case ItemType.MyList:
-                return DataTable.Nail.list.Length;
+            case ItemType.MyList1:
+                return DataTable.MyList.filterdList[(int)MyListType.Favorite].Value.Length;
+            case ItemType.MyList2:
+                return DataTable.MyList.filterdList[(int)MyListType.Have].Value.Length;
             case ItemType.MyListSelect:
             case ItemType.MyListFrame:
                 return DataTable.MyList.list.Length;
             case ItemType.Toturial:
             case ItemType.ToturialDot:
                 return DataTable.Tutorial.list.Length;
+            case ItemType.NailCategory:
+                return DataTable.Category.showList.Length;
             default:
                 return 0;
         }

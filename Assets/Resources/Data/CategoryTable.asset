@@ -13,51 +13,125 @@ MonoBehaviour:
   m_Name: CategoryTable
   m_EditorClassIdentifier: 
   list:
-  - name: Soulful color
+  - name: None
+    show: 0
     type: 0
+    compareText: Error
+  - name: Favorite
+    show: 1
+    type: 1000
+    compareText: Error
+  - name: Have
+    show: 0
+    type: 1001
+    compareText: Error
+  - name: Soulful color
+    show: 1
+    type: 2000
+    compareText: Soulful
   - name: Lagoon color
-    type: 1
+    show: 1
+    type: 2001
+    compareText: 'Lagoon '
   - name: Milky color
-    type: 2
+    show: 1
+    type: 2002
+    compareText: Milky
   - name: Galactic color
-    type: 3
+    show: 1
+    type: 2003
+    compareText: Galactic
   - name: Chic color
-    type: 4
+    show: 1
+    type: 2004
+    compareText: Chic
   - name: Dusty pastel color
-    type: 5
+    show: 1
+    type: 2005
+    compareText: '"Dusty
+
+      Pastel"'
   - name: Ethnic color
-    type: 6
+    show: 1
+    type: 2006
+    compareText: Ethnic
   - name: Relaxing color
-    type: 7
+    show: 1
+    type: 2007
+    compareText: Relaxing
   - name: Pinkish color
-    type: 8
+    show: 1
+    type: 2008
+    compareText: Pinkish
   - name: Luxury color
-    type: 9
+    show: 1
+    type: 2009
+    compareText: Luxury
   - name: Sheer pearl color
-    type: 10
+    show: 1
+    type: 2010
+    compareText: '"Sheer
+
+      Pearl"'
   - name: Juicy color
-    type: 11
+    show: 1
+    type: 2011
+    compareText: Juicy
   - name: Earth color
-    type: 12
+    show: 1
+    type: 2012
+    compareText: Earth
   - name: Vivid color
-    type: 13
+    show: 1
+    type: 2013
+    compareText: Vivid
   - name: Classic color
-    type: 14
+    show: 1
+    type: 2014
+    compareText: Classic
   - name: Mode color
-    type: 15
+    show: 1
+    type: 2015
+    compareText: Mode
   - name: Nude color
-    type: 16
-  - name: Aurora Glitter color
-    type: 17
+    show: 1
+    type: 2016
+    compareText: Nude
+  - name: 'Aurora Glitter
+
+      color'
+    show: 1
+    type: 2017
+    compareText: Aurora Glitter
   - name: Frozen sugar
-    type: 18
+    show: 1
+    type: 2018
+    compareText: Frozen sugar
   - name: Pastel snow
-    type: 19
+    show: 1
+    type: 2019
+    compareText: Pastel snow
   - name: Party flake
-    type: 20
+    show: 1
+    type: 2020
+    compareText: Party flake
   - name: Fur mode
-    type: 21
+    show: 1
+    type: 2021
+    compareText: Fur mode
   - name: Art liner
-    type: 22
-  - name: "\u30CD\u30A4\u30EB\u30DB\u30EA\u30C3\u30AF 24_7"
-    type: 23
+    show: 1
+    type: 2022
+    compareText: Art liner
+  - name: "\u30CD\u30A4\u30EB\u30DB\u30EA\u30C3\u30AF\n24_7"
+    show: 1
+    type: 2023
+    compareText: 
+  - name: "\u30D5\u30E5\u30FC\u30C1\u30E3\u30FC\n\u30E1\u30BF\u30EA\u30C3\u30AF"
+    show: 0
+    type: 3000
+    compareText: "\u30D5\u30E5\u30FC\u30C1\u30E3\u30FC\u30E1\u30BF\u30EA\u30C3\u30AF"
+  - name: "\u30B8\u30E3\u30F3\u30B0\u30EB\n\u30B0\u30EA\u30C3\u30BF\u30FC"
+    show: 0
+    type: 3001
+    compareText: "\u30B8\u30E3\u30F3\u30B0\u30EB\u30B0\u30EA\u30C3\u30BF\u30FC"

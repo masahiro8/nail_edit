@@ -22,6 +22,11 @@ public class NailMaterialRecord
     public int randomSeed = 12345;
     public int randomCount = 32;
 
+    private const string colorName = "_Color";
+    private const string subColorName = "_SubColor";
+    private const string textureName = "_Texture";
+    private const string normalTextureName = "_NormalTexture";
+
     // テクスチャが同じかどうかの判定
     public bool IsSameTexture(NailMaterialRecord record)
     {
@@ -47,11 +52,11 @@ public class NailMaterialRecord
         // マテリアル変更
         renderer.material = Resources.Load<Material>("Materials/" + materialName);
 
-        renderer.material.SetColor(DataTable.Param.colorName, baseColor);
+        renderer.material.SetColor(colorName, baseColor);
         if (subColor.r == 0 && subColor.g == 0 && subColor.b == 0) {
-            renderer.material.SetColor(DataTable.Param.subColorName, baseColor);
+            renderer.material.SetColor(subColorName, baseColor);
         } else {
-            renderer.material.SetColor(DataTable.Param.subColorName, subColor);
+            renderer.material.SetColor(subColorName, subColor);
         }
         if (shadowColor.r == 0 && shadowColor.g == 0 && shadowColor.b == 0) {
             renderer.material.SetColor("_ShadowColor", baseColor * emissionRate);
@@ -75,10 +80,10 @@ public class NailMaterialRecord
             default:
                 nailTexture.UpdateTexture(this);
                 if (nailTexture.patternTexture) {
-                    renderer.material.SetTexture(DataTable.Param.textureName, nailTexture.patternTexture);
+                    renderer.material.SetTexture(textureName, nailTexture.patternTexture);
                 }
                 if (nailTexture.normalTexture) {
-                    renderer.material.SetTexture(DataTable.Param.normalTextureName, nailTexture.normalTexture);
+                    renderer.material.SetTexture(normalTextureName, nailTexture.normalTexture);
                 }
                 break;
         }

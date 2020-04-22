@@ -3,6 +3,8 @@
 [System.Serializable]
 public class CategoryRecord
 {
-    public string name = "Category";
+    [Multiline] public string name = "Category";
+    public bool show = true;
     public CategoryType type = CategoryType.SoulfulColor;
+    [Multiline] public string compareText = "";
 }

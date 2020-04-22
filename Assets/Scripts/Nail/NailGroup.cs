@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public partial class NailGroup : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public partial class NailGroup : MonoBehaviour
     public float aspect;
     public Vector3 center;
 
-    public NailRecord nailData;
+    private NailMaterialTable nailData;
+    private CompositeDisposable disposableBag = new CompositeDisposable();
 
     // // Start is called before the first frame update
     // void Start()
@@ -34,7 +36,8 @@ public partial class NailGroup : MonoBehaviour
     {
         // 一時的に適当に入れておく
         if (nailData == null) {
-            nailData = DataTable.Nail.list[0];
+            // nailData = DataTable.Nail.list[0];
+            return;
         }
 
         name = modelName;
@@ -49,7 +52,7 @@ public partial class NailGroup : MonoBehaviour
         // 表示判定
         // meshRenderer.gameObject.SetActive(!isHighLight || nailData.hasHighLightTexture);
 
-        for (var i = 0; i < nailData.materials.Length; i++) {
+        for (var i = 0; i < nailData.list.Length; i++) {
             NailObject nailObject = null;
             if (i < transform.childCount) {
                 // すでにある場合はそれを使う
@@ -60,10 +63,10 @@ public partial class NailGroup : MonoBehaviour
                 nailObject.transform.localPosition = Vector3.forward * i * -0.1f;
             }
             nailObject.gameObject.SetActive(true);
-            nailObject.UpdateData(this, nailData.materials[i]);
+            nailObject.UpdateData(this, nailData.list[i]);
         }
 
-        for (var i = nailData.materials.Length; i < transform.childCount; i++) {
+        for (var i = nailData.list.Length; i < transform.childCount; i++) {
             transform.GetChild(i).gameObject.SetActive(false);
         }
     }
@@ -111,13 +114,32 @@ public partial class NailGroup : MonoBehaviour
     }
 
     // テクスチャを更新
-    public void UpdateData(NailRecord data)
+    public void UpdateData(NailInfoRecord data)
     {
-        nailData = data;
+        nailData = Resources.Load<NailMaterialTable>("Data/NailMaterial/" + data.fileName);
         // var material = Resources.Load<Material>("Materials/" + data.materialName);
         // meshRenderer.material = material;
         // foreach (Transform t in transform) {
         //     t.GetComponent<NailObject>().ResetData(this);
         // }
+
+#if UNITY_EDITOR
+        disposableBag.Clear();
+        if (nailData) {
+            // エディタでは編集用に更新させるため
+            var disposable = nailData.validateTime
+                .Where(t => t > 0)
+                .Subscribe(_ => {
+                    // Debug.Log(t);
+                    foreach (Transform t in transform) {
+                        var obj = t.GetComponent<NailObject>();
+                        var materialData = obj.materialData.Value;
+                        materialData.SetMaterial(obj.meshRenderer);
+                        materialData.SetTexture(obj.meshRenderer, obj.nailTexture);
+                    }
+                });
+            disposableBag.Add(disposable);
+        }
+#endif
     }
 }
