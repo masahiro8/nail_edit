@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - materialName: NailBase
-    baseColor: {r: 1, g: 0.972549, b: 0.90588236, a: 0.9137255}
+    baseColor: {r: 1, g: 0.972549, b: 0.9490196, a: 0.8666667}
     subColor: {r: 0.8301887, g: 0.8162891, b: 0.70879316, a: 0.09411765}
-    shadowColor: {r: 0, g: 0, b: 0, a: 0}
-    normalHeight: 0.48
-    normalSize: 2.23
+    shadowColor: {r: 0.8396226, g: 0.8308679, b: 0.75645244, a: 0}
+    normalHeight: 0.5
+    normalSize: 1.5
     noise: 0.05
-    emissionRate: 0.8
-    metallic: 0.9
-    smoothness: 0.5
+    emissionRate: 0.7
+    metallic: 0.8
+    smoothness: 0.6
     textureType: 0
     minSize: 0.1
     maxSize: 0.1

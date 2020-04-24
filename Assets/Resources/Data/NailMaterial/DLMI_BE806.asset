@@ -12,4 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0845e4913537b47f791deb9698f44cae, type: 3}
   m_Name: DLMI_BE806
   m_EditorClassIdentifier: 
-  list: []
+  list:
+  - materialName: NailBase
+    baseColor: {r: 0.6132076, g: 0.5588488, b: 0.5524653, a: 1}
+    subColor: {r: 0, g: 0, b: 0, a: 1}
+    shadowColor: {r: 0.5188679, g: 0.41105166, b: 0.39404592, a: 0}
+    normalHeight: 0.24
+    normalSize: 1
+    noise: 0
+    emissionRate: 0
+    metallic: 0.67
+    smoothness: 0.77
+    textureType: 0
+    minSize: 0.1
+    maxSize: 0.1
+    randomSeed: 12345
+    randomCount: 32
