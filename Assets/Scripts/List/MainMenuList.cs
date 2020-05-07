@@ -8,6 +8,7 @@ using DG.Tweening;
 
 public class MainMenuList : MonoBehaviour
 {
+    public CommonList menuList;
     public Button openButton;
     public Button closeButton;
     public Image backgroundImage; // 画面全体を暗くするための背景
@@ -28,6 +29,12 @@ public class MainMenuList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // 編集用に横にずらしているのを元に戻す
+        GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
+        menuList.updateItem = UpdateMenu;
+        menuList.itemCount.Value = DataTable.Menu.list.Length;
+
         // ボタン押し
         if (openButton) {
             openButton.OnClickAsObservable()
@@ -47,6 +54,49 @@ public class MainMenuList : MonoBehaviour
 
         // メニュー作成
         CloseMenu();
+    }
+
+    private void UpdateMenu(CommonItem item, int index)
+    {
+        // 初期化
+        if (item.textRectTransform == null) {
+            item.textRectTransform = item.text[0].rectTransform;
+            item.textOffsetMin1 = item.textRectTransform.offsetMin;
+            item.textOffsetMin2 = item.textOffsetMin1;
+            item.textOffsetMin2.x += item.image[0].rectTransform.sizeDelta.x;
+            item.textOffsetMin2.x += item.image[0].rectTransform.offsetMin.x;
+        }
+
+        var data = DataTable.Menu.list[index];
+        item.text[0].text = data.name.Localized();
+        item.image[0].texture = data.icon;
+        item.image[0].enabled = data.icon != null;
+
+        item.textRectTransform.offsetMin = data.icon == null ? item.textOffsetMin1 : item.textOffsetMin2;
+
+        // ボタンタップ時の挙動
+        var disposable = item.button[0].OnClickAsObservable()
+            .Subscribe(b => {
+                Debug.Log(item.text[0].text + ": " + b);
+                switch (index) {
+                    case 0:
+                        favoriteList.OpenMenu(0);
+                        break;
+                    case 1:
+                        favoriteList.OpenMenu(1);
+                        break;
+                    case 6:
+                    case 7:
+                        OpenWebView(data.url);
+                        break;
+                    case 8:
+                        SaveName.TutorialDone.SetBool(false);
+                        break;
+                    default:
+                        break;
+                }
+            });
+        item.disposableBag.Add(disposable);
     }
 
     // 開く

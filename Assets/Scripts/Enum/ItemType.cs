@@ -13,6 +13,9 @@ public enum ItemType
     MyListFrame,
     NailCategory,
     MyList2,
+    NailDetail,
+    ColorCategory,
+    ColorSelect,
 }
 
 public static partial class EnumExtensions
@@ -21,22 +24,28 @@ public static partial class EnumExtensions
     public static int GetCount(this ItemType type)
     {
         switch (type) {
-            case ItemType.NailSelect:
-                return DataTable.NailInfo.showList.Length;
-            case ItemType.MainMenu:
-                return DataTable.Menu.list.Length;
-            case ItemType.MyList1:
-                return DataTable.MyList.filterdList[(int)MyListType.Favorite].Value.Length;
-            case ItemType.MyList2:
-                return DataTable.MyList.filterdList[(int)MyListType.Have].Value.Length;
+            // case ItemType.NailSelect:
+            //     return DataTable.NailInfo.showList.Length;
+            // case ItemType.MainMenu:
+            //     return DataTable.Menu.list.Length;
+            // case ItemType.MyList1:
+            //     return DataTable.MyList.filterdList[(int)MyListType.Favorite].Value.Length;
+            // case ItemType.MyList2:
+            //     return DataTable.MyList.filterdList[(int)MyListType.Have].Value.Length;
             case ItemType.MyListSelect:
             case ItemType.MyListFrame:
                 return DataTable.MyList.list.Length;
             case ItemType.Toturial:
             case ItemType.ToturialDot:
                 return DataTable.Tutorial.list.Length;
-            case ItemType.NailCategory:
-                return DataTable.Category.showList.Length;
+            // case ItemType.NailCategory:
+            //     return DataTable.Category.showList.Length;
+            // case ItemType.NailDetail:
+            //     return 2;
+            // case ItemType.ColorCategory:
+            //     return DataTable.Category.showList.Length;
+            // case ItemType.ColorSelect:
+            //     return DataTable.NailInfo.showList.Length;
             default:
                 return 0;
         }

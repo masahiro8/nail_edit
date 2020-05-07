@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0845e4913537b47f791deb9698f44cae, type: 3}
+  m_Name: 2006_GD083
+  m_EditorClassIdentifier: 
+  list:
+  - materialName: NailBase
+    baseColor: {r: 0.7264151, g: 0.7029373, b: 0.5996351, a: 1}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0.6392157, g: 0.61960787, b: 0.53333336, a: 0}
+    normalHeight: 0.43
+    normalSize: 0.56
+    noise: 0
+    emissionRate: 0
+    metallic: 0.55
+    smoothness: 0
+    textureType: 0
+    minSize: 0
+    maxSize: 0
+    randomSeed: 0
+    randomCount: 0
+  - materialName: NailLame
+    baseColor: {r: 0.7264151, g: 0.6301454, b: 0.25013348, a: 1}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0.8773585, g: 0.8244149, b: 0.63318795, a: 0}
+    normalHeight: 0.5
+    normalSize: 0.7
+    noise: 0
+    emissionRate: 0
+    metallic: 1
+    smoothness: 0.4
+    textureType: 3
+    minSize: 0.01
+    maxSize: 0.03
+    randomSeed: 1
+    randomCount: 300
+  - materialName: NailLame
+    baseColor: {r: 0.8018868, g: 0.68610317, b: 0.35933605, a: 1}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0, g: 0, b: 0, a: 0}
+    normalHeight: 0.5
+    normalSize: 0.7
+    noise: 0
+    emissionRate: 0
+    metallic: 1
+    smoothness: 0.4
+    textureType: 3
+    minSize: 0.01
+    maxSize: 0.03
+    randomSeed: 2
+    randomCount: 300
+  - materialName: NailLame
+    baseColor: {r: 0.46226418, g: 0.44713703, b: 0.381586, a: 1}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0, g: 0, b: 0, a: 0}
+    normalHeight: 0.5
+    normalSize: 0.7
+    noise: 0
+    emissionRate: 0
+    metallic: 1
+    smoothness: 0.4
+    textureType: 3
+    minSize: 0.01
+    maxSize: 0.03
+    randomSeed: 3
+    randomCount: 300
+  - materialName: NailLame
+    baseColor: {r: 0.9716981, g: 0.9313062, b: 0.75627446, a: 1}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 1, g: 0.79413754, b: 0.23113209, a: 0}
+    normalHeight: 0.5
+    normalSize: 0.7
+    noise: 0
+    emissionRate: 0
+    metallic: 1
+    smoothness: 0.4
+    textureType: 4
+    minSize: 0.005
+    maxSize: 0.005
+    randomSeed: 4
+    randomCount: 300

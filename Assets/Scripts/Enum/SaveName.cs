@@ -3,8 +3,10 @@ using UnityEngine;
 
 public enum SaveName
 {
-    TutorialDone,
-    MyListItem,
+    TutorialDone, // チュートリアル完了
+    MyListItem, // お気に入りリストと持っているリストの保存
+    ColorHidden, // カラーごとの非表示
+    CategoryHidden, // シリーズごとの非表示
 }
 
 public static partial class EnumExtensions
@@ -59,5 +61,11 @@ public static partial class EnumExtensions
     {
         PlayerPrefs.SetString(type.ToString(), value);
         PlayerPrefs.Save();
+    }
+
+    // 切り替え
+    public static void ToggleBool(this SaveName type, string key)
+    {
+        type.SetBool(key, !type.GetBool(key));
     }
 }

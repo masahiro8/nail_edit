@@ -1,0 +1,254 @@
+No,商品名,サブ,色番,カテゴリID,カテゴリ名,色カテゴリ
+1,ネイルホリック,Classic,WT005,1015,Classic color,白/黒
+2,ネイルホリック,Nude,WT006,1017,Nude color,白/黒
+3,ネイルホリック,Classic,GY007,1015,Classic color,グレー
+4,ネイルホリック,Mode,GY008,1016,Mode color,グレー
+5,ネイルホリック,Mode,GY009,1016,Mode color,グレー
+6,ネイルホリック,Mode,BK010,1016,Mode color,白/黒
+7,ネイルホリック,Top coat,SP011,9000,Top coat,
+8,ネイルホリック,Top coat,SP012,9000,Top coat,
+9,ネイルホリック,Chic,WT013,1005,Chic color,白/黒
+10,ネイルホリック,Chic,GY014,1005,Chic color,グレー
+11,ネイルホリック,Chic,WT015,1005,Chic color,白/黒
+12,ネイルホリック,"Dusty
+Pastel",GY016,1006,Dusty pastel color,グレー
+13,ネイルホリック,"Dusty
+Pastel",GY017,1006,Dusty pastel color,グレー
+14,ネイルホリック,"Dusty
+Pastel",GY018,1006,Dusty pastel color,グレー
+15,ネイルホリック,"Dusty
+Pastel",GY019,1006,Dusty pastel color,グレー
+16,ネイルホリック,Galactic,GD028,1004,Galactic color,金/銀
+17,ネイルホリック,Galactic,SV029,1004,Galactic color,金/銀
+18,ネイルホリック,Relaxing,GY040,1008,Relaxing color,グレー
+19,ネイルホリック,Top coat,SP041,9000,Top coat,
+20,ネイルホリック,Top coat,SP042,9000,Top coat,
+21,ネイルホリック,Top coat,SP043,9000,Top coat,
+22,ネイルホリック,Relaxing,WT044,1008,Relaxing color,白/黒
+23,ネイルホリック,Vivid,PU103,1014,Vivid color,紫
+24,ネイルホリック,Mode,PU104,1016,Mode color,紫
+25,ネイルホリック,Mode,PU105,1016,Mode color,紫
+26,ネイルホリック,Mode,PU106,1016,Mode color,紫
+27,ネイルホリック,Juicy,PU107,1012,Juicy color,紫
+28,ネイルホリック,Juicy,PU108,1012,Juicy color,紫
+29,ネイルホリック,"Sheer
+Pearl",PU109,1011,Sheer pearl color,紫
+30,ネイルホリック,Ethnic,PU110,1007,Ethnic color,紫
+31,ネイルホリック,Chic,PU111,1005,Chic color,紫
+32,ネイルホリック,Chic,PU112,1005,Chic color,紫
+33,ネイルホリック,"Dusty
+Pastel",PU113,1006,Dusty pastel color,紫
+34,ネイルホリック,"Dusty
+Pastel",PU114,1006,Dusty pastel color,紫
+35,ネイルホリック,Milky,PU115,1003,Milky color,紫
+36,ネイルホリック,Galactic,PU116,1004,Galactic color,紫
+37,ネイルホリック,Vivid,OR200,1014,Vivid color,オレンジ
+38,ネイルホリック,Vivid,OR201,1014,Vivid color,オレンジ
+39,ネイルホリック,Vivid,OR202,1014,Vivid color,オレンジ
+40,ネイルホリック,Juicy,OR204,1012,Juicy color,オレンジ
+41,ネイルホリック,Juicy,OR205,1012,Juicy color,オレンジ
+42,ネイルホリック,"Sheer
+Pearl",OR206,1011,Sheer pearl color,オレンジ
+43,ネイルホリック,Ethnic,OR207,1007,Ethnic color,オレンジ
+44,ネイルホリック,Milky,OR208,1003,Milky color,オレンジ
+45,ネイルホリック,Soulful,OR209,1001,Soulful color,オレンジ
+46,ネイルホリック,Soulful,OR210,1001,Soulful color,オレンジ
+47,ネイルホリック,Nude,BE300,1017,Nude color,ベージュ
+48,ネイルホリック,Nude,BE301,1017,Nude color,ベージュ
+49,ネイルホリック,Nude,BE302,1017,Nude color,ベージュ
+50,ネイルホリック,Nude,BE303,1017,Nude color,ベージュ
+51,ネイルホリック,Classic,BE304,1015,Classic color,ベージュ
+52,ネイルホリック,Mode,BR305,1016,Mode color,茶
+53,ネイルホリック,Earth,BR306,1013,Earth color,茶
+54,ネイルホリック,Earth,BR307,1013,Earth color,茶
+55,ネイルホリック,Earth,BR308,1013,Earth color,茶
+56,ネイルホリック,Earth,BR309,1013,Earth color,茶
+57,ネイルホリック,Pinkish,BE310,1009,Pinkish color,ベージュ
+58,ネイルホリック,Ethnic,BR311,1007,Ethnic color,茶
+59,ネイルホリック,Chic,BE312,1005,Chic color,ベージュ
+60,ネイルホリック,Chic,BE313,1005,Chic color,ベージュ
+61,ネイルホリック,"Dusty
+Pastel",BE314,1006,Dusty pastel color,ベージュ
+62,ネイルホリック,"Dusty
+Pastel",BR315,1006,Dusty pastel color,茶
+63,ネイルホリック,Relaxing,BE316,1008,Relaxing color,ベージュ
+64,ネイルホリック,Relaxing,BE317,1008,Relaxing color,ベージュ
+65,ネイルホリック,Relaxing,BE318,1008,Relaxing color,ベージュ
+66,ネイルホリック,Relaxing,BR319,1008,Relaxing color,茶
+67,ネイルホリック,Chic,BE320,1005,Chic color,ベージュ
+68,ネイルホリック,Soulful,BE321,1001,Soulful color,ベージュ
+69,ネイルホリック,Mode,RD400,1016,Mode color,赤
+70,ネイルホリック,Mode,RD402,1016,Mode color,赤
+71,ネイルホリック,Mode,RD403,1016,Mode color,赤
+72,ネイルホリック,Juicy,RD404,1012,Juicy color,赤
+73,ネイルホリック,Juicy,RD405,1012,Juicy color,赤
+74,ネイルホリック,Luxury,RD406,1010,Luxury color,赤
+75,ネイルホリック,Ethnic,RD407,1007,Ethnic color,赤
+76,ネイルホリック,Ethnic,RD408,1007,Ethnic color,赤
+77,ネイルホリック,Galactic,RD409,1004,Galactic color,赤
+78,ネイルホリック,Soulful,RD410,1001,Soulful color,赤
+79,ネイルホリック,Soulful,RD411,1001,Soulful color,赤
+80,ネイルホリック,Soulful,RD412,1001,Soulful color,赤
+81,ネイルホリック,Soulful,RD413,1001,Soulful color,赤
+82,ネイルホリック,Soulful,RD414,1001,Soulful color,赤
+83,ネイルホリック,Vivid,YE502,1014,Vivid color,黄
+84,ネイルホリック,Juicy,YE503,1012,Juicy color,黄
+85,ネイルホリック,"Sheer
+Pearl",YE504,1011,Sheer pearl color,黄
+86,ネイルホリック,Luxury,YE505,1010,Luxury color,黄
+87,ネイルホリック,Relaxing,YE506,1008,Relaxing color,黄
+88,ネイルホリック,Ethnic,YE507,1007,Ethnic color,黄
+89,ネイルホリック,Milky,YE508,1003,Milky color,黄
+90,ネイルホリック,Vivid,RO600,1014,Vivid color,赤
+91,ネイルホリック,Vivid,RO601,1014,Vivid color,赤
+92,ネイルホリック,Classic,RO602,1015,Classic color,赤
+93,ネイルホリック,Classic,RO603,1015,Classic color,赤
+94,ネイルホリック,Juicy,RO604,1012,Juicy color,赤
+95,ネイルホリック,Luxury,RO605,1010,Luxury color,赤
+96,ネイルホリック,Ethnic,RO606,1007,Ethnic color,赤
+97,ネイルホリック,Juicy,GR702,1012,Juicy color,緑
+98,ネイルホリック,Earth,GR703,1013,Earth color,緑
+99,ネイルホリック,Earth,GR704,1013,Earth color,緑
+100,ネイルホリック,Luxury,GR705,1010,Luxury color,緑
+101,ネイルホリック,Ethnic,GR706,1007,Ethnic color,緑
+102,ネイルホリック,Ethnic,GR707,1007,Ethnic color,緑
+103,ネイルホリック,Relaxing,GR708,1008,Relaxing color,緑
+104,ネイルホリック,Milky,GR709,1003,Milky color,緑
+105,ネイルホリック,Milky,GR710,1003,Milky color,緑
+106,ネイルホリック,Milky,GR711,1003,Milky color,緑
+107,ネイルホリック,Galactic,GR712,1004,Galactic color,緑
+108,ネイルホリック,Lagoon ,GR713,1002,Lagoon color,緑
+109,ネイルホリック,Lagoon ,GR714,1002,Lagoon color,緑
+110,ネイルホリック,Lagoon ,GR715,1002,Lagoon color,緑
+111,ネイルホリック,Lagoon ,GR716,1002,Lagoon color,緑
+112,ネイルホリック,Vivid,PK800,1014,Vivid color,ピンク
+113,ネイルホリック,Vivid,PK801,1014,Vivid color,ピンク
+114,ネイルホリック,Classic,PK804,1015,Classic color,ピンク
+115,ネイルホリック,Classic,BE805,1015,Classic color,ベージュ
+116,ネイルホリック,Classic,BE806,1015,Classic color,ベージュ
+117,ネイルホリック,Classic,BE807,1015,Classic color,ベージュ
+118,ネイルホリック,Classic,PK808,1015,Classic color,ピンク
+119,ネイルホリック,Classic,PK809,1015,Classic color,ピンク
+120,ネイルホリック,Juicy,PK810,1012,Juicy color,ピンク
+121,ネイルホリック,Pinkish,PK811,1009,Pinkish color,ピンク
+122,ネイルホリック,Pinkish,PK812,1009,Pinkish color,ピンク
+123,ネイルホリック,Pinkish,PK813,1009,Pinkish color,ピンク
+124,ネイルホリック,Pinkish,PK814,1009,Pinkish color,ピンク
+125,ネイルホリック,Pinkish,BE815,1009,Pinkish color,ベージュ
+126,ネイルホリック,Pinkish,BE816,1009,Pinkish color,ベージュ
+127,ネイルホリック,"Sheer
+Pearl",PK817,1011,Sheer pearl color,ピンク
+128,ネイルホリック,"Sheer
+Pearl",PK818,1011,Sheer pearl color,ピンク
+129,ネイルホリック,Ethnic,PK819,1007,Ethnic color,ピンク
+130,ネイルホリック,Chic,BE820,1005,Chic color,ベージュ
+131,ネイルホリック,Chic,PK821,1005,Chic color,ピンク
+132,ネイルホリック,Milky,PK822,1003,Milky color,ピンク
+133,ネイルホリック,Milky,PK823,1003,Milky color,ピンク
+134,ネイルホリック,Milky,PK824,1003,Milky color,ピンク
+135,ネイルホリック,Milky,PK825,1003,Milky color,ピンク
+136,ネイルホリック,Soulful,PK827,1001,Soulful color,ピンク
+137,ネイルホリック,Soulful,PK828,1001,Soulful color,ピンク
+138,ネイルホリック,Vivid,BL903,1014,Vivid color,青
+139,ネイルホリック,Mode,BL905,1016,Mode color,青
+140,ネイルホリック,Mode,BL906,1016,Mode color,青
+141,ネイルホリック,Juicy,BL907,1012,Juicy color,青
+142,ネイルホリック,Vivid,BL908,1014,Vivid color,青
+143,ネイルホリック,"Sheer
+Pearl",BL909,1011,Sheer pearl color,青
+144,ネイルホリック,Luxury,BL910,1010,Luxury color,青
+145,ネイルホリック,Luxury,BL911,1010,Luxury color,青
+146,ネイルホリック,Ethnic,BL912,1007,Ethnic color,青
+147,ネイルホリック,Ethnic,BL913,1007,Ethnic color,青
+148,ネイルホリック,Chic,BL914,1005,Chic color,青
+149,ネイルホリック,"Dusty
+Pastel",BL915,1006,Dusty pastel color,青
+150,ネイルホリック,Relaxing,BL916,1008,Relaxing color,青
+151,ネイルホリック,Milky,BL917,1003,Milky color,青
+152,ネイルホリック,Milky,BL918,1003,Milky color,青
+153,ネイルホリック,Galactic,BL919,1004,Galactic color,青
+154,ネイルホリック,Lagoon ,BL920,1002,Lagoon color,青
+155,ネイルホリック,Lagoon ,BL921,1002,Lagoon color,青
+156,ネイルホリック,Lagoon ,BL922,1002,Lagoon color,青
+157,ネイルホリック アート,0,WT080,2006,Art liner,白/黒
+158,ネイルホリック アート,0,BK081,2006,Art liner,白/黒
+159,ネイルホリック アート,0,SV082,2006,Art liner,金/銀
+160,ネイルホリック アート,0,GD083,2006,Art liner,金/銀
+161,ネイルホリック フローズンシュガー,0,WT060,2002,Frozen sugar,白/黒
+162,ネイルホリック フローズンシュガー,0,OR260,2002,Frozen sugar,オレンジ
+163,ネイルホリック フローズンシュガー,0,YE561,2002,Frozen sugar,黄
+164,ネイルホリック フローズンシュガー,0,GR760,2002,Frozen sugar,緑
+165,ネイルホリック フローズンシュガー,0,PK860,2002,Frozen sugar,ピンク
+166,ネイルホリック フローズンシュガー,0,BL961,2002,Frozen sugar,青
+167,ネイルホリック ファーモード,0,GY070,2005,Fur mode,グレー
+168,ネイルホリック ファーモード,0,WT071,2005,Fur mode,白/黒
+169,ネイルホリック ファーモード,0,BR370,2005,Fur mode,茶
+170,ネイルホリック ファーモード,0,BR371,2005,Fur mode,茶
+171,ネイルホリック ファーモード,0,BE372,2005,Fur mode,ベージュ
+172,ネイルホリック ファーモード,0,BE373,2005,Fur mode,ベージュ
+173,ネイルホリック パーティーフレーク,0,SP020,2004,Party flake,
+174,ネイルホリック パーティーフレーク,0,SP021,2004,Party flake,
+175,ネイルホリック パーティーフレーク,0,SP022,2004,Party flake,
+176,ネイルホリック パーティーフレーク,0,SP023,2004,Party flake,
+177,ネイルホリック パーティーフレーク,0,SP024,2004,Party flake,
+178,ネイルホリック パーティーフレーク,0,SP025,2004,Party flake,
+179,ネイルホリック パーティーフレーク,0,SV026,2004,Party flake,金/銀
+180,ネイルホリック パーティーフレーク,0,GD027,2004,Party flake,金/銀
+181,ネイルホリック パステルスノー,0,GY050,2003,Pastel snow,グレー
+182,ネイルホリック パステルスノー,0,WT051,2003,Pastel snow,白/黒
+183,ネイルホリック パステルスノー,0,PU150,2003,Pastel snow,紫
+184,ネイルホリック パステルスノー,0,OR250,2003,Pastel snow,オレンジ
+185,ネイルホリック パステルスノー,0,YE550,2003,Pastel snow,黄
+186,ネイルホリック パステルスノー,0,GR750,2003,Pastel snow,緑
+187,ネイルホリック パステルスノー,0,PK850,2003,Pastel snow,ピンク
+188,ネイルホリック パステルスノー,0,PK851,2003,Pastel snow,ピンク
+189,ネイルホリック パステルスノー,0,BE852,2003,Pastel snow,ベージュ
+190,ネイルホリック パステルスノー,0,BL950,2003,Pastel snow,青
+191,ネイルホリック オーロラグリッター,0,WT062,2001,Aurora Glitter,白/黒
+192,ネイルホリック オーロラグリッター,0,PU163,2001,Aurora Glitter,紫
+193,ネイルホリック オーロラグリッター,0,YE563,2001,Aurora Glitter,黄
+194,ネイルホリック オーロラグリッター,0,GR762,2001,Aurora Glitter,緑
+195,ネイルホリック オーロラグリッター,0,PK864,2001,Aurora Glitter,ピンク
+196,ネイルホリック オーロラグリッター,0,BL962,2001,Aurora Glitter,青
+197,ネイルホリック ２４＿７,0,BE380,2007,24_7シリーズ,ベージュ
+198,ネイルホリック ２４＿７,0,BE381,2007,24_7シリーズ,ベージュ
+199,ネイルホリック ２４＿７,0,BE382,2007,24_7シリーズ,ベージュ
+200,ネイルホリック ２４＿７,0,BE383,2007,24_7シリーズ,ベージュ
+201,ネイルホリック ２４＿７,0,BE384,2007,24_7シリーズ,ベージュ
+202,ネイルホリック ２４＿７,0,BE385,2007,24_7シリーズ,ベージュ
+203,ネイルホリック ２４＿７,0,RD480,2007,24_7シリーズ,赤
+204,ネイルホリック ２４＿７,0,RD481,2007,24_7シリーズ,赤
+205,ネイルホリック ２４＿７,0,RD482,2007,24_7シリーズ,赤
+206,ネイルホリック ２４＿７,0,RD483,2007,24_7シリーズ,赤
+207,ネイルホリック ２４＿７,0,RD484,2007,24_7シリーズ,赤
+208,ネイルホリック ２４＿７,0,RO680,2007,24_7シリーズ,赤
+209,ネイルホリック ２４＿７,0,RO681,2007,24_7シリーズ,赤
+210,ネイルホリック ２４＿７,0,PK880,2007,24_7シリーズ,ピンク
+211,ネイルホリック ２４＿７,0,PK881,2007,24_7シリーズ,ピンク
+212,ネイルホリック ２４＿７,0,PK882,2007,24_7シリーズ,ピンク
+213,ネイルホリック ２４＿７,0,PK883,2007,24_7シリーズ,ピンク
+214,ネイルホリック ２４＿７,0,PK884,2007,24_7シリーズ,ピンク
+215,ネイルホリック ２４＿７,0,PK885,2007,24_7シリーズ,ピンク
+216,ネイルホリック ２４＿７,0,PK886,2007,24_7シリーズ,ピンク
+217,ネイルホリック ２４＿７,8/21発売限定色,PK891,2007,24_7シリーズ,ピンク
+218,ネイルホリック ２４＿７,8/21発売限定色,PK890,2007,24_7シリーズ,ピンク
+219,ネイルホリック ２４＿７,8/21発売限定色,BE390,2007,24_7シリーズ,ベージュ
+220,ネイルホリック ２４＿７,8/21発売限定色,GY091,2007,24_7シリーズ,グレー
+221,ネイルホリック ２４＿７,8/21発売限定色,GY090,2007,24_7シリーズ,グレー
+222,ネイルホリック ２４＿７,8/21発売限定色,GR790,2007,24_7シリーズ,緑
+223,ネイルホリック,フューチャーメタリック,BL940,,,青
+224,ネイルホリック,フューチャーメタリック,GR740,,,緑
+225,ネイルホリック,フューチャーメタリック,PU140,,,紫
+226,ネイルホリック,フューチャーメタリック,RO640,,,赤
+227,ネイルホリック,フューチャーメタリック,PK842,,,ピンク
+228,ネイルホリック,フューチャーメタリック,BE340,,,ベージュ
+229,ネイルホリック,フューチャーメタリック,GD046,,,金/銀
+230,ネイルホリック,フューチャーメタリック,PK841,,,ピンク
+231,ネイルホリック,フューチャーメタリック,PK840,,,ピンク
+232,ネイルホリック,フューチャーメタリック,SV045,,,金/銀
+233,ネイルホリック,ジャングルグリッター,BR330,,,茶
+234,ネイルホリック,ジャングルグリッター,BR331,,,茶
+235,ネイルホリック,ジャングルグリッター,PK332,,,ピンク
+236,ネイルホリック,ジャングルグリッター,GR730,,,緑
+237,ネイルホリック,ジャングルグリッター,GD033,,,金/銀
+238,ネイルホリック,ジャングルグリッター,BK032,,,白/黒

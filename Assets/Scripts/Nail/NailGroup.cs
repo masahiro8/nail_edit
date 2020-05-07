@@ -116,7 +116,7 @@ public partial class NailGroup : MonoBehaviour
     // テクスチャを更新
     public void UpdateData(NailInfoRecord data)
     {
-        nailData = Resources.Load<NailMaterialTable>("Data/NailMaterial/" + data.fileName);
+        nailData = Resources.Load<NailMaterialTable>("Data/NailMaterial/" + data.fileName2);
         // var material = Resources.Load<Material>("Materials/" + data.materialName);
         // meshRenderer.material = material;
         // foreach (Transform t in transform) {

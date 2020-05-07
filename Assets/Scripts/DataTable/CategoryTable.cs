@@ -7,26 +7,51 @@ public class CategoryTable : ScriptableObject
 {
     public CategoryRecord[] list;
 
-    [System.NonSerialized] public int[] showList;
+    [System.NonSerialized] public CategoryRecord[] showList;
 
     // 表示用インデックスの作成
     public void Reset()
     {
+        // 表示用のインデックスリストを作成
         showList = list
-            .Select((v, i) => new { Value = v, Index = i })
-            .Where(v => v.Value.show)
-            .Select(v => v.Index)
+            .Where(v => v.show)
             .ToArray();
-    }
 
-    // カテゴリタイプの取得
-    public CategoryType GetTypeFromString(string str)
-    {
-        var res = list.Where(value => value.compareText == str).ToArray();
-        if (res.Length > 0) {
-            return res[0].type;
-        } else {
-            return CategoryType.None;
+        foreach (var data in list) {
+            // 非表示フラグの変更
+            var key = data.name;
+            data.saveFlag.Value = SaveName.CategoryHidden.GetBool(key);
+            data.saveFlag
+                .SkipLatestValueOnSubscribe()
+                .Subscribe(flag => {
+                    SaveName.CategoryHidden.SetBool(key, flag);
+                    // Debug.Log("CategoryHidden" + key + ":" + flag);
+                })
+                .AddTo(DataTable.Instance.gameObject);
+
+            // シリーズごとのネイルのインデックスリストを作成
+            data.saveFlag
+                .Subscribe(b => {
+                    data.filter.Value = DataTable.NailInfo.list
+                        .Where(v => v.category == data && v.colorCategory.IsShow)
+                        .ToArray();
+                    // Debug.Log("CategoryTable." + data.name + ": " + data.filter.Value.Length);
+                })
+                .AddTo(DataTable.Instance.gameObject);
+        }
+
+        foreach (var colorData in DataTable.ColorCategory.list) {
+            colorData.saveFlag
+                .SkipLatestValueOnSubscribe()
+                .Subscribe(b => {
+                    foreach (var data in list) {
+                        data.filter.Value = DataTable.NailInfo.list
+                            .Where(v => v.category == data && v.colorCategory.IsShow)
+                            .ToArray();
+                        // Debug.Log("CategoryTable." + data.name + ": " + data.filter.Value.Length);
+                    }
+                })
+                .AddTo(DataTable.Instance.gameObject);
         }
     }
 }

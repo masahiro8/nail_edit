@@ -30,6 +30,8 @@ public class DebugPhoto : MonoBehaviour
         "bkm_20200130_1035", // goo
         "513x513",
         "bicycle513x513",
+        "bng_not_used_20200213_18", // goo
+        "bng_not_used_20200213_127", // goo
     };
     private string[] jsonFileName = {
         "sample_result_pa",
@@ -37,6 +39,8 @@ public class DebugPhoto : MonoBehaviour
         "sample_result_pa",
         "sample_result",
         "sample_result_pa",
+        "sample_result",
+        "sample_result",
         "sample_result",
     };
     private TextAsset[] jsonText;

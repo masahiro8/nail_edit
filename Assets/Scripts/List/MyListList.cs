@@ -30,6 +30,14 @@ public class MyListList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // 編集用に横にずらしているのを元に戻す
+        GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
+        // frameList.updateItem = UpdateSelect;
+        frameList.itemCount.Value = DataTable.MyList.list.Length;
+        selectList.updateItem = UpdateSelect;
+        selectList.itemCount.Value = DataTable.MyList.list.Length;
+
         // ボタン押し
         if (closeButton) {
             closeButton.OnClickAsObservable()
@@ -63,7 +71,9 @@ public class MyListList : MonoBehaviour
             var i = (int)type;
             var scrollRect = frameList.GetComponent<ScrollRect>();
             var commonList = scrollRect.content.GetChild(i).GetChild(0).GetComponent<CommonList>();
-            commonList.itemType = type.GetItemType();
+            // commonList.itemType = type.GetItemType();
+            commonList.updateItem = (item2, index2) => UpdateMyList(item2, index2, type);
+            commonList.itemCount.Value = DataTable.MyList.filterdList[(int)type].Value.Length;
             DataTable.MyList.filterdList[i]
                 .Subscribe(l => {
                     // var commonList = frameList.GetComponent<CommonList>();
@@ -71,6 +81,18 @@ public class MyListList : MonoBehaviour
                 })
                 .AddTo(gameObject);
         }
+    }
+
+    private void UpdateSelect(CommonItem item, int index)
+    {
+        var data = DataTable.MyList.list[index];
+        item.text[0].text = data.name.Localized();
+    }
+
+    private void UpdateMyList(CommonItem item, int index, MyListType mlType)
+    {
+        var data = DataTable.NailInfo.list[DataTable.MyList.filterdList[(int)mlType].Value[index]];
+        item.text[0].text = data.productCode;
     }
 
     // 開く

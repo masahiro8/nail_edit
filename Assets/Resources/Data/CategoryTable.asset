@@ -15,123 +15,93 @@ MonoBehaviour:
   list:
   - name: None
     show: 0
-    type: 0
-    compareText: Error
+    categoryId: 0
   - name: Favorite
     show: 1
-    type: 1000
-    compareText: Error
+    categoryId: 0
   - name: Have
     show: 0
-    type: 1001
-    compareText: Error
+    categoryId: 0
   - name: Soulful color
     show: 1
-    type: 2000
-    compareText: Soulful
+    categoryId: 1001
   - name: Lagoon color
     show: 1
-    type: 2001
-    compareText: 'Lagoon '
+    categoryId: 1002
   - name: Milky color
     show: 1
-    type: 2002
-    compareText: Milky
+    categoryId: 1003
   - name: Galactic color
     show: 1
-    type: 2003
-    compareText: Galactic
+    categoryId: 1004
   - name: Chic color
     show: 1
-    type: 2004
-    compareText: Chic
+    categoryId: 1005
   - name: Dusty pastel color
     show: 1
-    type: 2005
-    compareText: '"Dusty
-
-      Pastel"'
+    categoryId: 1006
   - name: Ethnic color
     show: 1
-    type: 2006
-    compareText: Ethnic
+    categoryId: 1007
   - name: Relaxing color
     show: 1
-    type: 2007
-    compareText: Relaxing
+    categoryId: 1008
   - name: Pinkish color
     show: 1
-    type: 2008
-    compareText: Pinkish
+    categoryId: 1009
   - name: Luxury color
     show: 1
-    type: 2009
-    compareText: Luxury
+    categoryId: 1010
   - name: Sheer pearl color
     show: 1
-    type: 2010
-    compareText: '"Sheer
-
-      Pearl"'
+    categoryId: 1011
   - name: Juicy color
     show: 1
-    type: 2011
-    compareText: Juicy
+    categoryId: 1012
   - name: Earth color
     show: 1
-    type: 2012
-    compareText: Earth
+    categoryId: 1013
   - name: Vivid color
     show: 1
-    type: 2013
-    compareText: Vivid
+    categoryId: 1014
   - name: Classic color
     show: 1
-    type: 2014
-    compareText: Classic
+    categoryId: 1015
   - name: Mode color
     show: 1
-    type: 2015
-    compareText: Mode
+    categoryId: 1016
   - name: Nude color
     show: 1
-    type: 2016
-    compareText: Nude
+    categoryId: 1017
   - name: 'Aurora Glitter
 
       color'
     show: 1
-    type: 2017
-    compareText: Aurora Glitter
+    categoryId: 2001
   - name: Frozen sugar
     show: 1
-    type: 2018
-    compareText: Frozen sugar
+    categoryId: 2002
   - name: Pastel snow
     show: 1
-    type: 2019
-    compareText: Pastel snow
+    categoryId: 2003
   - name: Party flake
     show: 1
-    type: 2020
-    compareText: Party flake
+    categoryId: 2004
   - name: Fur mode
     show: 1
-    type: 2021
-    compareText: Fur mode
+    categoryId: 2005
   - name: Art liner
     show: 1
-    type: 2022
-    compareText: Art liner
-  - name: "\u30CD\u30A4\u30EB\u30DB\u30EA\u30C3\u30AF\n24_7"
+    categoryId: 2006
+  - name: "24_7\u30B7\u30EA\u30FC\u30BA"
     show: 1
-    type: 2023
-    compareText: 
+    categoryId: 2007
   - name: "\u30D5\u30E5\u30FC\u30C1\u30E3\u30FC\n\u30E1\u30BF\u30EA\u30C3\u30AF"
     show: 0
-    type: 3000
-    compareText: "\u30D5\u30E5\u30FC\u30C1\u30E3\u30FC\u30E1\u30BF\u30EA\u30C3\u30AF"
+    categoryId: 0
   - name: "\u30B8\u30E3\u30F3\u30B0\u30EB\n\u30B0\u30EA\u30C3\u30BF\u30FC"
     show: 0
-    type: 3001
-    compareText: "\u30B8\u30E3\u30F3\u30B0\u30EB\u30B0\u30EA\u30C3\u30BF\u30FC"
+    categoryId: 0
+  - name: ETC
+    show: 1
+    categoryId: 9999

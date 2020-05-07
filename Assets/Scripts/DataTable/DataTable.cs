@@ -45,6 +45,11 @@ public class DataTable : MonoBehaviour
         get { return Instance._Category; }
     }
 
+    public ColorCategoryTable _ColorCategory;
+    public static ColorCategoryTable ColorCategory {
+        get { return Instance._ColorCategory; }
+    }
+
     public TutorialTable _Tutorial;
     public static TutorialTable Tutorial {
         get { return Instance._Tutorial; }
@@ -57,12 +62,15 @@ public class DataTable : MonoBehaviour
 
 	private void Setup()
     {
+        Application.targetFrameRate = 60;
+
         var folder = "Data/";
 		_Param = Resources.Load<ParamTable>(folder + "ParamTable");
 		// _Localized = Resources.Load<LocalizedTable>(folder + "LocalizedTable");
 		_Menu = Resources.Load<MenuTable>(folder + "MenuTable");
 		_MyList = Resources.Load<MyListTable>(folder + "MyListTable");
 		_Category = Resources.Load<CategoryTable>(folder + "CategoryTable");
+		_ColorCategory = Resources.Load<ColorCategoryTable>(folder + "ColorCategoryTable");
 		_Tutorial = Resources.Load<TutorialTable>(folder + "TutorialTable");
 		_Localized = new LocalizedTable();
         _NailInfo = new NailInfoTable();
@@ -72,6 +80,7 @@ public class DataTable : MonoBehaviour
             _MyList.Reset(type);
         }
         _Category.Reset();
-        _NailInfo.UpdateCategory(_Category.list[_Category.showList[0]].type);
+        _ColorCategory.Reset();
+        // _NailInfo.UpdateCategory();
 	}
 }
