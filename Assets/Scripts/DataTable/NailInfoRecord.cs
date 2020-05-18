@@ -111,11 +111,23 @@ public class NailInfoRecord
         return SaveName.MyListItem.GetBool(type.ToString() + productCode);
     }
 
+    public void SetBottleTexture(RawImage image)
+    {
+        var tex = Resources.Load<Texture2D>("Textures/NailBottle/" + fileName);
+        if (tex) {
+            image.texture = tex;
+            image.SetNativeSize();
+            image.enabled = true;
+        } else {
+            image.enabled = false;
+        }
+    }
+
     public void SetSampleTexture(RawImage image)
     {
-        var texSample = sampleTexture;
-        if (texSample) {
-            image.texture = texSample;
+        var tex = Resources.Load<Texture2D>("Textures/NailSample/" + fileName);
+        if (tex) {
+            image.texture = tex;
             image.SetNativeSize();
             image.enabled = true;
         } else {

@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: 1003_BL918
   m_EditorClassIdentifier: 
   list:
-  - materialName: NailBase
-    baseColor: {r: 0.7254902, g: 0.79607844, b: 0.81960785, a: 1}
+  - materialType: 0
+    baseColor: {r: 0.72463506, g: 0.8254926, b: 0.8679245, a: 0.8627451}
     subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 0.6666667, g: 0.7254902, b: 0.7372549, a: 1}
+    shadowColor: {r: 0.6372375, g: 0.72140235, b: 0.754717, a: 1}
     normalHeight: 0
     normalSize: 0
     noise: 0
     emissionRate: 0
-    metallic: 0.66
-    smoothness: 0.77
+    metallic: 0.8
+    smoothness: 0.9
     textureType: 0
     minSize: 0
     maxSize: 0

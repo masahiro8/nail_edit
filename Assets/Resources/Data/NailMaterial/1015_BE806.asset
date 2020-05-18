@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1015_BE806
   m_EditorClassIdentifier: 
   list:
-  - materialName: NailBase
+  - materialType: 0
     baseColor: {r: 0.6132076, g: 0.5588488, b: 0.5524653, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 1}
     shadowColor: {r: 0.5188679, g: 0.41105166, b: 0.39404592, a: 0}
@@ -24,7 +24,7 @@ MonoBehaviour:
     metallic: 0.67
     smoothness: 0.77
     textureType: 0
-    minSize: 0.1
-    maxSize: 0.1
-    randomSeed: 12345
-    randomCount: 32
+    minSize: 0
+    maxSize: 0
+    randomSeed: 0
+    randomCount: 0

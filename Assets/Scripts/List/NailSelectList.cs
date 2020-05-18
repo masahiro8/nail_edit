@@ -52,6 +52,14 @@ public class NailSelectList : MonoBehaviour
             .AddTo(gameObject);
     }
 
+    // void Update()
+    // {
+    //     // 初回のみ
+    //     if (nailList.itemIndex.Value < 0) {
+    //         nailList.itemIndex.Value = 0;
+    //     }
+    // }
+
     private void UpdateNail(CommonItem item, int index)
     {
         if (index >= DataTable.Category.showList[categoryList.itemIndex.Value].filter.Value.Length) {

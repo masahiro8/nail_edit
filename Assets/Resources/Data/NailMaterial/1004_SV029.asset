@@ -13,22 +13,22 @@ MonoBehaviour:
   m_Name: 1004_SV029
   m_EditorClassIdentifier: 
   list:
-  - materialName: NailBase
+  - materialType: 0
     baseColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 0.78431374}
     subColor: {r: 0, g: 0, b: 0, a: 0}
     shadowColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 0}
-    normalHeight: 0.43
-    normalSize: 2.34
+    normalHeight: 0.4
+    normalSize: 2.3
     noise: 0
     emissionRate: 0
     metallic: 0.6
-    smoothness: 0.8
+    smoothness: 0.2
     textureType: 0
     minSize: 0
     maxSize: 0
     randomSeed: 0
     randomCount: 0
-  - materialName: NailLame
+  - materialType: 1
     baseColor: {r: 1, g: 1, b: 1, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 0}
     shadowColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 0}
@@ -42,8 +42,8 @@ MonoBehaviour:
     minSize: 0.01
     maxSize: 0.02
     randomSeed: 1
-    randomCount: 1000
-  - materialName: NailLame
+    randomCount: 1200
+  - materialType: 1
     baseColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 0}
     shadowColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
     maxSize: 0.02
     randomSeed: 2
     randomCount: 1000
-  - materialName: NailLame
+  - materialType: 1
     baseColor: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 0.7058824}
     subColor: {r: 0, g: 0, b: 0, a: 0}
     shadowColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 0}

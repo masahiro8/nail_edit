@@ -5,6 +5,7 @@ using UniRx;
 public class ColorCategoryRecord
 {
     public string name = "ColorCategory"; // フラグ保存に使用するのでリリース後は変更しないこと
+    public bool show = true;
     public Color[] colors;
     public bool gloss;
     public string[] keywords;

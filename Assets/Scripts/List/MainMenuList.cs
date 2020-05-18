@@ -63,14 +63,14 @@ public class MainMenuList : MonoBehaviour
             item.textRectTransform = item.text[0].rectTransform;
             item.textOffsetMin1 = item.textRectTransform.offsetMin;
             item.textOffsetMin2 = item.textOffsetMin1;
-            item.textOffsetMin2.x += item.image[0].rectTransform.sizeDelta.x;
-            item.textOffsetMin2.x += item.image[0].rectTransform.offsetMin.x;
+            item.textOffsetMin2.x += item.svgImage[0].rectTransform.sizeDelta.x;
+            item.textOffsetMin2.x += item.svgImage[0].rectTransform.offsetMin.x;
         }
 
         var data = DataTable.Menu.list[index];
         item.text[0].text = data.name.Localized();
-        item.image[0].texture = data.icon;
-        item.image[0].enabled = data.icon != null;
+        item.svgImage[0].sprite = data.icon;
+        item.svgImage[0].enabled = data.icon != null;
 
         item.textRectTransform.offsetMin = data.icon == null ? item.textOffsetMin1 : item.textOffsetMin2;
 

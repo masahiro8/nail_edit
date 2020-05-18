@@ -18,6 +18,13 @@ public class NailDetailList : MonoBehaviour
     public RectTransform[] animObj;
     public ReactiveProperty<int>[] favFlag = new ReactiveProperty<int>[Enum.GetValues(typeof(MyListType)).Length];
 
+    void Awake()
+    {
+        for (var i = 0; i < favFlag.Length; i++) {
+            favFlag[i] = new ReactiveProperty<int>(-1);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,8 +57,7 @@ public class NailDetailList : MonoBehaviour
 
         // お気に入りボタン
         for (var i = 0; i < favFlag.Length; i++) {
-            var useFlag = new ReactiveProperty<int>(-1);
-            favFlag[i] = useFlag;
+            var useFlag = favFlag[i];
             var type = (MyListType)i;
             for (var j = 0; j < 2; j++) { // オンオフ
                 var orgFlag = j;
@@ -113,9 +119,7 @@ public class NailDetailList : MonoBehaviour
         // var data = DataTable.NailInfo.list[index2];
         var data = DataTable.Category.showList[list.categoryList.itemIndex.Value].filter.Value[list.nailList.itemIndex.Value];
 
-        foreach (Transform t in main.nailDetection.transform) {
-            t.GetComponent<NailGroup>().UpdateData(data);
-        }
+        main.nailDetection.SetInfoRecord(data);
 
         detailItem.text[0].text = data.productName;
         detailItem.text[1].text = data.subName;

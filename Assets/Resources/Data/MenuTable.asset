@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - name: Favorites list
-    icon: {fileID: 2800000, guid: dd05f67492b7145d58a072f4abb136d9, type: 3}
+    icon: {fileID: 3286163911610860551, guid: 250c93e4c6a62447883e0565563b25ed, type: 3}
     url: 
   - name: Belongings list
-    icon: {fileID: 2800000, guid: dd05f67492b7145d58a072f4abb136d9, type: 3}
+    icon: {fileID: 3286163911610860551, guid: 250c93e4c6a62447883e0565563b25ed, type: 3}
     url: 
   - name: Store selection
-    icon: {fileID: 2800000, guid: c451752e838dc49dea036317fd25c2f0, type: 3}
+    icon: {fileID: 3286163911610860551, guid: f31359879c5e84f13a33d29ae505cb10, type: 3}
     url: 
   - name: Notice
-    icon: {fileID: 2800000, guid: c451752e838dc49dea036317fd25c2f0, type: 3}
+    icon: {fileID: 3286163911610860551, guid: 76dffeae406de401cba0e0dd88e3c9b1, type: 3}
     url: 
   - name: Push notification settings
-    icon: {fileID: 2800000, guid: c451752e838dc49dea036317fd25c2f0, type: 3}
+    icon: {fileID: 3286163911610860551, guid: fbbbad0c2121043f1a40a20d16cf0470, type: 3}
     url: 
   - name: About this app
     icon: {fileID: 0}

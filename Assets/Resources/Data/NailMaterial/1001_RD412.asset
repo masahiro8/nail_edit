@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: 1001_RD412
   m_EditorClassIdentifier: 
   list:
-  - materialName: NailBase
-    baseColor: {r: 0.49411765, g: 0.21176471, b: 0.2, a: 1}
+  - materialType: 0
+    baseColor: {r: 0.8113208, g: 0.15369172, b: 0.12629052, a: 0.9607843}
     subColor: {r: 0, g: 0, b: 0, a: 1}
-    shadowColor: {r: 0.4245283, g: 0.18038447, b: 0.17021182, a: 0}
+    shadowColor: {r: 0.6320754, g: 0.1043521, b: 0.10435206, a: 0}
     normalHeight: 0
     normalSize: 0
     noise: 0
     emissionRate: 0
-    metallic: 0.55
-    smoothness: 0.77
+    metallic: 0.6
+    smoothness: 0.8
     textureType: 0
-    minSize: 0.1
-    maxSize: 0.1
-    randomSeed: 12345
-    randomCount: 32
+    minSize: 0
+    maxSize: 0
+    randomSeed: 0
+    randomCount: 0

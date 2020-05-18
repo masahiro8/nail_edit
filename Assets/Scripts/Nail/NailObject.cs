@@ -49,7 +49,7 @@ public class NailObject : MonoBehaviour
     {
         materialData.Value = data;
         meshFilter.mesh = group.mesh;
-        name = data.materialName;
+        name = data.materialType.ToString();
         if (data.textureType == NailTextureType.Light) {
             const string textureName = "_Texture";
             // meshRenderer.material.mainTexture = group.lightTexture;

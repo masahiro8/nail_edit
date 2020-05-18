@@ -13,67 +13,67 @@ MonoBehaviour:
   m_Name: 2006_GD083
   m_EditorClassIdentifier: 
   list:
-  - materialName: NailBase
-    baseColor: {r: 0.7264151, g: 0.7029373, b: 0.5996351, a: 1}
+  - materialType: 0
+    baseColor: {r: 0.5411765, g: 0.48235297, b: 0.32941177, a: 0.78431374}
     subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 0.6392157, g: 0.61960787, b: 0.53333336, a: 0}
-    normalHeight: 0.43
-    normalSize: 0.56
-    noise: 0
+    shadowColor: {r: 0.5529412, g: 0.5176471, b: 0.42352945, a: 0}
+    normalHeight: 0.4
+    normalSize: 2.3
+    noise: 0.1
     emissionRate: 0
-    metallic: 0.55
-    smoothness: 0
+    metallic: 0.6
+    smoothness: 0.2
     textureType: 0
     minSize: 0
     maxSize: 0
     randomSeed: 0
     randomCount: 0
-  - materialName: NailLame
-    baseColor: {r: 0.7264151, g: 0.6301454, b: 0.25013348, a: 1}
+  - materialType: 1
+    baseColor: {r: 0.7568628, g: 0.6784314, b: 0.48235297, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 0.8773585, g: 0.8244149, b: 0.63318795, a: 0}
-    normalHeight: 0.5
-    normalSize: 0.7
+    shadowColor: {r: 0.7058824, g: 0.6313726, b: 0.49803925, a: 0}
+    normalHeight: 0.4
+    normalSize: 0
     noise: 0
     emissionRate: 0
-    metallic: 1
-    smoothness: 0.4
+    metallic: 0.6
+    smoothness: 0
     textureType: 3
-    minSize: 0.01
-    maxSize: 0.03
+    minSize: 0.015
+    maxSize: 0.035
     randomSeed: 1
-    randomCount: 300
-  - materialName: NailLame
-    baseColor: {r: 0.8018868, g: 0.68610317, b: 0.35933605, a: 1}
+    randomCount: 1000
+  - materialType: 1
+    baseColor: {r: 0.8470589, g: 0.8235295, b: 0.7607844, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 0, g: 0, b: 0, a: 0}
-    normalHeight: 0.5
-    normalSize: 0.7
+    shadowColor: {r: 0.83921576, g: 0.7686275, b: 0.6392157, a: 0}
+    normalHeight: 0.4
+    normalSize: 0
     noise: 0
     emissionRate: 0
-    metallic: 1
-    smoothness: 0.4
+    metallic: 0.6
+    smoothness: 0
     textureType: 3
     minSize: 0.01
     maxSize: 0.03
     randomSeed: 2
-    randomCount: 300
-  - materialName: NailLame
+    randomCount: 500
+  - materialType: 1
     baseColor: {r: 0.46226418, g: 0.44713703, b: 0.381586, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 0, g: 0, b: 0, a: 0}
-    normalHeight: 0.5
-    normalSize: 0.7
+    shadowColor: {r: 0.35686275, g: 0.30588236, b: 0.20392159, a: 0}
+    normalHeight: 0.4
+    normalSize: 0
     noise: 0
     emissionRate: 0
-    metallic: 1
-    smoothness: 0.4
+    metallic: 0.6
+    smoothness: 0
     textureType: 3
     minSize: 0.01
     maxSize: 0.03
     randomSeed: 3
-    randomCount: 300
-  - materialName: NailLame
+    randomCount: 500
+  - materialType: 1
     baseColor: {r: 0.9716981, g: 0.9313062, b: 0.75627446, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 0}
     shadowColor: {r: 1, g: 0.79413754, b: 0.23113209, a: 0}

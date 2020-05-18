@@ -6,8 +6,8 @@ using UniRx;
 public partial class NailGroup : MonoBehaviour
 {
     public GameObject prefab;
-    public int orgTexWidth = 960; // 元画像のテクスチャの幅
-    public int orgTexHeight = 1280; // 元画像のテクスチャの高さ
+    public int orgTexWidth = 257; // 元画像のテクスチャの幅
+    public int orgTexHeight = 257; // 元画像のテクスチャの高さ
     public int minX;
     public int maxX;
     public int minY;
@@ -111,6 +111,14 @@ public partial class NailGroup : MonoBehaviour
             (cx / (float)orgTexWidth - 0.5f) * aspect,
             -(cy / (float)orgTexHeight - 0.5f),
             0);
+    }
+
+    // テクスチャを更新
+    public void UpdateDataFirst(NailInfoRecord data)
+    {
+        if (nailData == null) {
+            UpdateData(data);
+        }
     }
 
     // テクスチャを更新

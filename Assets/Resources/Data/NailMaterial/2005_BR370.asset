@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 2005_BR370
   m_EditorClassIdentifier: 
   list:
-  - materialName: NailBase
+  - materialType: 0
     baseColor: {r: 0.32941177, g: 0.32156864, b: 0.30588236, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 0}
     shadowColor: {r: 0, g: 0, b: 0, a: 0}
@@ -28,7 +28,7 @@ MonoBehaviour:
     maxSize: 0
     randomSeed: 0
     randomCount: 0
-  - materialName: NailLame
+  - materialType: 1
     baseColor: {r: 0.4528302, g: 0.35298127, b: 0.3268067, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 0}
     shadowColor: {r: 0, g: 0, b: 0, a: 0}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1012_PU107
   m_EditorClassIdentifier: 
   list:
-  - materialName: NailBase
+  - materialType: 0
     baseColor: {r: 0.18867922, g: 0.024029901, b: 0.17838864, a: 0.7058824}
     subColor: {r: 0.28386182, g: 0.037824843, b: 0.3207547, a: 0}
     shadowColor: {r: 0.14150941, g: 0.014017441, b: 0.14150941, a: 0}

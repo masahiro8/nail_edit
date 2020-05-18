@@ -87,20 +87,21 @@ public class ColorSelectList : MonoBehaviour
         var colorGrid = item.extra[0].GetComponent<CommonGrid>();
 
         colorGrid.updateItem = UpdateColorCircle;
-        colorGrid.itemCount.Value = DataTable.ColorCategory.list.Length;
+        colorGrid.itemCount.Value = DataTable.ColorCategory.showList.Length;
     }
 
     // 更新
     public void UpdateColorCircle(CommonItem item, int index)
     {
-        var data = DataTable.ColorCategory.list[index];
+        var data = DataTable.ColorCategory.showList[index];
         var flag1 = data.colors.Length > 0;
         var flag2 = data.colors.Length > 1;
 
         // カラー1の円を表示（常時表示）
         item.svgImage[1].enabled = flag1;
         // カラー1が白の場合に背景色と同じなので灰色の枠を表示
-        item.svgImage[2].enabled = flag1 && data.colors[0] == Color.white;
+        // item.svgImage[2].enabled = flag1 && data.colors[0] == Color.white; // 白い画面の時
+        item.svgImage[2].enabled = flag2 && data.colors[1] == Color.black;
         // カラー2の半円を表示
         item.svgImage[3].enabled = flag2;
         // カラー1

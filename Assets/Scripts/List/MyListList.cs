@@ -93,6 +93,10 @@ public class MyListList : MonoBehaviour
     {
         var data = DataTable.NailInfo.list[DataTable.MyList.filterdList[(int)mlType].Value[index]];
         item.text[0].text = data.productCode;
+
+        data.SetBottleTexture(item.image[0]);
+        data.SetSampleTexture(item.image[1]);
+        // item.image[1].enabled = index < max - 1;
     }
 
     // 開く

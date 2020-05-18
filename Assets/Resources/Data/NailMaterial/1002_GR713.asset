@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: 1002_GR713
   m_EditorClassIdentifier: 
   list:
-  - materialName: NailBase
-    baseColor: {r: 0.35671058, g: 0.4528302, b: 0.41350853, a: 1}
+  - materialType: 0
+    baseColor: {r: 0.35671058, g: 0.4528302, b: 0.41350853, a: 0.9607843}
     subColor: {r: 0, g: 0, b: 0, a: 1}
     shadowColor: {r: 0.40383586, g: 0.5188679, b: 0.4709379, a: 0}
     normalHeight: 0
     normalSize: 0
     noise: 0
     emissionRate: 0
-    metallic: 0.61
+    metallic: 0.7
     smoothness: 0.85
     textureType: 0
-    minSize: 0.1
-    maxSize: 0.1
-    randomSeed: 12345
-    randomCount: 32
+    minSize: 0
+    maxSize: 0
+    randomSeed: 0
+    randomCount: 0

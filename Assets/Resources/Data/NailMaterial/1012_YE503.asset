@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1012_YE503
   m_EditorClassIdentifier: 
   list:
-  - materialName: NailBase
+  - materialType: 0
     baseColor: {r: 0.9985143, g: 1, b: 0.69411767, a: 0.43137255}
     subColor: {r: 0, g: 0, b: 0, a: 1}
     shadowColor: {r: 0.98039216, g: 0.9453043, b: 0.29803923, a: 0}
@@ -24,7 +24,7 @@ MonoBehaviour:
     metallic: 0.82
     smoothness: 0.77
     textureType: 0
-    minSize: 0.1
-    maxSize: 0.1
-    randomSeed: 12345
-    randomCount: 32
+    minSize: 0
+    maxSize: 0
+    randomSeed: 0
+    randomCount: 0

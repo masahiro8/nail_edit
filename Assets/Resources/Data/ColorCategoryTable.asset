@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - name: White/Black
+    show: 1
     colors:
     - {r: 1, g: 1, b: 1, a: 1}
     - {r: 0, g: 0, b: 0, a: 1}
@@ -22,6 +23,7 @@ MonoBehaviour:
     - WT
     - BK
   - name: Red
+    show: 1
     colors:
     - {r: 1, g: 0, b: 0, a: 1}
     gloss: 0
@@ -29,36 +31,70 @@ MonoBehaviour:
     - RD
     - RO
   - name: Pink
+    show: 1
     colors:
     - {r: 1, g: 0, b: 0.49803922, a: 1}
     gloss: 0
     keywords:
     - PK
   - name: Orange
+    show: 1
     colors:
     - {r: 1, g: 0.49803922, b: 0, a: 1}
     gloss: 0
     keywords:
     - OR
   - name: Yellow
+    show: 1
     colors:
     - {r: 1, g: 0.7490196, b: 0, a: 1}
     gloss: 0
     keywords:
     - YE
+  - name: Brown
+    show: 1
+    colors:
+    - {r: 0.7490196, g: 0.49803922, b: 0, a: 1}
+    gloss: 0
+    keywords:
+    - BR
+  - name: Beige
+    show: 1
+    colors:
+    - {r: 1, g: 0.7490196, b: 0, a: 1}
+    gloss: 0
+    keywords:
+    - BE
   - name: Green
+    show: 1
     colors:
     - {r: 0, g: 1, b: 0, a: 1}
     gloss: 0
     keywords:
     - GR
   - name: Blue
+    show: 1
     colors:
     - {r: 0, g: 0, b: 1, a: 1}
     gloss: 0
     keywords:
     - BL
+  - name: Purple
+    show: 1
+    colors:
+    - {r: 1, g: 0, b: 1, a: 1}
+    gloss: 0
+    keywords:
+    - PU
+  - name: Gray
+    show: 1
+    colors:
+    - {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+    gloss: 0
+    keywords:
+    - GY
   - name: Gold/Silver
+    show: 1
     colors:
     - {r: 0.7490196, g: 0.7490196, b: 0, a: 1}
     - {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
@@ -66,31 +102,8 @@ MonoBehaviour:
     keywords:
     - GD
     - SV
-  - name: Beige
-    colors:
-    - {r: 1, g: 0.7490196, b: 0, a: 1}
-    gloss: 0
-    keywords:
-    - BE
-  - name: Brown
-    colors:
-    - {r: 0.7490196, g: 0.49803922, b: 0, a: 1}
-    gloss: 0
-    keywords:
-    - BR
-  - name: Gray
-    colors:
-    - {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
-    gloss: 0
-    keywords:
-    - GY
-  - name: Purple
-    colors:
-    - {r: 1, g: 0, b: 1, a: 1}
-    gloss: 0
-    keywords:
-    - PU
   - name: Top coat
+    show: 0
     colors:
     - {r: 1, g: 1, b: 1, a: 1}
     gloss: 0

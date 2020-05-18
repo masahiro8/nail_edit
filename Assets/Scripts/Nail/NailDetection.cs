@@ -10,16 +10,38 @@ public class NailDetection : MonoBehaviour
     public GameObject prefab;
     public MeshRenderer sphereTest;
 
-    // private TextAsset data;
+    private TextAsset data;
+    private NailInfoRecord infoData = null;
 
-    // // Start is called before the first frame update
-    // void Start()
-    // {
-    //     // JsonUtilityが二次元配列をデコードできないので一時的に手動で分解
-    //     data = Resources.Load("sample_result") as TextAsset;
-    // }
+    // Start is called before the first frame update
+    void Start()
+    {
+        // JsonUtilityが二次元配列をデコードできないので一時的に手動で分解
+        data = Resources.Load("sample_result") as TextAsset;
+    }
 
-    public void Invoke(Texture webcam)
+    public void Invoke(Texture webcam, NailDotToArea d2a)
+    {
+        // 各爪をモデル化
+        for (int i = 0; i < d2a.result.Length; i++) {
+            // 爪オブジェクトのインスタンス作成
+            var obj = i < meshFolder.childCount
+                ? meshFolder.GetChild(i).gameObject // すでにある場合はそれを使う
+                : Instantiate(prefab, meshFolder);
+            var nailGroup = obj.GetComponent<NailGroup>();
+
+            nailGroup.UpdateMesh("Finger-" + i, d2a.result[i].v, webcam);
+            nailGroup.UpdateDataFirst(infoData);
+
+            // テスト用
+            if (sphereTest && nailGroup.transform.childCount > 1) {
+                sphereTest.material = nailGroup.transform.GetChild(1).GetComponent<NailObject>().meshRenderer.material;
+            }
+        }
+        // print(modelData);
+    }
+
+    public void Invoke2(Texture webcam)
     {
         var matches = Regex.Matches(DebugPhoto.Instance.PhotoFileJson,
             @"\[[^\[]*?\]",
@@ -36,8 +58,11 @@ public class NailDetection : MonoBehaviour
                 ? meshFolder.GetChild(i).gameObject // すでにある場合はそれを使う
                 : Instantiate(prefab, meshFolder);
             var nailGroup = obj.GetComponent<NailGroup>();
+            nailGroup.orgTexWidth = 960;
+            nailGroup.orgTexHeight = 1280;
 
             nailGroup.UpdateMesh("Finger-" + i, record.data, webcam);
+            nailGroup.UpdateDataFirst(infoData);
 
             // テスト用
             if (sphereTest && nailGroup.transform.childCount > 1) {
@@ -45,6 +70,14 @@ public class NailDetection : MonoBehaviour
             }
         }
         // print(modelData);
+    }
+
+    public void SetInfoRecord(NailInfoRecord data)
+    {
+        infoData = data;
+        foreach (Transform t in transform) {
+            t.GetComponent<NailGroup>().UpdateData(data);
+        }
     }
 }
 

@@ -9,8 +9,15 @@ public class ColorCategoryTable : ScriptableObject
     // [Reorderable]
     public ColorCategoryRecord[] list;
 
+    [System.NonSerialized] public ColorCategoryRecord[] showList;
+
     public void Reset()
     {
+        // 表示用のインデックスリストを作成
+        showList = list
+            .Where(v => v.show)
+            .ToArray();
+
         foreach (var data in list) {
             var key = data.name;
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 9999_PK840
   m_EditorClassIdentifier: 
   list:
-  - materialName: NailBase
+  - materialType: 0
     baseColor: {r: 0.7372549, g: 0.7176471, b: 0.7019608, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 0}
     shadowColor: {r: 0.6415094, g: 0.62301725, b: 0.60822356, a: 0}

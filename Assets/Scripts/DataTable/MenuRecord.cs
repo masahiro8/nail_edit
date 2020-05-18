@@ -4,6 +4,6 @@
 public class MenuRecord
 {
     public string name = "Menu-0";
-    public Texture2D icon;
+    public Sprite icon;
     public string url;
 }

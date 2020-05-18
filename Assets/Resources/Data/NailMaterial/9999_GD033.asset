@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 9999_GD033
   m_EditorClassIdentifier: 
   list:
-  - materialName: NailBase
+  - materialType: 0
     baseColor: {r: 0.69803923, g: 0.6862745, b: 0.5882353, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 0}
     shadowColor: {r: 0, g: 0, b: 0, a: 0}
@@ -28,7 +28,7 @@ MonoBehaviour:
     maxSize: 0
     randomSeed: 0
     randomCount: 0
-  - materialName: NailLame
+  - materialType: 1
     baseColor: {r: 0.9339623, g: 0.93065816, b: 0.9031239, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 0}
     shadowColor: {r: 0, g: 0, b: 0, a: 0}

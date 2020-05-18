@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 0}
+  lightTexture: {fileID: 0}
   prefab: {fileID: 5331550717625016691, guid: f9fe907a7c89e4a538a26843710c99e7, type: 3}
-  orgTexWidth: 960
-  orgTexHeight: 1280
+  orgTexWidth: 257
+  orgTexHeight: 257
   minX: 0
   maxX: 0
   minY: 0

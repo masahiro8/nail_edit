@@ -13,48 +13,78 @@ MonoBehaviour:
   m_Name: 2004_SP024
   m_EditorClassIdentifier: 
   list:
-  - materialName: NailBase
-    baseColor: {r: 0.41568628, g: 0.27450982, b: 0.31631604, a: 0.6117647}
-    subColor: {r: 0.3773585, g: 0.16909933, b: 0.19834922, a: 0}
-    shadowColor: {r: 0, g: 0, b: 0, a: 0}
+  - materialType: 0
+    baseColor: {r: 0.7735849, g: 0.20799215, b: 0.38081205, a: 0.39215687}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0.4811321, g: 0.17475079, b: 0.2698346, a: 0}
     normalHeight: 0
-    normalSize: 0.7
+    normalSize: 0
     noise: 0
     emissionRate: 0.8
-    metallic: 0
+    metallic: 0.6
     smoothness: 0.8
     textureType: 0
     minSize: 0
     maxSize: 0
     randomSeed: 0
     randomCount: 0
-  - materialName: NailLame
-    baseColor: {r: 0.23137255, g: 0.10980392, b: 0.101960786, a: 1}
+  - materialType: 1
+    baseColor: {r: 0.5283019, g: 0.26377335, b: 0.246707, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 0}
     shadowColor: {r: 0, g: 0, b: 0, a: 0}
-    normalHeight: 0.5
-    normalSize: 0.7
+    normalHeight: 0.4
+    normalSize: 0
     noise: 0
-    emissionRate: 0.4
-    metallic: 0
+    emissionRate: 0.7
+    metallic: 0.2
     smoothness: 0.4
     textureType: 2
     minSize: 0.02
-    maxSize: 0.14
-    randomSeed: 12351
-    randomCount: 160
-  - materialName: NailLame
-    baseColor: {r: 0.96862745, g: 0.827451, b: 0.7921569, a: 1}
+    maxSize: 0.16
+    randomSeed: 1
+    randomCount: 140
+  - materialType: 1
+    baseColor: {r: 0.9150943, g: 0.5050285, b: 0.5545595, a: 1}
     subColor: {r: 0, g: 0, b: 0, a: 0}
     shadowColor: {r: 0, g: 0, b: 0, a: 0}
     normalHeight: 0.5
-    normalSize: 0.7
+    normalSize: 0
     noise: 0
     emissionRate: 0.4
-    metallic: 0
+    metallic: 0.2
     smoothness: 0.4
     textureType: 2
     minSize: 0.02
-    maxSize: 0.14
-    randomSeed: 12375
-    randomCount: 40
+    maxSize: 0.16
+    randomSeed: 2
+    randomCount: 120
+  - materialType: 1
+    baseColor: {r: 0.7830189, g: 0.2622375, b: 0.3223276, a: 1}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0, g: 0, b: 0, a: 0}
+    normalHeight: 0.5
+    normalSize: 0
+    noise: 0
+    emissionRate: 0.4
+    metallic: 0.3
+    smoothness: 0.4
+    textureType: 2
+    minSize: 0.02
+    maxSize: 0.16
+    randomSeed: 3
+    randomCount: 100
+  - materialType: 1
+    baseColor: {r: 1, g: 0.6556604, b: 0.6944957, a: 1}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0, g: 0, b: 0, a: 0}
+    normalHeight: 0.2
+    normalSize: 0
+    noise: 0
+    emissionRate: 0.4
+    metallic: 0.1
+    smoothness: 0.4
+    textureType: 2
+    minSize: 0.02
+    maxSize: 0.16
+    randomSeed: 4
+    randomCount: 20

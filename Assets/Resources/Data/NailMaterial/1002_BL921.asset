@@ -13,18 +13,33 @@ MonoBehaviour:
   m_Name: 1002_BL921
   m_EditorClassIdentifier: 
   list:
-  - materialName: NailBase
-    baseColor: {r: 0.6313726, g: 0.6901961, b: 0.7019608, a: 1}
+  - materialType: 0
+    baseColor: {r: 0.5499288, g: 0.6734158, b: 0.6981132, a: 0.9607843}
     subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 0.5137255, g: 0.5686275, b: 0.5764706, a: 1}
-    normalHeight: 0.2
-    normalSize: 0.8
-    noise: 0
+    shadowColor: {r: 0.55291027, g: 0.6551987, b: 0.6698113, a: 1}
+    normalHeight: 0.4
+    normalSize: 0.5
+    noise: 0.2
     emissionRate: 0
-    metallic: 0.6
-    smoothness: 0.9
+    metallic: 0.4
+    smoothness: 0.8
     textureType: 0
     minSize: 0
     maxSize: 0
     randomSeed: 0
     randomCount: 0
+  - materialType: 1
+    baseColor: {r: 0.40784314, g: 0.6859552, b: 0.7647059, a: 1}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0.19999999, g: 0.57602507, b: 0.6784314, a: 1}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0
+    smoothness: 0
+    textureType: 3
+    minSize: 0.02
+    maxSize: 0.02
+    randomSeed: 1
+    randomCount: 100

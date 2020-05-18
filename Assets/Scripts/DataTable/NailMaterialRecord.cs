@@ -4,19 +4,25 @@
 public class NailMaterialRecord
 {
     // マテリアル用
-    public string materialName = "NailBase";
+    // public string materialName = "NailBase";
+    public NailMaterialType materialType = NailMaterialType.Base;
     public Color baseColor = Vector4.one;
+    [HeaderAttribute("Sub ColorはLameの時はハイライトとして使用")]
     public Color subColor = Vector4.zero;
     public Color shadowColor = Vector4.zero;
     public float normalHeight = 0;
     public float normalSize = 0.7f;
+    [Header("NoiseはBaseでのみ有効")]
     public float noise = 0;
     public float emissionRate = 0;
     public float metallic = 0;
     public float smoothness = 0.8f;
 
     // テクスチャ用
+    // [Space(10)]
+    [Header("ラメの模様のパターン")]
     public NailTextureType textureType = NailTextureType.None;
+    [Header("以下Texture TypeがNoneの時は未使用")]
     public float minSize = 0.1f;
     public float maxSize = 0.1f;
     public int randomSeed = 12345;
@@ -50,7 +56,7 @@ public class NailMaterialRecord
     public void SetMaterial(Renderer renderer)
     {
         // マテリアル変更
-        renderer.material = Resources.Load<Material>("Materials/" + materialName);
+        renderer.material = Resources.Load<Material>("Materials/" + materialType.GetFileType());
 
         renderer.material.SetColor(colorName, baseColor);
         if (subColor.r == 0 && subColor.g == 0 && subColor.b == 0) {
