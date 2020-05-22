@@ -13,7 +13,7 @@ public class NailGroupMesh : MonoBehaviour
     private List<Vector2> uv;
     private List<Color> colors;
 
-    private float edgePer1 = 0.8f;
+    private float edgePer1 = 1.0f;
     private float edgePer2 = 1.0f;
     private Color edgeColor = Color.white;
 
@@ -43,7 +43,7 @@ public class NailGroupMesh : MonoBehaviour
         // data2 = SmoothVertex(data2);
 
         CreateFan(g, data2);
-        CreateEdge(g, data2);
+        // CreateEdge(g, data2);
 
         mesh.vertices = vertices.ToArray();
         mesh.triangles = triangles.ToArray();
