@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEditor;
+using System;
 
 [System.Serializable]
 public class NailMaterialRecord
@@ -7,16 +9,19 @@ public class NailMaterialRecord
     // public string materialName = "NailBase";
     public NailMaterialType materialType = NailMaterialType.Base;
     public Color baseColor = Vector4.one;
-    [HeaderAttribute("Sub ColorはLameの時はハイライトとして使用")]
+    [HeaderAttribute("Sub ColorはLameFlatの時はハイライトとして使用")]
     public Color subColor = Vector4.zero;
     public Color shadowColor = Vector4.zero;
     public float normalHeight = 0;
     public float normalSize = 0.7f;
     [Header("NoiseはBaseでのみ有効")]
     public float noise = 0;
+    [Header("以下3つはLameFlatで未使用")]
     public float emissionRate = 0;
     public float metallic = 0;
     public float smoothness = 0.8f;
+
+    // [SeparatorAttribute("Separator test")]
 
     // テクスチャ用
     // [Space(10)]

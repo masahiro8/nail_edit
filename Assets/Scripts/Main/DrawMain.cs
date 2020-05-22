@@ -23,7 +23,8 @@ public class DrawMain : MonoBehaviour
     [SerializeField] Button recButton = null;
     [SerializeField] RectTransform cameraRectTransform = null;
     [SerializeField] RawImage cameraView = null;
-    [SerializeField] RawImage texView = null;
+    [SerializeField] RawImage[] texView1 = null;
+    [SerializeField] RawImage[] texView2 = null;
 
 #if !NAIL_EDIT
     [SerializeField] PalmDetection palmDetection = null;
@@ -99,16 +100,26 @@ public class DrawMain : MonoBehaviour
         //     .AddTo(gameObject);
 
 #if !UNITY_EDITOR
+        // デバッグテキスト
         SROptions.Current.DispTextView
             .Subscribe(flag => outputTextView.enabled = flag);
+        // 手のモデル
         SROptions.Current.DispHandModel
             .Subscribe(flag => handLandmark.dotPoints2.pointFolder.parent.gameObject.SetActive(flag));
-        SROptions.Current.DispOrgImage
-            .Subscribe(flag => texView.enabled = flag);
-        SROptions.Current.DispPalmImage
-            .Subscribe(flag => palmDetection.texView.enabled = flag);
-        SROptions.Current.DispHandImage
-            .Subscribe(flag => handLandmark.texView.enabled = flag);
+        // 上の画像4つ
+        SROptions.Current.DispDebugImage1
+            .Subscribe(flag => {
+                foreach (var view in texView1) {
+                    view.enabled = flag;
+                }
+            });
+        // 下の合成画像2つ
+        SROptions.Current.DispDebugImage2
+            .Subscribe(flag => {
+                foreach (var view in texView2) {
+                    view.enabled = flag;
+                }
+            });
 #endif
     }
 
@@ -216,18 +227,16 @@ public class DrawMain : MonoBehaviour
                 // handLandmark.Resize(webcam, palmDetection);
                 // handLandmark.Invoke(webcam, device);
 #if !NAIL_EDIT
-                nailDetectionTest.Invoke(texView.texture, device, () => {
+                nailDetectionTest.Invoke(texView1[0].texture, device, () => {
                     isProcessing = false;
                 });
+                nailDetection.Invoke(webcam, nailDetectionTest.dot2Area);
 #endif
             }
 
             if (useWebCamera) {
-#if !NAIL_EDIT
-                nailDetection.Invoke(texView.texture, nailDetectionTest.dot2Area);
-#endif
             } else {
-                nailDetection.Invoke2(texView.texture);
+                nailDetection.Invoke2(texView1[0].texture);
             }
 
             if (webcamTextures.Count > 0) {
@@ -259,7 +268,7 @@ public class DrawMain : MonoBehaviour
         cameraView.texture = webcamTextures[webcamIndex];
         webcamTextures[webcamIndex].Play();
         Debug.Log("Change: " + webcamTextures[webcamIndex].name + " (" + webcamIndex + ") -> " + cameraView.texture.width + "," + cameraView.texture.height);
-        texView.texture = cameraView.texture;
+        texView1[0].texture = cameraView.texture;
     }
 
     void DebugDisp()

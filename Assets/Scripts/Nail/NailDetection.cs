@@ -12,15 +12,17 @@ public class NailDetection : MonoBehaviour
 
     private TextAsset data;
     private NailInfoRecord infoData = null;
+    private Vector3 baseScale;
 
     // Start is called before the first frame update
     void Start()
     {
         // JsonUtilityが二次元配列をデコードできないので一時的に手動で分解
         data = Resources.Load("sample_result") as TextAsset;
+        baseScale = transform.localScale;
     }
 
-    public void Invoke(Texture webcam, NailDotToArea d2a)
+    public void Invoke(WebCamTexture webcam, NailDotToArea d2a)
     {
         // 各爪をモデル化
         for (int i = 0; i < d2a.result.Length; i++) {
@@ -39,6 +41,11 @@ public class NailDetection : MonoBehaviour
             }
         }
         // print(modelData);
+
+        // スケール
+        var size = new Vector3(webcam.width, webcam.height, 0);
+        size = Quaternion.Euler(0, 0, webcam.videoRotationAngle + SROptions.Current.CameraDegreeOffset) * size;
+        transform.localScale = baseScale * Mathf.Abs(size.x / size.y);
     }
 
     public void Invoke2(Texture webcam)

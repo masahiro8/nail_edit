@@ -48,12 +48,12 @@ public class NailObject : MonoBehaviour
     public void UpdateData(NailGroup group, NailMaterialRecord data)
     {
         materialData.Value = data;
-        meshFilter.mesh = group.mesh;
+        meshFilter.mesh = group.groupMesh.mesh;
         name = data.materialType.ToString();
         if (data.textureType == NailTextureType.Light) {
             const string textureName = "_Texture";
             // meshRenderer.material.mainTexture = group.lightTexture;
-            meshRenderer.material.SetTexture(textureName, group.lightTexture);
+            meshRenderer.material.SetTexture(textureName, group.groupTexture.lightTexture);
         }
     }
 }

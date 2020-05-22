@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-public partial class NailGroup : MonoBehaviour
+public class NailGroup : MonoBehaviour
 {
     public GameObject prefab;
     public int orgTexWidth = 257; // 元画像のテクスチャの幅
@@ -18,6 +18,9 @@ public partial class NailGroup : MonoBehaviour
     public float cy;
     public float aspect;
     public Vector3 center;
+
+    [System.NonSerialized] public NailGroupMesh groupMesh = new NailGroupMesh();
+    [System.NonSerialized] public NailGroupTexture groupTexture = new NailGroupTexture();
 
     private NailMaterialTable nailData;
     private CompositeDisposable disposableBag = new CompositeDisposable();
@@ -43,8 +46,8 @@ public partial class NailGroup : MonoBehaviour
         name = modelName;
         // texture = tex;
         CalcRect(data);
-        UpdateTexture(data, orgTexture);
-        CreateMesh(data);
+        groupTexture.UpdateTexture(this, data, orgTexture);
+        groupMesh.CreateMesh(this, data);
 
         // 位置調整
         transform.localPosition = center;

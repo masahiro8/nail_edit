@@ -19,7 +19,7 @@ public static partial class EnumExtensions
             case NailMaterialType.Lame:
                 return "NailLame";
             case NailMaterialType.LameFlat:
-                return "NailLame";
+                return "NailLameFlat";
             default:
                 return "";
         }

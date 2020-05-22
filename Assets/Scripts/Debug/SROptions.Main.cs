@@ -38,26 +38,18 @@ public partial class SROptions {
     public ReactiveProperty<bool> DispHandModel = new ReactiveProperty<bool>();
 
     [Category("画像")]
-    [DisplayName("オリジナル")]
-    public bool _DispOrgImage {
-        get { return DispOrgImage.Value; }
-        set { DispOrgImage.Value = value; }
+    [DisplayName("デバッグ表示1")]
+    public bool _DispDebugImage1 {
+        get { return DispDebugImage1.Value; }
+        set { DispDebugImage1.Value = value; }
     }
-    public ReactiveProperty<bool> DispOrgImage = new ReactiveProperty<bool>();
+    public ReactiveProperty<bool> DispDebugImage1 = new ReactiveProperty<bool>();
 
     [Category("画像")]
-    [DisplayName("手のひらの検出")]
-    public bool _DispPalmImage {
-        get { return DispPalmImage.Value; }
-        set { DispPalmImage.Value = value; }
+    [DisplayName("デバッグ表示2")]
+    public bool _DispDebugImage2 {
+        get { return DispDebugImage2.Value; }
+        set { DispDebugImage2.Value = value; }
     }
-    public ReactiveProperty<bool> DispPalmImage = new ReactiveProperty<bool>();
-
-    [Category("画像")]
-    [DisplayName("手の検出")]
-    public bool _DispHandImage {
-        get { return DispHandImage.Value; }
-        set { DispHandImage.Value = value; }
-    }
-    public ReactiveProperty<bool> DispHandImage = new ReactiveProperty<bool>();
+    public ReactiveProperty<bool> DispDebugImage2 = new ReactiveProperty<bool>();
 }
