@@ -97,11 +97,11 @@ public class NailGroupMesh : MonoBehaviour
 
             // テクスチャのUV
             uv.Add(new Vector2(
-                (float)(data[n1 + 0] - g.minX) / (float)g.texWidth,
-                1 - (float)(data[n1 + 1] - g.minY) / (float)g.texHeight));
+                (data[n1 + 0] - (float)g.minX) / (float)g.texWidth * edgePer1,
+                (1 - (data[n1 + 1] - (float)g.minY) / (float)g.texHeight) * edgePer1));
             uv.Add(new Vector2(
-                (float)(data[n2 + 0] - g.minX) / (float)g.texWidth,
-                1 - (float)(data[n2 + 1] - g.minY) / (float)g.texHeight));
+                (data[n2 + 0] - (float)g.minX) / (float)g.texWidth * edgePer1,
+                (1 - (data[n2 + 1] - (float)g.minY) / (float)g.texHeight) * edgePer1));
 
             // 追加
             triangles.Add(0);
@@ -179,17 +179,17 @@ public class NailGroupMesh : MonoBehaviour
 
             // テクスチャのUV
             uv.Add(new Vector2(
-                (float)(data[n1 + 0] * edgePer1 - g.minX) / (float)g.texWidth,
-                1 - (float)(data[n1 + 1] * edgePer1 - g.minY) / (float)g.texHeight));
+                (data[n1 + 0] - (float)g.minX) / (float)g.texWidth * edgePer1,
+                (1 - (data[n1 + 1] - (float)g.minY) / (float)g.texHeight) * edgePer1));
             uv.Add(new Vector2(
-                (float)(data[n2 + 0] * edgePer1 - g.minX) / (float)g.texWidth,
-                1 - (float)(data[n2 + 1] * edgePer1 - g.minY) / (float)g.texHeight));
+                (data[n2 + 0] - (float)g.minX) / (float)g.texWidth * edgePer1,
+                (1 - (data[n2 + 1] - (float)g.minY) / (float)g.texHeight) * edgePer1));
             uv.Add(new Vector2(
-                (float)(data[n1 + 0] * edgePer2 - g.minX) / (float)g.texWidth,
-                1 - (float)(data[n1 + 1] * edgePer2 - g.minY) / (float)g.texHeight));
+                (data[n1 + 0] - (float)g.minX) / (float)g.texWidth * edgePer2,
+                (1 - (data[n1 + 1] - (float)g.minY) / (float)g.texHeight) * edgePer2));
             uv.Add(new Vector2(
-                (float)(data[n2 + 0] * edgePer2 - g.minX) / (float)g.texWidth,
-                1 - (float)(data[n2 + 1] * edgePer2 - g.minY) / (float)g.texHeight));
+                (data[n2 + 0] - (float)g.minX) / (float)g.texWidth * edgePer2,
+                (1 - (data[n2 + 1] - (float)g.minY) / (float)g.texHeight) * edgePer2));
 
             // 追加
             triangles.Add(n + 0);
