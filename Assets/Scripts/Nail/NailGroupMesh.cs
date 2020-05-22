@@ -15,6 +15,7 @@ public class NailGroupMesh : MonoBehaviour
 
     private float edgePer1 = 0.8f;
     private float edgePer2 = 1.0f;
+    private Color edgeColor = Color.white;
 
     // メッシュ作成
     public void CreateMesh(NailGroup g, int[] data)
@@ -173,7 +174,7 @@ public class NailGroupMesh : MonoBehaviour
 
             // 頂点カラー
             for (int j = 0; j < 4; j++) {
-                colors.Add(j < 2 ? Color.white : Color.clear);
+                colors.Add(j < 2 ? Color.white : edgeColor);
             }
 
             // テクスチャのUV
