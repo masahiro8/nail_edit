@@ -15,7 +15,10 @@ public class MainMenuList : MonoBehaviour
     public RectTransform frameTransform; // メニュー用の黒い背景
     public RectTransform menuTransform; // メニュー内部
     public MyListList favoriteList; // メニュー内部
+    public NoticeList noticeList; // お知らせ
+    public StoreSelectList storeSelectList; // ストア選択
     public GameObject webViewPrefab;
+    public RectTransform swipeContentTransform;//スワイプビュー
 
     private Color orgColor; // 画面全体を暗くするための背景の元の色
 
@@ -44,7 +47,7 @@ public class MainMenuList : MonoBehaviour
 
         if (closeButton) {
             closeButton.OnClickAsObservable()
-                .Subscribe(_ => CloseMenu())
+                .Subscribe(_ => CloseMenu(true))
                 .AddTo(gameObject);
         }
 
@@ -53,7 +56,7 @@ public class MainMenuList : MonoBehaviour
         // CloseMenu();
 
         // メニュー作成
-        CloseMenu();
+        CloseMenu(false);
     }
 
     private void UpdateMenu(CommonItem item, int index)
@@ -72,7 +75,7 @@ public class MainMenuList : MonoBehaviour
         item.svgImage[0].sprite = data.icon;
         item.svgImage[0].enabled = data.icon != null;
 
-        item.textRectTransform.offsetMin = data.icon == null ? item.textOffsetMin1 : item.textOffsetMin2;
+        //item.textRectTransform.offsetMin = data.icon == null ? item.textOffsetMin1 : item.textOffsetMin2;
 
         // ボタンタップ時の挙動
         var disposable = item.button[0].OnClickAsObservable()
@@ -82,15 +85,18 @@ public class MainMenuList : MonoBehaviour
                     case 0:
                         favoriteList.OpenMenu(0);
                         break;
-                    case 1:
-                        favoriteList.OpenMenu(1);
+                    case 1: // ショップ選択
+                        storeSelectList.OpenWindow();
                         break;
+                    case 2: // お知らせ
+                        noticeList.OpenWindow();
+                        break;
+                    case 5:
                     case 6:
-                    case 7:
                         OpenWebView(data.url);
                         break;
-                    case 8:
-                        SaveName.TutorialDone.SetBool(false);
+                    case 7:
+                        SRDebug.Instance.ShowDebugPanel();
                         break;
                     default:
                         break;
@@ -100,31 +106,32 @@ public class MainMenuList : MonoBehaviour
     }
 
     // 開く
-    private void OpenMenu()
+    public void OpenMenu()
     {
         CompleteAnimation();
 
-        backgroundImage.raycastTarget = true;
-        backgroundImage
-            .DOColor(orgColor, DataTable.Param.duration);
-        frameTransform
-            .DOAnchorPosX(0, DataTable.Param.duration);
-        menuTransform
-            .DOAnchorPosX(0, DataTable.Param.duration);
+        // backgroundImage.raycastTarget = true;
+        // backgroundImage
+        //     .DOColor(orgColor, DataTable.Param.duration);
+        // frameTransform
+        //     .DOAnchorPosX(0, DataTable.Param.duration);
+        // menuTransform
+        //     .DOAnchorPosX(0, DataTable.Param.duration);
+        swipeContentTransform.DOAnchorPosX(0, 0.3f);
     }
 
     // 閉じる
-    private void CloseMenu()
+    private void CloseMenu(bool anim)
     {
         CompleteAnimation();
 
-        backgroundImage.raycastTarget = false;
-        backgroundImage
-            .DOColor(Color.clear, DataTable.Param.duration);
-        frameTransform
-            .DOAnchorPosX(-Screen.width, DataTable.Param.duration);
-        menuTransform
-            .DOAnchorPosX(-Screen.width, DataTable.Param.duration);
+        // backgroundImage.raycastTarget = false;
+        // backgroundImage
+        //     .DOColor(Color.clear, DataTable.Param.duration);
+        // frameTransform
+        //     .DOAnchorPosX(-Screen.width, DataTable.Param.duration);
+        // menuTransform
+        //     .DOAnchorPosX(-Screen.width, DataTable.Param.duration);
     }
 
     // 閉じる

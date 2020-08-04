@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - materialType: 0
-    baseColor: {r: 0.9339623, g: 0.6168507, b: 0.4537647, a: 0.9607843}
-    subColor: {r: 1, g: 0.9214306, b: 0.8537736, a: 0}
-    shadowColor: {r: 0.8490566, g: 0.59397155, b: 0.47659308, a: 0}
+    baseColor: {r: 0.8396226, g: 0.43968445, b: 0.29703632, a: 0.9607843}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0.9245283, g: 0.5597123, b: 0.45790315, a: 0}
     normalHeight: 0
     normalSize: 0
     noise: 0

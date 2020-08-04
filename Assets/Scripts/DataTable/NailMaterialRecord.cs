@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System;
+using UniRx;
 
 [System.Serializable]
 public class NailMaterialRecord
@@ -78,8 +79,18 @@ public class NailMaterialRecord
         renderer.material.SetFloat("_NormalHeight", normalHeight);
         renderer.material.SetFloat("_NormalSize", normalSize);
         // renderer.material.SetFloat("_EmissionRate", emissionRate);
-        renderer.material.SetFloat("_Metallic", metallic);
-        renderer.material.SetFloat("_Smoothness", smoothness);
+        // renderer.material.SetFloat("_Metallic", metallic);
+        // renderer.material.SetFloat("_Smoothness", smoothness);
+        DataTable.Param.topcoatType
+            .Subscribe(type => {
+                renderer.material.SetFloat("_Metallic", metallic * type.Metallic());
+            })
+            .AddTo(renderer.gameObject);
+        DataTable.Param.topcoatType
+            .Subscribe(type => {
+                renderer.material.SetFloat("_Smoothness", smoothness * type.Smoothness());
+            })
+            .AddTo(renderer.gameObject);
     }
 
     public void SetTexture(Renderer renderer, NailTexture nailTexture)

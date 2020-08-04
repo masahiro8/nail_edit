@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NailGroupTexture : MonoBehaviour
+public class NailGroupTexture
 {
     public Texture2D lightTexture = null;
 
@@ -44,6 +44,7 @@ public class NailGroupTexture : MonoBehaviour
             // var pixels = texture2d.GetPixels(minX, minY, texWidth, texHeight);
             // var pixels = texture2d.GetPixels(orgTexWidth - maxX, orgTexHeight - maxY, texWidth, texHeight);
             // Power of 2で1,024x1,024になるとうまくいかないので注意
+            // Debug.Log("texture2d: " + texture2d.width + "," + texture2d.height);
             var pixels = texture2d.GetPixels(g.minX, g.orgTexHeight - 1 - g.maxY, g.texWidth, g.texHeight);
             lightTexture = new Texture2D(g.texWidth, g.texHeight);
             for (int i = 0; i < pixels.Length; i++) {

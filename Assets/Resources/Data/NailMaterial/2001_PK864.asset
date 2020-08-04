@@ -14,32 +14,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - materialType: 0
-    baseColor: {r: 0.9622642, g: 0.73985404, b: 0.8248199, a: 0.6862745}
-    subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 0, g: 0, b: 0, a: 0}
-    normalHeight: 0
-    normalSize: 0.7
+    baseColor: {r: 0.9622642, g: 0.62184054, b: 0.8163682, a: 0.6862745}
+    subColor: {r: 0.9339623, g: 0.383277, b: 0.69399196, a: 0}
+    shadowColor: {r: 0.9150943, g: 0.634523, b: 0.78416103, a: 0}
+    normalHeight: 0.8
+    normalSize: 0.6
     noise: 0
-    emissionRate: 0.8
-    metallic: 0
-    smoothness: 0.8
+    emissionRate: 0
+    metallic: 0.8
+    smoothness: 0.7
     textureType: 0
     minSize: 0
     maxSize: 0
     randomSeed: 0
     randomCount: 0
   - materialType: 1
-    baseColor: {r: 1, g: 0.8632076, b: 0.9145047, a: 0.94509804}
-    subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 0, g: 0, b: 0, a: 0}
-    normalHeight: 0.3
-    normalSize: 0.7
+    baseColor: {r: 0.8490566, g: 0.53266287, b: 0.75395906, a: 0.78431374}
+    subColor: {r: 0.9339623, g: 0.48900855, b: 0.66063344, a: 1}
+    shadowColor: {r: 0, g: 0, b: 0, a: 1}
+    normalHeight: 0
+    normalSize: 0
     noise: 0
     emissionRate: 0.9
     metallic: 0
     smoothness: 0.4
     textureType: 3
+    minSize: 0.02
+    maxSize: 0.02
+    randomSeed: 1
+    randomCount: 600
+  - materialType: 2
+    baseColor: {r: 0.9622642, g: 0.39489147, b: 0.8223911, a: 0.43137255}
+    subColor: {r: 0.8941177, g: 0.43921572, b: 0.80392164, a: 1}
+    shadowColor: {r: 0, g: 0, b: 0, a: 0}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0
+    smoothness: 0
+    textureType: 3
+    minSize: 0.015
+    maxSize: 0.02
+    randomSeed: 2
+    randomCount: 800
+  - materialType: 2
+    baseColor: {r: 0.89019614, g: 0.454902, b: 0.7254902, a: 0.8627451}
+    subColor: {r: 0.9528302, g: 0.4179868, b: 0.7356819, a: 1}
+    shadowColor: {r: 0, g: 0, b: 0, a: 0}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0
+    smoothness: 0
+    textureType: 3
     minSize: 0.01
-    maxSize: 0.04
-    randomSeed: 12375
-    randomCount: 260
+    maxSize: 0.015
+    randomSeed: 3
+    randomCount: 800

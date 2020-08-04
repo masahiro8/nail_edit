@@ -19,6 +19,8 @@ public class NailGroup : MonoBehaviour
     public float aspect;
     public Vector3 center;
 
+    public float rz;
+
     [System.NonSerialized] public NailGroupMesh groupMesh = new NailGroupMesh();
     [System.NonSerialized] public NailGroupTexture groupTexture = new NailGroupTexture();
 
@@ -28,25 +30,29 @@ public class NailGroup : MonoBehaviour
     // // Start is called before the first frame update
     // void Start()
     // {
-    //     for (var i = 0; i < 1; i++) {
-    //         var obj = Instantiate(prefab, transform);
-    //         obj.transform.localPosition = Vector3.zero;
-    //     }
+    //     SROptions.Current.NailEdgeTransparent
+    //         .Subscribe(flag => {
+    //             // groupMesh.edgePer1 = flag ? 0.8f : 1.0f;
+    //             groupMesh.edgePer1 = flag ? SROptions.Current.NailEdge1TransparentPer : 1f;
+    //             groupMesh.edgePer2 = flag ? SROptions.Current.NailEdge2TransparentPer : 1f;
+    //         })
+    //         .AddTo(gameObject);
     // }
 
     // 作成
     public void UpdateMesh(string modelName, int[] data, Texture orgTexture)
     {
-        // 一時的に適当に入れておく
-        if (nailData == null) {
-            // nailData = DataTable.Nail.list[0];
-            return;
-        }
+        // // 一時的に適当に入れておく
+        // if (nailData == null) {
+        //     // nailData = DataTable.Nail.list[0];
+        //     // Debug.Log("No nail data.");
+        //     return;
+        // }
 
         name = modelName;
         // texture = tex;
         CalcRect(data);
-        groupTexture.UpdateTexture(this, data, orgTexture);
+        // groupTexture.UpdateTexture(this, data, orgTexture); // textureType: 1が未使用なので通さない
         groupMesh.CreateMesh(this, data);
 
         // 位置調整
@@ -54,6 +60,14 @@ public class NailGroup : MonoBehaviour
 
         // 表示判定
         // meshRenderer.gameObject.SetActive(!isHighLight || nailData.hasHighLightTexture);
+        UpdateMesh2();
+    }
+
+    public void UpdateMesh2()
+    {
+        if (nailData == null) {
+            return;
+        }
 
         for (var i = 0; i < nailData.list.Length; i++) {
             NailObject nailObject = null;
@@ -64,6 +78,7 @@ public class NailGroup : MonoBehaviour
                 // 新規作成
                 nailObject = Instantiate(prefab, transform).GetComponent<NailObject>();
                 nailObject.transform.localPosition = Vector3.forward * i * -0.1f;
+                // nailObject.gameObject.AddComponent<NormalHelper>();
             }
             nailObject.gameObject.SetActive(true);
             nailObject.UpdateData(this, nailData.list[i]);
@@ -116,6 +131,12 @@ public class NailGroup : MonoBehaviour
             0);
     }
 
+    // 中心および縦横の計算
+    public void ReCalcRect(float[] data)
+    {
+        // ToDo: あとで入れる
+    }
+
     // テクスチャを更新
     public void UpdateDataFirst(NailInfoRecord data)
     {
@@ -133,6 +154,7 @@ public class NailGroup : MonoBehaviour
         // foreach (Transform t in transform) {
         //     t.GetComponent<NailObject>().ResetData(this);
         // }
+        UpdateMesh2();
 
 #if UNITY_EDITOR
         disposableBag.Clear();
@@ -140,17 +162,28 @@ public class NailGroup : MonoBehaviour
             // エディタでは編集用に更新させるため
             var disposable = nailData.validateTime
                 .Where(t => t > 0)
-                .Subscribe(_ => {
-                    // Debug.Log(t);
-                    foreach (Transform t in transform) {
-                        var obj = t.GetComponent<NailObject>();
-                        var materialData = obj.materialData.Value;
-                        materialData.SetMaterial(obj.meshRenderer);
-                        materialData.SetTexture(obj.meshRenderer, obj.nailTexture);
-                    }
-                });
+                .Subscribe(_ => UpdateMaterialAll());
+            disposableBag.Add(disposable);
+
+            disposable = DataTable.Param.validateTime
+                .Where(t => t > 0)
+                .Subscribe(_ => UpdateMaterialAll());
             disposableBag.Add(disposable);
         }
 #endif
+    }
+
+    // マテリアルを更新
+    public void UpdateMaterialAll()
+    {
+        RenderSettings.reflectionIntensity = nailData.reflectionIntensity;
+
+        // Debug.Log(t);
+        foreach (Transform t in transform) {
+            var obj = t.GetComponent<NailObject>();
+            var materialData = obj.materialData.Value;
+            materialData.SetMaterial(obj.meshRenderer);
+            materialData.SetTexture(obj.meshRenderer, obj.nailTexture);
+        }
     }
 }

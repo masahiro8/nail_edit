@@ -38,7 +38,7 @@ public class CommonList : MonoBehaviour
             .SkipLatestValueOnSubscribe()
             .Subscribe(_ => Reset())
             .AddTo(gameObject);
-
+            
         // プレファブはcontent内にある最初のものを使う
         itemPrefabIndex = (n) => 0;
     }
@@ -77,7 +77,7 @@ public class CommonList : MonoBehaviour
         if (listView) {
             listView.SetListItemCount(itemCount.Value);
             listView.RefreshAllShownItem();
-        } else {
+        } else if (scrollRect) {
             // LoopListView2を使わない
             // normalizedPositionが特殊でSnapがうまく動かなくなるため
             itemCount.Value = itemCount.Value;

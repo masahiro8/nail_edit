@@ -20,9 +20,10 @@ public class NailInfoRecord
     // public int orderCode; // 発注コード: 44513
     public string productCode; // 商品符号: DLMI005
     public int price; // 税抜価格: ¥300
+    public DateTime openDate; // 公開日: 2020/7/22
     public DateTime releaseDate; // 発売年月: 2015/02/01
     public DateTime endDate; // 販売終了日: 2099/12/31
-    // 限定フラグ
+    public int limited; // 限定フラグ
 
     // ======== カテゴリマスタ ========
     // No: 1
@@ -43,11 +44,14 @@ public class NailInfoRecord
     // ロハコ: https://lohaco.jp/product/J479944/
     // ＠コスメ: 
     // 流通EC: 
-    public string[] url = new string[4];
+    public string[] url = new string[7];
 
     // フィルター用
     [System.NonSerialized] public CategoryRecord category;
     [System.NonSerialized] public ColorCategoryRecord colorCategory;
+
+    // 追加データ
+    public DateTime newDispDate; // NEWを表示する期間
 
     public string fileName {
         get { return productCode.Substring(0, 4) + "_" + colorNumber; }
@@ -61,6 +65,20 @@ public class NailInfoRecord
         get { return Resources.Load<Texture2D>("Textures/NailSample/" + fileName); }
     }
 
+    public string useURL {
+        get {
+            var n = Math.Min(SaveName.StoreSelect.GetInt(), DataTable.Store.showList.Length - 1);
+            var data = DataTable.Store.showList[n];
+            var res = data.index < url.Length ? url[data.index] : null;
+            return res != null ? res : "";
+        }
+    }
+
+    public bool existUseURL {
+        get { return useURL.Length > 0; }
+    }
+
+    //Csvからの値
     public void AddProduct(string[] lines)
     {
         if (lines.Length < 12) {
@@ -74,6 +92,28 @@ public class NailInfoRecord
         price = int.TryParse(lines[8].Replace("¥", ""), out int n8) ? n8 : -1;
         releaseDate = DateTime.TryParse(lines[9], out DateTime n9) ? n9 : DateTime.Now;
         endDate = DateTime.TryParse(lines[10], out DateTime n10) ? n10 : DateTime.Now;
+        limited = int.TryParse(lines[11], out int n11) ? n11 : 0;
+        openDate = DateTime.TryParse(lines[12], out DateTime n12) ? n12 : DateTime.Now;
+
+        newDispDate = releaseDate.AddDays(DataTable.Param.newInfoDays);
+    }
+
+    //APiからの値
+    public void AddProductFromApi(string[] lines)
+    {
+        if (lines.Length < 12) {
+            return;
+        }
+        productName = lines[1];
+        subName = lines[2];
+        colorNumber = lines[3];
+        // orderCode = int.TryParse(lines[7], out int n7) ? n7 : -1;
+        productCode = lines[7];
+        price = int.TryParse(lines[8].Replace("¥", ""), out int n8) ? n8 : -1;
+        releaseDate = DateTime.TryParse(lines[9], out DateTime n9) ? n9 : DateTime.Now;
+        endDate = DateTime.TryParse(lines[10], out DateTime n10) ? n10 : DateTime.Now;
+        limited = int.TryParse(lines[11], out int n11) ? n11 : 0;
+        openDate = DateTime.TryParse(lines[12], out DateTime n12) ? n12 : DateTime.Now;
     }
 
     // カテゴリマスタの読み込み
@@ -85,8 +125,9 @@ public class NailInfoRecord
         var categoryId = int.TryParse(lines[4], out int n4) ? n4 : 9999;
 
         // カテゴリIDからカテゴリを取得
-        var res = DataTable.Category.list.Where(value => value.categoryId == categoryId).ToArray();
-        category = res.Length > 0 ? res[0] : DataTable.Category.list[0];
+        // var res = DataTable.Category.list.Where(value => value.categoryId == categoryId).ToArray();
+        // category = res.Length > 0 ? res[0] : DataTable.Category.list[0];
+        category = DataTable.Category.GetCategory(categoryId, lines[5]);
 
         // カラーカテゴリIDからカラーカテゴリを取得
         colorCategory = DataTable.ColorCategory.GetRecordFromNumber(colorNumber);
@@ -106,6 +147,26 @@ public class NailInfoRecord
         }
     }
 
+    public bool IsDisp()
+    {
+        return openDate <= System.DateTime.Now && !IsSaleDone();
+    }
+
+    public bool IsNew()
+    {
+        return newDispDate > System.DateTime.Now;
+    }
+
+    public bool IsLimited()
+    {
+        return limited > 0;
+    }
+
+    public bool IsSaleDone()
+    {
+        return endDate < System.DateTime.Now;
+    }
+
     public bool IsMyList(MyListType type)
     {
         return SaveName.MyListItem.GetBool(type.ToString() + productCode);
@@ -116,7 +177,6 @@ public class NailInfoRecord
         var tex = Resources.Load<Texture2D>("Textures/NailBottle/" + fileName);
         if (tex) {
             image.texture = tex;
-            image.SetNativeSize();
             image.enabled = true;
         } else {
             image.enabled = false;
@@ -128,10 +188,16 @@ public class NailInfoRecord
         var tex = Resources.Load<Texture2D>("Textures/NailSample/" + fileName);
         if (tex) {
             image.texture = tex;
-            image.SetNativeSize();
+            // ネイルのサムネイルをRect Transofrom側で設定した値を使う
+            // image.SetNativeSize();
             image.enabled = true;
         } else {
             image.enabled = false;
         }
+    }
+
+    public void SetFavoriteTexture(SVGImage svg)
+    {
+       svg.sprite = Resources.Load<Sprite>("Textures/Button/Have_2");
     }
 }

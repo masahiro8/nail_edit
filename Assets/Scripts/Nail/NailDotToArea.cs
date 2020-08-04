@@ -11,16 +11,32 @@ public class NailDotToArea
     public Color[] buffer2;
 
     [System.NonSerialized] public Data1[] result = new Data1[0];
+    [System.NonSerialized] public Data1[] resultZero = new Data1[0];
 
-    private const int max = 5; // 10個まで
     private int[,] area;
+    private const int max = 10; // 10個まで
+    private int debugPointLength = 30; // デバッグ用の四角の大きさ
 
     // 検出用データ構造帯
     public class Data1 {
         public int[] v;
+        public int count;
+        public float r = 0;
+        public float ofs = 0;
+        public bool thumb = false;
+        public int cx = 0;
+        public int cy = 0;
+
+        public Data1()
+        {
+
+        }
 
         public Data1(Data2 d, int[,] area)
         {
+            // 整理用にドット数を受け渡しておく
+            count = d.cnt;
+
             // 一辺の分割数
             var num = 8;
             v = new int[num * 4 * 2];
@@ -47,8 +63,8 @@ public class NailDotToArea
             }
 
             // 中央
-            var cx = (d.x1 + d.x2) / 2;
-            var cy = (d.y1 + d.y2) / 2;
+            cx = (d.x1 + d.x2) / 2;
+            cy = (d.y1 + d.y2) / 2;
 
             // 存在するところまで近づける
             // 中央までなので凹のような中心が欠けた形状は検出できない
@@ -65,6 +81,13 @@ public class NailDotToArea
                         break;
                     }
                 }
+            }
+        }
+
+        public float Rotate
+        {
+            get {
+                return r + (SROptions.Current.NailRotateAdjust ? ofs : 0f);
             }
         }
     }
@@ -127,21 +150,26 @@ public class NailDotToArea
         int width = outputs.GetLength(1);
         int height = outputs.GetLength(0);
 
-        // var res = new Dictionary<string, int>();
-        // for (int i = 0; i < outputs.GetLength(0); i++) {
-        //     for (int j = 0; j < outputs.GetLength(1); j++) {
-        //         var key = outputs[i, j].ToString();
-        //         if (!res.ContainsKey(key)) {
-        //             res[key] = 0;
-        //         }
-        //         res[key]++;
-        //     }
-        // }
+        // 赤で表示
+        for (int i = 0; i < buffer.Length; i++) {
+            var nx = i % width;
+            var ny = height - 1 - (i / width) % height;
+            buffer[i].r = (float)outputs[ny, nx] / 25;
+            buffer[i].g = 0;
+            buffer[i].b = 0;
+        }
+    }
+
+    // デバッグ用にテクスチャへ変換
+    public void ToTexture(System.Int64[,] outputs)
+    {
+        int width = outputs.GetLength(1);
+        int height = outputs.GetLength(0);
 
         // 赤で表示
         for (int i = 0; i < buffer.Length; i++) {
             var nx = i % width;
-            var ny = i / height;
+            var ny = height - 1 - (i / width) % height;
             buffer[i].r = (float)outputs[ny, nx] / 25;
             buffer[i].g = 0;
             buffer[i].b = 0;
@@ -149,10 +177,10 @@ public class NailDotToArea
     }
 
     // 範囲検出
-    public void ToArea(System.Int32[,] outputs)
+    public void ToArea()
     {
-        int width = outputs.GetLength(1);
-        int height = outputs.GetLength(0);
+        int width = area.GetLength(1);
+        int height = area.GetLength(0);
 
         // リセット
         List<Data2> data2 = new List<Data2>();
@@ -165,7 +193,8 @@ public class NailDotToArea
         // 塗りつぶす
         for (int y = 0; y < area.GetLength(0); y++) {
             for (int x = 0; x < area.GetLength(1); x++) {
-                if (outputs[y, x] > 0) {
+                var n = x + (height - 1 - y) * width;
+                if (buffer[n].r > 0) {
                     var a1 = x > 0 && area[y, x - 1] > -1 ? area[y, x - 1] : -1;
                     var a2 = y > 0 && area[y - 1, x] > -1 ? area[y - 1, x] : -1;
                     if (a2 > -1) {
@@ -225,8 +254,9 @@ public class NailDotToArea
         // エリアごとに色を変える
         for (int i = 0; i < buffer.Length; i++) {
             var nx = i % width;
-            var ny = i / width;
-            buffer2[i] = area[ny, nx] > -1 ? colors[data2[area[ny, nx]].idx % colors.Length] : Color.clear;
+            var ny = height - 1 - (i / width) % height;
+            // buffer2[i] = area[ny, nx] > -1 ? colors[data2[area[ny, nx]].idx % colors.Length] : Color.clear;
+            buffer2[i] = area[ny, nx] > -1 ? colors[data2[area[ny, nx]].idx % colors.Length] : buffer[i];
         }
 
         // 大きい順にソートする
@@ -238,21 +268,270 @@ public class NailDotToArea
             return;
         }
 
-        CreatePath(data3, height);
-        DebugLine(data3, height);
+        CreatePath(data3, width, height);
+        DebugLine(data3, width, height);
     }
 
-    private void CreatePath(Data2[] data3, int height)
+    // 初期化
+    public void Clear()
     {
-        // データ生成
-        var max2 = Mathf.Min(data3.Length, max);
-        result = new Data1[max2];
-        for (int i = 0; i < max2; i++) {
-            result[i] = new Data1(data3[i], area);
+        result = resultZero;
+        if (buffer != null) {
+            for (int i = 0; i < buffer.Length; i++) {
+                buffer[i] = Color.clear;
+                // buffer[i].a = 0;
+            }
         }
     }
 
-    private void DebugLine(Data2[] data3, int height)
+    // マージ
+    public void Merge2(NailDotToArea d2a, float[] ranges)
+    {
+        int width = area.GetLength(1);
+        int height = area.GetLength(0);
+
+        var ranges2 = new float[ranges.Length];
+        ranges.CopyTo(ranges2, 0);
+
+        // 縦横比率で変える
+        var fwidth = ranges2[2] - ranges2[0];
+        var fheight = ranges2[3] - ranges2[1];
+        if (fwidth < fheight) {
+            var s = fheight / fwidth;
+            ranges2[0] = (ranges2[0] - 0.5f) * s + 0.5f;
+            ranges2[2] = (ranges2[2] - 0.5f) * s + 0.5f;
+        } else if (fwidth > fheight) {
+            var s = fwidth / fheight;
+            ranges2[1] = (ranges2[1] - 0.5f) * s + 0.5f;
+            ranges2[3] = (ranges2[3] - 0.5f) * s + 0.5f;
+        }
+
+        var rx1 = (int)(ranges2[0] * (float)width);
+        var ry1 = (int)(ranges2[1] * (float)height);
+        var rx2 = (int)(ranges2[2] * (float)width);
+        var ry2 = (int)(ranges2[3] * (float)height);
+
+        rx1 = Mathf.Max(0, Mathf.Min(width - 1, rx1));
+        ry1 = Mathf.Max(0, Mathf.Min(height - 1, ry1));
+        rx2 = Mathf.Max(0, Mathf.Min(width - 1, rx2));
+        ry2 = Mathf.Max(0, Mathf.Min(height - 1, ry2));
+
+        // var rx1 = (int)(ranges[0] * (float)width);
+        // var ry1 = (int)(ranges[1] * (float)height);
+        // var rx2 = (int)(ranges[2] * (float)width);
+        // var ry2 = (int)(ranges[3] * (float)height);
+
+        var rw = rx2 - rx1;
+        var rh = ry2 - ry1;
+        var ax = rw;
+        var ay = rh;
+        if (ax < ay) {
+            ax = (ay - ax) * width / ay;
+            ay = 0;
+        } else {
+            ay = (ax - ay) * height / ax;
+            ax = 0;
+        }
+        ax = 0;
+        ay = 0;
+
+        for (int y = 0; y < rh; y++) {
+            for (int x = 0; x < rw; x++) {
+                var x2 = x * width / rw;
+                var y2 = y * height / rh;
+                if (ax > 0) {
+                    x2 = (x2 + ax) * rw / rh;
+                }
+                if (ay > 0) {
+                    y2 = (y2 + ay) * rh / rw;
+                }
+                // var x2 = x + rx1 + ax*0;
+                // var y2 = y + ry1 + ay*0;
+                var n1 = x + rx1 + (height - 1 - (y + ry1)) * width;
+                var n2 = x2 + (height - 1 - y2) * width;
+                n1 = Mathf.Max(0, Mathf.Min(buffer.Length - 1, n1));
+                n2 = Mathf.Max(0, Mathf.Min(d2a.buffer.Length - 1, n2));
+
+                // 赤いところだけコピー
+                // if (d2a.buffer[n2].r > 0) {
+                    buffer[n1] = d2a.buffer[n2];
+                // }
+            }
+        }
+
+        // for (int i = 0; i < buffer.Length; i++) {
+        //     var nx = i % width;
+        //     var ny = height - 1 - (i / width) % height;
+        //     if (d2a.buffer[i].r > 0) {
+        //         buffer[i] = d2a.buffer[i];
+        //     }
+        // }
+    }
+
+    // マージ
+    public void Merge(NailDotToArea d2a, float[] ranges)
+    {
+        int width = area.GetLength(1);
+        int height = area.GetLength(0);
+
+        var ranges2 = new float[ranges.Length];
+        ranges.CopyTo(ranges2, 0);
+
+        // 縦横比率で変える
+        var fwidth = ranges2[2] - ranges2[0];
+        var fheight = ranges2[3] - ranges2[1];
+        if (fwidth < fheight) {
+            var s = fheight / fwidth;
+            var c = (ranges2[2] + ranges2[0]) / 2f;
+            ranges2[0] = (ranges2[0] - c) * s + c;
+            ranges2[2] = (ranges2[2] - c) * s + c;
+        } else if (fwidth > fheight) {
+            var s = fwidth / fheight;
+            var c = (ranges2[3] + ranges2[1]) / 2f;
+            ranges2[1] = (ranges2[1] - c) * s + c;
+            ranges2[3] = (ranges2[3] - c) * s + c;
+        }
+
+        var rx1 = (int)(ranges2[0] * (float)width);
+        var ry1 = (int)(ranges2[1] * (float)height);
+        var rx2 = (int)(ranges2[2] * (float)width);
+        var ry2 = (int)(ranges2[3] * (float)height);
+
+        var rw = rx2 - rx1;
+        var rh = ry2 - ry1;
+
+        for (int y = 0; y < rh; y++) {
+            for (int x = 0; x < rw; x++) {
+                var x1 = x + rx1;
+                var y1 = y + ry1;
+                var x2 = x * width / rw;
+                var y2 = y * height / rh;
+                var n1 = x1 + (height - 1 - y1) * width;
+                var n2 = x2 + (height - 1 - y2) * width;
+                if (x1 >= 0 && x1 < width && y1 >= 0 && y1 < height
+                    && x2 >= 0 && x2 < width && y2 >= 0 && y2 < height) {
+                    n1 = Mathf.Max(0, Mathf.Min(buffer.Length - 1, n1));
+                    n2 = Mathf.Max(0, Mathf.Min(d2a.buffer.Length - 1, n2));
+
+                    // 赤いところだけコピー
+                    if (d2a.buffer[n2].r > 0) {
+                        buffer[n1] = d2a.buffer[n2];
+                    }
+                }
+            }
+        }
+
+        // for (int i = 0; i < buffer.Length; i++) {
+        //     var nx = i % width;
+        //     var ny = height - 1 - (i / width) % height;
+        //     if (d2a.buffer[i].r > 0) {
+        //         buffer[i] = d2a.buffer[i];
+        //     }
+        // }
+    }
+
+    // // デバッグ用にテクスチャへ変換
+    // public void ToTexture2(float[,] outputs)
+    // {
+    //     int width = outputs.GetLength(1);
+    //     int height = outputs.GetLength(0);
+
+    //     // 赤で表示
+    //     for (int i = 0; i < buffer.Length; i++) {
+    //         // var nx = i % width;
+    //         // var ny = i / height;
+    //         buffer[i].r = (float)outputs[i % width, 5] * 255;
+    //         buffer[i].g = 0;
+    //         buffer[i].b = 0;
+    //     }
+    // }
+
+    // // 範囲検出
+    // public void ToArea2(float[,] outputs)
+    // {
+    //     int len0 = outputs.GetLength(0);
+    //     List<Data2> data2 = new List<Data2>();
+    //     var height = 416; // 256
+
+    //     // エリアを作成
+    //     for (int i = 0; i < len0; i++) {
+    //         if (outputs[i, 5] < 1) {
+    //             var nn = i / 15;
+    //             nn = 0;
+    //             var xx = nn % 8;
+    //             var yy = nn / 8;
+    //             var x = (int)outputs[i, 0] + xx * 32;
+    //             var y = (int)outputs[i, 1] + yy * 32;
+    //             var w = (int)outputs[i, 2];
+    //             var h = (int)outputs[i, 3];
+    //             var p = (int)outputs[i, 5] * 1000;
+    //             var item = new Data2(i, x, y);
+    //             item.AddX(x + w);
+    //             item.AddY(y + h);
+    //             item.cnt = p;
+
+    //             item.x1 = Mathf.Max(0, Mathf.Min(height - 1, item.x1));
+    //             item.y1 = Mathf.Max(0, Mathf.Min(height - 1, item.y1));
+    //             item.x2 = Mathf.Max(0, Mathf.Min(height - 1, item.x2));
+    //             item.y2 = Mathf.Max(0, Mathf.Min(height - 1, item.y2));
+
+    //             data2.Add(item);
+    //         }
+    //     }
+
+    //     // 確率順にソートする
+    //     // data2.Sort((v1, v2) => v2.cnt - v1.cnt);
+    //     data2.Sort((v1, v2) => v1.cnt - v2.cnt);
+    //     var data3 = data2
+    //         .Where(v => !v.refs && v.x1 != v.x2 && v.y1 != v.y2)
+    //         // .Take(10)
+    //         .ToArray();
+
+    //     // データがあるかどうか
+    //     if (data3.Length == 0) {
+    //         return;
+    //     }
+
+    //     DebugLine(data3, height);
+
+    //     // {
+    //     //     var nx = i % width;
+    //     //     var ny = i / width;
+    //     //     buffer2[i] = area[ny, nx] > -1 ? colors[data2[area[ny, nx]].idx % colors.Length] : Color.clear;
+    //     // }
+    // }
+
+    private void CreatePath(Data2[] data3, int width, int height)
+    {
+        // データ生成
+        var max2 = Mathf.Min(data3.Length, max);
+        var cornerNum = SROptions.Current.DispNailMeshCorner ? 3 : 0;
+
+        result = new Data1[max2 + cornerNum];
+        for (int i = 0; i < max2; i++) {
+            result[i] = new Data1(data3[i], area);
+        }
+
+        // デバッグ用、4角の確認
+        for (int i = 0; i < cornerNum; i++) {
+            var x = width / 2;
+            var y = (height - debugPointLength * 2 - 1) * i / (cornerNum - 1) + debugPointLength;
+            var d = new Data1();
+            d.v = new int[] {
+                x,
+                y - debugPointLength,
+                x + debugPointLength,
+                y,
+                x,
+                y + debugPointLength,
+                x - debugPointLength,
+                y,
+            };
+            result[i + max2] = d;
+        }
+    }
+
+    private void DebugLine(Data2[] data3, int width, int height)
     {
         // デバッグ用のラインを引く
         var max2 = Mathf.Min(data3.Length, max);
@@ -265,7 +544,7 @@ public class NailDotToArea
                 if (d.y2 > d.y1) {
                     for (int y = d.y1; y <= d.y2; y += d.y2 - d.y1) {
                         for (int x = d.x1; x <= d.x2; x++) {
-                            buffer2[x + y * height] = c;
+                            buffer2[x + (height - 1 - y) * width] = c;
                         }
                     }
                 }
@@ -273,11 +552,31 @@ public class NailDotToArea
                 if (d.x2 > d.x1) {
                     for (int y = d.y1; y <= d.y2; y++) {
                         for (int x = d.x1; x <= d.x2; x += d.x2 - d.x1) {
-                            buffer2[x + y * height] = c;
+                            buffer2[x + (height - 1 - y) * width] = c;
                         }
                     }
                 }
             }
         }
     }
+
+    // public void DebugLog2(float[,] outputs)
+    // {
+    //     int len0 = outputs.GetLength(0);
+    //     List<Data2> data2 = new List<Data2>();
+
+    //     // エリアを作成
+    //     var res = new Dictionary<string, int>();
+    //     for (int i = 0; i < len0; i++) {
+    //         var n = (int)(outputs[i, 5] * 10);
+    //         var key = n.ToString();
+    //         if (!res.ContainsKey(key)) {
+    //             res[key] = 0;
+    //         }
+    //         res[key]++;
+    //     }
+
+    //     var res2 = res.Select(v => v.Key + ":" + v.Value).ToArray();
+    //     Debug.Log(string.Join(",", res));
+    // }
 }

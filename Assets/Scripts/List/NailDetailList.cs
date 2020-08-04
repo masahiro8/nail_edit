@@ -12,11 +12,17 @@ using DanielLochner.Assets.SimpleScrollSnap;
 public class NailDetailList : MonoBehaviour
 {
     public DrawMain main;
-    public NailSelectList list;
+    // public NailSelectList list;
+    public TopcoartSelect topcoartSelect;
     public CommonList detailList;
     public CommonItem detailItem;
+    public CommonItem topcoartItem;
     public RectTransform[] animObj;
     public ReactiveProperty<int>[] favFlag = new ReactiveProperty<int>[Enum.GetValues(typeof(MyListType)).Length];
+    public ReactiveProperty<bool> OnViewTopcoart = new ReactiveProperty<bool>(false);
+
+    private NailTopcoatType topcoartStatus = NailTopcoatType.None;
+    private Vector2 scrollVector = Vector2.zero;
 
     void Awake()
     {
@@ -28,6 +34,23 @@ public class NailDetailList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //変更を受け取る
+        DataTable.Param.selectedNail
+            .Subscribe(v => {
+                UpdateDetail(detailItem, 0);
+            })
+            .AddTo(gameObject);
+
+        //変更を受け取る
+        DataTable.Param.topcoatType
+            .SkipLatestValueOnSubscribe()
+            .Subscribe( s => {
+                topcoartStatus = s;
+                showTopcoart(true);
+            })
+            .AddTo(gameObject);
+        showTopcoart(false);
+
         detailList.updateItem = UpdateDetail;
         detailList.itemCount.Value = 2;
         detailList.GetComponent<SimpleScrollSnap>().Setup(true);
@@ -55,6 +78,14 @@ public class NailDetailList : MonoBehaviour
             })
             .AddTo(gameObject);
 
+        // urlを開く
+        detailItem.button[1].OnClickAsObservable()
+            .Subscribe(_ => {
+                OpenUrl.productCode(DataTable.Param.selectedNail.Value);
+                // Debug.Log(">> data.productCode " + data.productCode );
+            })
+            .AddTo(gameObject);
+        
         // お気に入りボタン
         for (var i = 0; i < favFlag.Length; i++) {
             var useFlag = favFlag[i];
@@ -67,33 +98,69 @@ public class NailDetailList : MonoBehaviour
                     .Subscribe(_ => {
                         useFlag.Value = orgFlag;
                         SetFavorite(type, orgFlag == 1);
-                        DataTable.MyList.Reset(type);
+                        // DataTable.MyList.Reset(type);
                     })
                     .AddTo(button.gameObject);
 
                 // お気に入りフラグ更新時に表示状態を更新
                 useFlag
                     .Subscribe(b => {
-                        // Debug.Log("type: " + i + "," + type);
-                        button.gameObject.SetActive(b != orgFlag && list.nailList.itemIndex.Value > -1);
+                        // Debug.Log("■■■■■ type: " + i + "," + type);
+                        button.gameObject.SetActive(b != orgFlag);
                     })
                     .AddTo(button.gameObject);
             }
         }
+
+        // モード切り替えでの表示位置制御
+        DataTable.Param.mainView
+            .Subscribe(type => {
+                // 爪の表示制御
+                gameObject.SetActive(type.IsShowNail());
+            })
+            .AddTo(gameObject);
+    }
+
+    private Vector3 GetBgScale ( Vector2 value ) {
+        return new Vector3( 
+            1.2f + value.x * 1.1f,//figma > 60px -> 230px
+            1.2f + value.x * 2.6f,//figma > 50px -> 190px
+            1
+        );
+    }
+
+    private Vector3 GetImageScale ( Vector2 value ) {
+        var s2 = 1.0f + value.x * 1.5f;
+        return Vector3.one * s2;
+    }
+
+    private Vector3 GetImagePosition ( Vector2 value ) {
+        return new Vector3(
+            0.0f + ( -90.0f * value.x ) ,
+            20.0f - ( 15.0f * value.x ),
+            0
+        );
+    }
+
+    private Vector2 GetInfoPosition ( Vector2 value ) {
+        return new Vector2 ( 70.0f + ( -130.0f * value.x ), -30.0f);
     }
 
     private void UpdateScroll(Vector2 value)
     {
-        // var sMin = 0.3f;
-        // var sMax = 1f;
-        // // var item = listView.GetShownItemByIndex(0);
-        // var s = Math.Max(sMin, Math.Min(sMax, sMin + value.x * (sMax - sMin)));
-        var s1 = 0.3f + value.x * 0.7f;
-        var s2 = 0.6f + value.x * 0.4f;
-        detailItem.button[0].transform.localScale = Vector3.one * s1;
-        detailItem.image[0].transform.localScale = Vector3.one * s2;
-        detailItem.image[0].transform.parent.GetComponent<RectTransform>()
-            .anchoredPosition = Vector3.left * (1 - value.x) * 54;
+        scrollVector = value;
+
+        //背景サイズ
+        detailItem.button[0].transform.localScale = GetBgScale(value);
+        
+        //写真
+        detailItem.image[0].transform.localScale = GetImageScale(value);
+        var img_rect = detailItem.image[0].transform;
+        img_rect.localPosition =  GetImagePosition(value);
+
+        //info座標
+        var rect = detailItem.extra[0].transform.GetComponent<RectTransform>();
+        rect.offsetMin = GetInfoPosition(value);
 
         // 2つ目のアイテムはダミーなので消す
         var scrollRect = detailList.GetComponent<ScrollRect>();
@@ -101,25 +168,74 @@ public class NailDetailList : MonoBehaviour
             // var item = scrollRect.content.GetChild(1).GetComponent<CommonItem>();
             scrollRect.content.GetChild(1).gameObject.SetActive(false);
         }
+
+        //トップコート
+        showTopcoart(true);
     }
 
-    public void UpdateDetailIndex()
-    {
-        UpdateDetail(detailItem, 0);
+    private void showTopcoart (bool anim) {
+        var f = anim ? 0.3f : 0;
+        //トップコートを表示
+        if( !topcoartStatus.IsNone() && scrollVector.x >= 0.9f ) {
+            topcoartItem.gameObject.GetComponent<CanvasGroup>().DOFade(1.0F, f);
+
+            Vector2 value = new Vector2(1.0f,1.0f);
+            var trans = topcoartItem.gameObject.GetComponent<RectTransform>();
+
+            //背景
+            topcoartItem.button[0].transform.localScale = GetBgScale(value);
+
+            //画像1
+            topcoartItem.image[0].transform.localScale = GetImageScale(value);
+            var img_rect_topcoart = topcoartItem.image[0].transform;
+            Vector2 image_vec = GetImagePosition(value);
+            img_rect_topcoart.localPosition =  new Vector2(image_vec.x - 30.0f , image_vec.y);
+
+             //画像2
+            topcoartItem.image[1].transform.localScale = GetImageScale(value);
+            var img_rect_topcoart_2 = topcoartItem.image[1].transform;
+            Vector2 image_vec_2 = GetImagePosition(value);
+            img_rect_topcoart_2.localPosition =  new Vector2(image_vec_2.x - 30.0f , image_vec_2.y);
+
+            //info
+            Vector2 info_vec = GetInfoPosition(value);
+            var rect_topcoart = topcoartItem.extra[0].transform.GetComponent<RectTransform>();
+            rect_topcoart.offsetMin = new Vector2(info_vec.x - 60.0f,info_vec.y);
+
+            if( OnViewTopcoart.Value == false) {
+                OnViewTopcoart.Value = true;
+                Debug.Log("■■■■■■■ NailDetaulList OnView true");
+            }
+        }else{
+            topcoartItem.gameObject.GetComponent<CanvasGroup>().DOFade(0.0F, f);
+            var trans = topcoartItem.gameObject.GetComponent<RectTransform>();
+            var _rect_topcoart = topcoartItem.extra[0].transform.GetComponent<RectTransform>();
+            _rect_topcoart.offsetMin = new Vector2 ( 0 , -30.0f);
+            
+            if( OnViewTopcoart.Value == true) {
+                OnViewTopcoart.Value = false;
+                Debug.Log("■■■■■■■ NailDetaulList OnView false");
+            }
+        }
+
+        
     }
 
     private void UpdateDetail(CommonItem item, int index)
     {
+        var data = DataTable.Param.selectedNail.Value;
+
         // 初期化時に-1が入ってくるので
-        if (list.nailList.itemIndex.Value < 0) {
+        if (data == null) {
             return;
         }
 
-        // var index2 = DataTable.NailInfo.showList[list.nailList.itemIndex.Value];
-        // var data = DataTable.NailInfo.list[index2];
-        var data = DataTable.Category.showList[list.categoryList.itemIndex.Value].filter.Value[list.nailList.itemIndex.Value];
+        // お気に入りボタンの初期化
+        foreach (MyListType type in Enum.GetValues(typeof(MyListType))) {
+            favFlag[(int)type].Value = data.IsMyList(type) ? 1 : 0;
+        }
 
-        main.nailDetection.SetInfoRecord(data);
+        main.nailProcessing.SetInfoRecord(data);
 
         detailItem.text[0].text = data.productName;
         detailItem.text[1].text = data.subName;
@@ -128,11 +244,13 @@ public class NailDetailList : MonoBehaviour
         var texBottle = Resources.Load("Textures/NailBottle/" + data.fileName) as Texture2D;
         if (texBottle) {
             detailItem.image[0].texture = texBottle;
-            detailItem.image[0].SetNativeSize();
+            // detailItem.image[0].SetNativeSize();
             detailItem.image[0].enabled = true;
         } else {
             detailItem.image[0].enabled = false;
         }
+
+        detailItem.button[1].gameObject.SetActive(data.existUseURL);
     }
 
     // お気に入り、持っているフラグを更新
@@ -140,11 +258,29 @@ public class NailDetailList : MonoBehaviour
     {
         // var index = DataTable.NailInfo.showList[list.nailList.itemIndex.Value];
         // var data = DataTable.NailInfo.list[index];
-        var data = DataTable.Category.showList[list.categoryList.itemIndex.Value].filter.Value[list.nailList.itemIndex.Value];
+        var data = DataTable.Param.selectedNail.Value;
 
         var key = type.ToString() + data.productCode;
         // SaveName.FavoriteItem.SetBool(data.name, !SaveName.FavoriteItem.GetBool(data.name));
         SaveName.MyListItem.SetBool(key, flag);
         Debug.Log("SetFavorite -> " + key + ": " + SaveName.MyListItem.GetBool(key));
+
+        // //ここからapiにリクエスト
+        // // string app_token = SaveName.AppToken.GetString("");
+        // JsonMyNailParam favorite = new JsonMyNailParam();
+        // favorite.nail_code = data.productCode;
+        // string _favorite = JsonUtility.ToJson(favorite);
+        // //登録・削除
+        // string method = flag==true?"POST":"DELETE";
+        // switch (type) {
+        //     case MyListType.Favorite:
+        //         apiUsers.instance.FavoriteNail(method ,_favorite);
+        //         return;
+        //     case MyListType.Have:
+        //         apiUsers.instance.OwnedNail(method ,_favorite);
+        //         return;
+        //     default:
+        //         return;
+        // }
     }
 }

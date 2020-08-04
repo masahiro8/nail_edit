@@ -34,7 +34,8 @@ public class CommonItem : MonoBehaviour
         if (button.Length > 0) {
             var disposable = button[0].OnClickAsObservable()
                 .Subscribe(b => {
-                    selector.itemIndex.Value = n;
+                    // selector.itemIndex.Value = n;
+                    selector.itemIndex.SetValueAndForceNotify(n);
                 });
             disposableBag.Add(disposable);
         }
@@ -44,11 +45,15 @@ public class CommonItem : MonoBehaviour
             selectedBar.enabled = n == selector.itemIndex.Value;
             var disposable = selector.itemIndex
                 .Zip(selector.itemIndex.Skip(1), (x, y) => new System.Tuple<int, int>(x, y))
+                // .Where(v => n == v.Item2)
                 .Subscribe(value => {
                     selectedBar.enabled = n == value.Item2;
                     if (n == value.Item2) {
                         transform.SetAsLastSibling(); // 最前面に移動
-                        selectedBar.rectTransform.DOAnchorPosX((value.Item1 - value.Item2) * selectedBar.rectTransform.rect.width, 0);
+                        // 選択前の場所に移動して
+                        var srcX = (value.Item1 - value.Item2) * selectedBar.rectTransform.rect.width;
+                        selectedBar.rectTransform.DOAnchorPosX(value.Item1 != -1 ? srcX : 0, 0);
+                        // アニメーションさせて近づける
                         selectedBar.rectTransform.DOAnchorPosX(0, DataTable.Param.selectedBarDuration);
                     }
                 });

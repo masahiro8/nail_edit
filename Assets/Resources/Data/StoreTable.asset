@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa9d5fd14be04f7ca1a88e5814477b9, type: 3}
+  m_Name: StoreTable
+  m_EditorClassIdentifier: 
+  list:
+  - name: Maison KOSE
+    image: {fileID: 2800000, guid: 501bc06254c9e4a3d93f89c2e861382d, type: 3}
+    index: 0
+    show: 1
+  - name: amazon
+    image: {fileID: 2800000, guid: eb0b2ad99121940c9935f639bdd99a9e, type: 3}
+    index: 1
+    show: 1
+  - name: LOHACO
+    image: {fileID: 2800000, guid: 234b810b460264cce8bc9ab4b2e131ab, type: 3}
+    index: 3
+    show: 1
+  - name: '@cosme'
+    image: {fileID: 2800000, guid: 26d2a24455ba54f00b352171aa3ff2a0, type: 3}
+    index: 4
+    show: 1
+  - name: "\u697D\u5929"
+    image: {fileID: 2800000, guid: 1d0a7050b5490488eba3f31093f5cbb6, type: 3}
+    index: 2
+    show: 1
+  - name: "\u30A4\u30C8\u30FC\u30E8\u30FC\u30AB\u30C9\u30FC"
+    image: {fileID: 2800000, guid: 9c9a067be61714095a19db6fad8d8087, type: 3}
+    index: 6
+    show: 1
+  - name: "\u30DE\u30C4\u30E2\u30C8\u30AD\u30E8\u30B7"
+    image: {fileID: 2800000, guid: 85aed2a43dc914460a9f95f5ee90562e, type: 3}
+    index: 0
+    show: 0
+  - name: "\u30C4\u30EB\u30CF"
+    image: {fileID: 2800000, guid: 2d59c5f5abeb742b59bbdf9465c1c7a4, type: 3}
+    index: 0
+    show: 0

@@ -16,9 +16,6 @@ MonoBehaviour:
   - name: Favorites list
     icon: {fileID: 3286163911610860551, guid: 250c93e4c6a62447883e0565563b25ed, type: 3}
     url: 
-  - name: Belongings list
-    icon: {fileID: 3286163911610860551, guid: 250c93e4c6a62447883e0565563b25ed, type: 3}
-    url: 
   - name: Store selection
     icon: {fileID: 3286163911610860551, guid: f31359879c5e84f13a33d29ae505cb10, type: 3}
     url: 
@@ -37,33 +34,6 @@ MonoBehaviour:
   - name: Terms of service
     icon: {fileID: 0}
     url: https://maison.kose.co.jp/site/p/rule.aspx
-  - name: "\u5229\u7528\u898F\u7D04"
-    icon: {fileID: 0}
-    url: 
-  - name: "\u5229\u7528\u898F\u7D04"
-    icon: {fileID: 0}
-    url: 
-  - name: "\u5229\u7528\u898F\u7D04"
-    icon: {fileID: 0}
-    url: 
-  - name: "\u5229\u7528\u898F\u7D04"
-    icon: {fileID: 0}
-    url: 
-  - name: "\u5229\u7528\u898F\u7D04"
-    icon: {fileID: 0}
-    url: 
-  - name: "\u5229\u7528\u898F\u7D04"
-    icon: {fileID: 0}
-    url: 
-  - name: "\u5229\u7528\u898F\u7D04"
-    icon: {fileID: 0}
-    url: 
-  - name: "\u5229\u7528\u898F\u7D04"
-    icon: {fileID: 0}
-    url: 
-  - name: "\u5229\u7528\u898F\u7D04"
-    icon: {fileID: 0}
-    url: 
-  - name: "\u5229\u7528\u898F\u7D04"
+  - name: SRDebugger
     icon: {fileID: 0}
     url: 

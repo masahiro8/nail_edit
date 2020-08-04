@@ -9,13 +9,71 @@ using SubjectNerd.Utilities;
 public class NailInfoTable
 {
     public NailInfoRecord[] list;
+    private ParamTable _Param;
 
     // [System.NonSerialized] public int[] showList;
 
     public NailInfoTable()
     {
+        _Param = Resources.Load<ParamTable>("Data/ParamTable");
+
+        if (_Param.noUseAPI) {
+            //CSVからのネイル情報
+            this.ReadNailDataFromCsv();
+        } else {
+            //Apiからネイル情報
+            this.ReadNailDataFromApi();
+        }        
+
+        // var str = "";
+        // for (var i = 0; i < list.Length; i++) {
+        //     var d = list[i];
+        //     // var path = "Assets/Resources/Data/NailMaterial/";
+        //     var path = "";
+        //     var fn1 = path + d.fileName + ".asset";
+        //     var fn2 = path + d.fileName2 + ".asset";
+        //     str += "mv " + fn1 + " " + fn2 + "\n";
+        //     // str += "mv " + fn1 + ".meta " + fn2 + ".meta\n";
+        //     // UnityEditor.AssetDatabase.RenameAsset(fn1, fn2);
+        // }
+        // Debug.Log(str);
+    }
+
+    private void ReadNailDataFromApi() {
         // 商品マスタの読み込み
         var data = new List<NailInfoRecord>();
+
+        //apiからのcsvを読み込み
+        ReadFromTemporaryCachePath(@"NailProduct.csv", (index, lines) => {
+            if (index > -1) {
+                var record = new NailInfoRecord();
+                record.index = index;
+                record.AddProduct(lines);
+                data.Add(record);
+            }
+        });
+        list = data.ToArray();
+
+        // Noとインデックスの整合性判定
+        for (var i = 0; i < list.Length; i++) {
+            UnityEngine.Assertions.Assert.IsTrue(list[i].index == i);
+        }
+
+        // カテゴリマスタの読み込み
+        ReadFromTemporaryCachePath(@"NailCategory.csv", (index, lines) => {
+            list[index].AddCategory(lines);
+        });
+
+        // EC遷移マスタの読み込み
+        ReadFromTemporaryCachePath(@"NailECURL.csv", (index, lines) => {
+            list[index].AddURL(lines);
+        });
+    }
+
+    private void ReadNailDataFromCsv() {
+        // 商品マスタの読み込み
+        var data = new List<NailInfoRecord>();
+
         ReadData("CSV/NailProduct", (index, lines) => {
             if (index > -1) {
                 var record = new NailInfoRecord();
@@ -36,19 +94,21 @@ public class NailInfoTable
 
         // EC遷移マスタの読み込み
         ReadData("CSV/NailECURL", (index, lines) => list[index].AddURL(lines));
+    }
 
-        // var str = "";
-        // for (var i = 0; i < list.Length; i++) {
-        //     var d = list[i];
-        //     // var path = "Assets/Resources/Data/NailMaterial/";
-        //     var path = "";
-        //     var fn1 = path + d.fileName + ".asset";
-        //     var fn2 = path + d.fileName2 + ".asset";
-        //     str += "mv " + fn1 + " " + fn2 + "\n";
-        //     // str += "mv " + fn1 + ".meta " + fn2 + ".meta\n";
-        //     // UnityEditor.AssetDatabase.RenameAsset(fn1, fn2);
-        // }
-        // Debug.Log(str);
+    //キャッシュから読み込み
+    public void ReadFromTemporaryCachePath(string fileName, System.Action<int, string[]> action) {
+        string path = Application.temporaryCachePath + "/" + fileName;
+        StreamReader reader = new StreamReader(path); 
+        using (StreamReader sr = new StreamReader(path)){
+            string line;
+            int index = 0;
+            while ((line = sr.ReadLine()) != null){
+                action(index , line.Split(','));
+                index++;
+            }
+        }
+        reader.Close();
     }
 
     // 表示リストの更新
@@ -62,7 +122,6 @@ public class NailInfoTable
         while (reader.Peek() != -1) {
             var line = reader.ReadLine();
             dqCount += line.Replace("\"\"", "").Split('\"').Length - 1;
-            var lastStr = line.Substring(line.Length - 1);
             if (dqCount % 2 != 0) {
                 prev += line + "\n";
                 continue;

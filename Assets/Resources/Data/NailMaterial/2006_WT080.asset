@@ -14,32 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - materialType: 0
-    baseColor: {r: 1, g: 1, b: 1, a: 1}
+    baseColor: {r: 1, g: 1, b: 1, a: 0.9607843}
     subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 1, g: 1, b: 0.99215686, a: 0}
+    shadowColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 0}
     normalHeight: 0
     normalSize: 0
     noise: 0
     emissionRate: 0
-    metallic: 0.66
-    smoothness: 0.77
+    metallic: 0.8
+    smoothness: 0.85
     textureType: 0
     minSize: 0
     maxSize: 0
     randomSeed: 0
     randomCount: 0
-  - materialType: 1
-    baseColor: {r: 1, g: 1, b: 1, a: 1}
-    subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 0, g: 0, b: 0, a: 0}
-    normalHeight: 0.5
-    normalSize: 0.7
-    noise: 0
-    emissionRate: 0.3
-    metallic: 0
-    smoothness: 0
-    textureType: 4
-    minSize: 0.06
-    maxSize: 0.06
-    randomSeed: 12375
-    randomCount: 160

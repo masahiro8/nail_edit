@@ -16,24 +16,34 @@ using NatCorder.Inputs;
 
 public class DrawMain : MonoBehaviour
 {
-    public bool useWebCamera;
+    public bool useQuant;
+    public bool useDelayCamera = true;
     public RectTransform canvasRect;
-    [SerializeField] Text outputTextView = null;
-    [SerializeField] Button camButton = null;
-    [SerializeField] Button recButton = null;
-    [SerializeField] RectTransform cameraRectTransform = null;
+    // [SerializeField] Button camButton = null;
+    // [SerializeField] Button shutterButton = null;
+    // [SerializeField] Button flashButton = null;
+    // [SerializeField] RectTransform cameraRectTransform = null;
     [SerializeField] RawImage cameraView = null;
-    [SerializeField] RawImage[] texView1 = null;
-    [SerializeField] RawImage[] texView2 = null;
+    public RawImage delayView = null;
+    public RawImage renderTexView = null;
+    public AspectRatioFitter[] previewAspectFitters;
 
+    public DrawDebug drawDebug = null;
+    [SerializeField] public NailProcessing nailProcessing = null;
 #if !NAIL_EDIT
-    [SerializeField] PalmDetection palmDetection = null;
-    [SerializeField] HandLandmark handLandmark = null;
+    public ShapeDetection shapeDetection = null;
+    public ObjectDetection objectDetection = null;
+    public NailDetection nailDetection = null;
+    public NailDetectionQuant nailDetectionQuant = null;
+    public MainMiniCam mainMiniCam;
+    public FaceDetection faceDetection;
 #endif
-    [SerializeField] public NailDetection nailDetection = null;
-#if !NAIL_EDIT
-    [SerializeField] public NailDetectionTest nailDetectionTest = null;
-#endif
+
+    public RectTransform frameRect;
+    // public Button colorSelectButton;
+    public GameObject colorSelectView;
+    public MainMenuList mainMenuList;
+    public RenderScreenShot renderScreenShot;
 
     System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
@@ -42,22 +52,42 @@ public class DrawMain : MonoBehaviour
     List<WebCamTexture> webcamTextures = new List<WebCamTexture>();
 
     bool isProcessing = false;
+    private Texture2D backupTexture = null;
+    // private Texture2D backup2Texture = null;
+    private bool nailCheckModeStop = false;
 
 #if !NAIL_EDIT
     IClock clock;
     IMediaRecorder recorder;
     CameraInput cameraInput;
     AudioInput audioInput;
+    private TextureToTensor tex2tensor = new TextureToTensor();
+    private TextureToTensor.ResizeOptions resizeOptions = new TextureToTensor.ResizeOptions()
+    {
+        aspectMode = TextureToTensor.AspectMode.None,
+        rotationDegree = 0,
+        flipX = false,
+        flipY = false,
+        width = 1,
+        height = 1,
+        offsetX = 0,
+        offsetY = 0,
+        scaleX = 1,
+        scaleY = 1,
+    };
 #endif
 
     void Start()
     {
         // Init camera
-        if (useWebCamera) {
-            for (var i = 0; i < WebCamTexture.devices.Length; i++) {
-                var device = WebCamTexture.devices[i];
+#if !NAIL_EDIT
+        // NatDeviceと同時に起動させると実機で落ちる
+        for (var i = 0; i < WebCamTexture.devices.Length; i++) {
+            var device = WebCamTexture.devices[i];
+            Debug.Log("WebCamTexture.devices " + device.name + ": " + device.kind + "," + device.isFrontFacing + "," + device.isAutoFocusPointSupported);
+            if (!SROptions.Current.UseCameraNatDevice) {
                 if (device.kind == WebCamKind.WideAngle) {
-                    var webcamTexture = new WebCamTexture(device.name);
+                    var webcamTexture = new WebCamTexture(device.name, 1024, 1024);
                     Debug.Log(device.name + ": " + webcamTexture.width + "," + webcamTexture.height);
                     // webcamTexture = new WebCamTexture(device.name, webcamTexture.width / 2, webcamTexture.height / 2, 30);
                     webcamTextures.Add(webcamTexture);
@@ -65,32 +95,11 @@ public class DrawMain : MonoBehaviour
                 }
             }
         }
+#endif
         if (webcamTextures.Count > 0) {
             webcamIndex = webcamTextures.Count - 1;
         }
         ChangeCamera();
-
-        // ボタン押し
-        if (camButton) {
-            camButton.OnClickAsObservable()
-                .Subscribe(_ => ChangeCamera())
-                .AddTo(gameObject);
-        }
-
-#if !NAIL_EDIT
-        if (recButton) {
-            recButton.OnClickAsObservable()
-                .SubscribeOnMainThread()
-                .Subscribe(_ => {
-                    if (clock == null) {
-                        StartRecording();
-                    } else {
-                        StopRecording();
-                    }
-                })
-                .AddTo(gameObject);
-        }
-#endif
 
         // // 0.2秒ごとに処理
         // var time0 = System.TimeSpan.FromMilliseconds(0);
@@ -99,112 +108,64 @@ public class DrawMain : MonoBehaviour
         //     .Subscribe(_ => Invoke())
         //     .AddTo(gameObject);
 
-#if !UNITY_EDITOR
-        // デバッグテキスト
-        SROptions.Current.DispTextView
-            .Subscribe(flag => outputTextView.enabled = flag);
-        // 手のモデル
-        SROptions.Current.DispHandModel
-            .Subscribe(flag => handLandmark.dotPoints2.pointFolder.parent.gameObject.SetActive(flag));
-        // 上の画像4つ
-        SROptions.Current.DispDebugImage1
-            .Subscribe(flag => {
-                foreach (var view in texView1) {
-                    view.enabled = flag;
-                }
-            });
-        // 下の合成画像2つ
-        SROptions.Current.DispDebugImage2
-            .Subscribe(flag => {
-                foreach (var view in texView2) {
-                    view.enabled = flag;
-                }
-            });
-#endif
+        cameraView.gameObject.SetActive(true);
+        delayView.gameObject.SetActive(useDelayCamera);
+        delayView.material = new Material(delayView.material);
+        renderTexView.material = delayView.material;
     }
 
     void Update()
     {
-        var w = 1280f; // カメラを使わない場合用の初期値（エディタなど）
-        var h = 960f;
-        var angle = 0;
-        if (webcamTextures.Count > 0) {
+        if (DataTable.Param.useDummyImage) {
+            // delayView.gameObject.SetActive(false);
+            cameraView.texture = Resources.Load(DebugPhoto.Instance.PhotoFileName) as Texture2D;
+            // renderTexView.texture = cameraView.texture;
+            foreach (var previewAspectFitter in previewAspectFitters) {
+                previewAspectFitter.aspectRatio = (float)cameraView.texture.width / (float)cameraView.texture.height;
+            }
+        } else if (webcamTextures.Count > 0) {
+#if !NAIL_EDIT
             var webcam = webcamTextures[webcamIndex];
             var device = WebCamTexture.devices[deviceIndexes[webcamIndex]];
-
-            w = (float)webcam.width;
-            h = (float)webcam.height;
-            angle = webcam.videoRotationAngle;
-            // angle = 90; // テスト用
-
-            cameraRectTransform.localScale = new Vector3(
-                device.isFrontFacing ? -1 : 1,
-                webcam.videoVerticallyMirrored ? -1 : 1,
-                1);
-            cameraRectTransform.rotation = Quaternion.Euler(
-                0,
-                0,
-                (device.isFrontFacing ? angle : -angle) + SROptions.Current.CameraDegreeOffset);
-        } else {
-            cameraRectTransform.localScale = new Vector3(
-                -1,
-                1,
-                1);
-        }
-        var scale = SROptions.Current.CameraDispSizeScale + 1;
-        var sizeCam = new Vector3(
-            w,
-            h,
-            0);
-        var sizeCvs = new Vector3(
-            canvasRect.sizeDelta.x,
-            canvasRect.sizeDelta.y,
-            0);
-        // sizeCam = Quaternion.Euler(0, 0, webcam.videoRotationAngle) * sizeCam;
-        // sizeCam.x = Mathf.Abs(sizeCam.x);
-        // sizeCam.y = Mathf.Abs(sizeCam.y);
-        sizeCvs = Quaternion.Euler(0, 0, angle + SROptions.Current.CameraDegreeOffset) * sizeCvs;
-        sizeCvs.x = Mathf.Abs(sizeCvs.x);
-        sizeCvs.y = Mathf.Abs(sizeCvs.y);
-        var aspect = sizeCam.y / sizeCam.x;
-        // 480,640->1.33 1242,2688->2.1
-        // 640,480->0.75 2688,1242->0.46
-        // Debug.Log("aspect: " + sizeCam.x + "," + sizeCam.y + " -> " + aspect + " -> " + (canvasRect.sizeDelta.y / canvasRect.sizeDelta.x));
-        if (useWebCamera) {
-            if (aspect > sizeCvs.y / sizeCvs.x) {
-                cameraRectTransform.sizeDelta = new Vector2(
-                    sizeCvs.x,
-                    sizeCvs.x * aspect) * scale;
-            } else {
-                cameraRectTransform.sizeDelta = new Vector2(
-                    sizeCvs.y / aspect,
-                    sizeCvs.y) * scale;
+            var angle = webcam.videoRotationAngle + SROptions.Current.CameraDegreeOffset;
+            var rflag = angle % 180 == 0;
+            var w = rflag ? webcam.width : webcam.height;
+            var h = rflag ? webcam.height : webcam.width;
+            resizeOptions.width = w;
+            resizeOptions.height = h;
+            resizeOptions.rotationDegree = angle;
+            // resizeOptions.flipX = device.isFrontFacing;
+            // resizeOptions.flipY = webcam.videoVerticallyMirrored;
+            resizeOptions.flipX = true;
+            resizeOptions.flipY = device.isFrontFacing
+                ? webcam.videoVerticallyMirrored
+                : !webcam.videoVerticallyMirrored;
+            cameraView.texture = tex2tensor.Resize(webcam, resizeOptions);
+            foreach (var previewAspectFitter in previewAspectFitters) {
+                previewAspectFitter.aspectRatio = (float)w / (float)h;
             }
-        } else {
-            if (aspect < sizeCvs.y / sizeCvs.x) {
-                cameraRectTransform.sizeDelta = new Vector2(
-                    sizeCvs.x,
-                    sizeCvs.x / aspect) * scale;
-            } else {
-                cameraRectTransform.sizeDelta = new Vector2(
-                    sizeCvs.y / aspect,
-                    sizeCvs.y) * scale;
-            }
+#endif
         }
-        // Debug.Log("Size: " + Screen.width + "," + cameraRectTransform.sizeDelta.x);
-        // Debug.Log("Size: " + Screen.width + "," + Screen.height + " -> " + canvasRect.sizeDelta);
-        // cameraRectTransform.sizeDelta = new Vector2(
-        //     Screen.width,
-        //     Screen.height);
 
         // カメラの射影サイズを変更して3D表示の大きさをUIと一致させる
-        Camera.main.orthographicSize = 0.5f * sizeCvs.y / cameraRectTransform.sizeDelta.y;
+        // Camera.main.orthographicSize = 0.5f * sizeCvs.y / cameraRectTransform.sizeDelta.y;
 
+#if !NAIL_EDIT
+        // mainMiniCam.previewPanel.texture = new Texture2D(1080, 1920);
+        drawDebug.texView1[0].texture = mainMiniCam.previewPanel.texture;
         Invoke();
         // Observable.Start(() => {}) // 別スレッドで開始
         //     .ObserveOn(Scheduler.ThreadPool) // ここからはスレッドプールで処理
         //     .Subscribe(_ => Invoke())
         //     .AddTo(this);
+#endif
+
+        var sd = Mathf.Min(
+            delayView.rectTransform.rect.width,
+            delayView.rectTransform.rect.height);
+        // Debug.Log("sd: " + sd + ", (" + delayView.rectTransform.rect.width + ", " + delayView.rectTransform.rect.height + ")");
+        frameRect.sizeDelta = Vector2.one * sd;
+        frameRect.anchoredPosition = new Vector2(0, sd / 8f);
     }
 
     void OnDestroy()
@@ -214,50 +175,196 @@ public class DrawMain : MonoBehaviour
         }
     }
 
+#if !NAIL_EDIT
     void Invoke()
     {
-        if (!isProcessing) {
+        var doInvoke = !isProcessing;
+        var setDelayImmediately = false;
+
+        // ネイルチェックモードでは停止させる
+        if (SROptions.Current.NailCheckMode) {
+            if (delayView.gameObject.activeSelf != nailCheckModeStop) {
+                delayView.gameObject.SetActive(nailCheckModeStop);
+                setDelayImmediately = true;
+                doInvoke = doInvoke && nailCheckModeStop;
+                // nailDetectionTest1.dot2Area.result = new NailDotToArea.Data1[0];
+                if (!nailCheckModeStop) {
+                    nailDetection.ioDataAll.dot2Area.Clear();
+                    nailProcessing.Invoke(nailDetection, null);
+                }
+            } else {
+                doInvoke = false;
+            }
+
+            if (delayView.texture) {
+                // nailDetection.Invoke(delayView.texture, nailDetectionTest1.dot2Area);
+            }
+            // doInvoke = doInvoke && !nailCheckModeStop;
+        }
+
+        if (DataTable.Param.useDummyDetection) {
+            doInvoke = false;
+        }
+
+        if (doInvoke) {
             isProcessing = true;
             float startTime = Time.realtimeSinceStartup;
 
-            if (webcamTextures.Count > 0) {
-                var webcam = webcamTextures[webcamIndex];
-                var device = WebCamTexture.devices[deviceIndexes[webcamIndex]];
-                // palmDetection.Invoke(webcam, device);
-                // handLandmark.Resize(webcam, palmDetection);
-                // handLandmark.Invoke(webcam, device);
-#if !NAIL_EDIT
-                nailDetectionTest.Invoke(texView1[0].texture, device, () => {
+            var useTex = SROptions.Current.UseCameraNatDevice
+                ? mainMiniCam.previewPanel.texture
+                : cameraView.texture;
+            if (useTex) {
+                Texture2D tmpTexture = null;
+                if (useDelayCamera) {
+                    var camTex = useTex as Texture2D;
+                    if (camTex) {
+                        // Debug.Log("tex: " + camTex.width + "," + camTex.height);
+                        tmpTexture = new Texture2D(camTex.width, camTex.height);
+                        tmpTexture.SetPixels(camTex.GetPixels());
+                        tmpTexture.Apply();
+                    }
+                    var renderTexture = useTex as RenderTexture;
+                    if (renderTexture) {
+                        var prevRT = RenderTexture.active;
+                        RenderTexture.active = renderTexture;
+                        if (tmpTexture != null) {
+                            Destroy(tmpTexture);
+                        }
+                        tmpTexture = new Texture2D(renderTexture.width, renderTexture.height);
+                        tmpTexture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+                        tmpTexture.Apply();
+                        RenderTexture.active = prevRT;
+                    }
+                }
+
+                if (tmpTexture) {
+                    if (setDelayImmediately) {
+                        if (delayView.texture != null) {
+                            Destroy(delayView.texture);
+                        }
+                        delayView.texture = tmpTexture;
+                        delayView.material.SetTexture("MainTexture", tmpTexture);
+                        renderTexView.texture = tmpTexture;
+                        // backupTexture = tmpTexture;
+                    }
+                    // 物体検出
+                    objectDetection.Invoke(tmpTexture, () => {
+                        AsyncInvoke(tmpTexture, setDelayImmediately);
+                    });
+                } else {
                     isProcessing = false;
-                });
-                nailDetection.Invoke(webcam, nailDetectionTest.dot2Area);
-#endif
-            }
+                }
 
-            if (useWebCamera) {
+                // if (camTex) {
+                // }
+// #endif
             } else {
-                nailDetection.Invoke2(texView1[0].texture);
-            }
-
-            if (webcamTextures.Count > 0) {
-                // palmDetection.DebugTexture();
-                // handLandmark.DebugTexture();
-#if !NAIL_EDIT
-                nailDetectionTest.DebugTexture();
-#endif
-            }
-            DebugDisp();
-            if (webcamTextures.Count == 0) {
                 isProcessing = false;
             }
+
+            DebugDisp();
+            // if (webcamTextures.Count == 0) {
+            //     isProcessing = false;
+            // }
+        }
+
+        if (DataTable.Param.useDummyDetection) {
+            nailProcessing.Invoke2(objectDetection, drawDebug.texView1[0].texture);
         }
     }
 
+    // void AsyncInvoke(Texture2D tmpTexture, int index)
+    void AsyncInvoke(Texture2D tmpTexture, bool setDelayImmediately)
+    {
+        // foreach (var v in nailDetectionTest2.dot2Area.result) {
+        //     v.Range = tmpTexture.AdjustClipping(v.RangeOrg);
+        // }
+
+        var textures = objectDetection.line2Area.result
+            .Select(v => tmpTexture.Clipping(v.Range))
+            // .Select(v => tmpTexture.Clipping(new float[]{0, 0, 1, 1}))
+            .ToArray();
+
+        var ranges = objectDetection.line2Area.result
+            .Select(v => v.Range)
+            .ToArray();
+
+        if (textures.Length == 0) {
+            isProcessing = false;
+            return;
+        }
+
+        shapeDetection.Invoke(tmpTexture, shapeType => {
+            if (drawDebug.shapeTextView) {
+                if (SROptions.Current.DispShapeTextView) {
+                    // string[] strs = { "Goo", "Paa", "Foot", "Foot" };
+                    // shapeTextView.text = "Shape: " + strs[shapeType] + shapeType;
+                    // string[] strs = { "g", "p", ".", ".." };
+                    // string[] strs = { "f", "fw", "g", "p", };
+                    // string[] strs = { "fd", "fm", "gd", "gm", "pd", "pm" };
+                    // drawDebug.shapeTextView.text = strs[shapeType];
+                    drawDebug.shapeTextView.text = ShootModeType.Free.GetName(shapeType);
+                } else {
+                    drawDebug.shapeTextView.text = "";
+                }
+            }
+            if (useQuant) {
+                // 量子化
+                for (var i = 0; i < nailDetectionQuant.ioData.Length; i++) {
+                    drawDebug.texView3[i].texture = nailDetectionQuant.ioData[i].tex2Texture[0];
+                    drawDebug.texView3[i].transform.GetChild(0).GetComponent<RawImage>().texture = nailDetectionQuant.ioData[i].tex2Texture[1];
+                }
+
+                nailDetectionQuant.Invoke(textures, ranges, () => {
+                    foreach (var tex in textures) {
+                        Destroy(tex);
+                    }
+                    if (!setDelayImmediately) {
+                        Destroy(delayView.texture);
+                    }
+                    delayView.texture = tmpTexture;
+                    renderTexView.texture = tmpTexture;
+                    nailProcessing.Invoke3(nailDetectionQuant, tmpTexture);
+                    isProcessing = false;
+                });
+            } else {
+                // 通常
+                nailDetection.ChangeFile(shapeType);
+                for (var i = 0; i < nailDetection.ioData.Length; i++) {
+                    drawDebug.texView3[i].texture = nailDetection.ioData[i].tex2Texture[0];
+                    drawDebug.texView3[i].transform.GetChild(0).GetComponent<RawImage>().texture = nailDetection.ioData[i].tex2Texture[1];
+                }
+
+                nailDetection.Invoke(textures, ranges, () => {
+                    foreach (var tex in textures) {
+                        Destroy(tex);
+                    }
+                    if (!setDelayImmediately) {
+                        Destroy(delayView.texture);
+                    }
+                    delayView.texture = tmpTexture;
+                    delayView.material.SetTexture("MainTexture", tmpTexture);
+                    renderTexView.texture = tmpTexture;
+                    renderTexView.material.SetTexture("MainTexture", tmpTexture);
+                    nailProcessing.Invoke(nailDetection, tmpTexture);
+                    isProcessing = false;
+                });
+            }
+        });
+    }
+#endif
+
     void ChangeCamera()
     {
+#if !NAIL_EDIT
+        if (SROptions.Current.UseCameraNatDevice) {
+            mainMiniCam.SwitchCamera();
+            return;
+        }
+#endif
+
         DebugPhoto.Instance.AddIndex();
-        cameraView.texture = Resources.Load(DebugPhoto.Instance.PhotoFileName) as Texture2D;
-        if (webcamTextures.Count == 0) {
+        if (DataTable.Param.useDummyImage) {
             return;
         }
         if (webcamTextures[webcamIndex].isPlaying) {
@@ -267,8 +374,23 @@ public class DrawMain : MonoBehaviour
         webcamIndex %= webcamTextures.Count;
         cameraView.texture = webcamTextures[webcamIndex];
         webcamTextures[webcamIndex].Play();
-        Debug.Log("Change: " + webcamTextures[webcamIndex].name + " (" + webcamIndex + ") -> " + cameraView.texture.width + "," + cameraView.texture.height);
-        texView1[0].texture = cameraView.texture;
+        Debug.Log("Change: " + webcamTextures[webcamIndex].name + " (" + webcamIndex + ") -> " + webcamTextures[webcamIndex].width + "," + webcamTextures[webcamIndex].height);
+        drawDebug.texView1[0].texture = webcamTextures[webcamIndex];
+    }
+
+    public void ChangeStopMode(bool flag)
+    {
+        if (!isProcessing) {
+            nailCheckModeStop = flag;
+        }
+#if NAIL_EDIT
+        nailProcessing.Invoke2(cameraView.texture);
+#endif
+    }
+
+    public bool IsProcessing
+    {
+        get { return isProcessing; }
     }
 
     void DebugDisp()
@@ -307,7 +429,7 @@ public class DrawMain : MonoBehaviour
         sb.AppendLine("");
 
         sb.Append("canvas:").AppendLine(canvasRect.sizeDelta.ToString());
-        sb.Append("canvas2:").AppendLine(cameraRectTransform.sizeDelta.ToString());
+        // sb.Append("canvas2:").AppendLine(cameraRectTransform.sizeDelta.ToString());
         sb.AppendLine("");
 
         // sb.AppendLine($"index = {index}, {maxValue}");
@@ -316,8 +438,8 @@ public class DrawMain : MonoBehaviour
         //     sb.AppendLine($"{i}: {outputs[index, i]: 0.00}");
         // }
 
-        if (outputTextView) {
-            outputTextView.text = sb.ToString();
+        if (drawDebug.outputTextView) {
+            drawDebug.outputTextView.text = sb.ToString();
         }
     }
 
@@ -356,5 +478,58 @@ public class DrawMain : MonoBehaviour
     void OpenMenu()
     {
         Debug.Log("OpenMenu");
+    }
+
+    public void AttachButtons(MainBaseView view)
+    {
+        if (view.shutterButton) {
+            view.shutterButton.OnClickAsObservable()
+                .SubscribeOnMainThread()
+                .Subscribe(_ => {
+                    ChangeStopMode(!nailCheckModeStop);
+                })
+                .AddTo(view.gameObject);
+        }
+
+        // ボタン押し
+        if (view.changeCameraButton) {
+// #if !NAIL_EDIT
+            view.changeCameraButton.gameObject.SetActive(DataTable.Param.useDummyImage);
+// #endif
+            view.changeCameraButton.OnClickAsObservable()
+                .Subscribe(_ => ChangeCamera())
+                .AddTo(view.gameObject);
+        }
+
+        // ボタン押し
+        if (view.flashButton) {
+            view.flashButton.OnClickAsObservable()
+                .Subscribe(_ => {
+                    SaveName.NailMeshReverse.ToggleBool();
+#if !NAIL_EDIT
+                    mainMiniCam.ToggleFlashMode();
+#endif
+                })
+                .AddTo(view.gameObject);
+        }
+
+        if (view.colorSelectButton) {
+            view.colorSelectButton.OnClickAsObservable()
+                .SubscribeOnMainThread()
+                .Subscribe(_ => {
+                    var colorSelect = Instantiate(colorSelectView, canvasRect).GetComponent<ColorSelectList>();
+                    colorSelect.main = this;
+                })
+                .AddTo(view.gameObject);
+        }
+
+        if (view.menuButton) {
+            view.menuButton.OnClickAsObservable()
+                .SubscribeOnMainThread()
+                .Subscribe(_ => {
+                    mainMenuList.OpenMenu();
+                })
+                .AddTo(view.gameObject);
+        }
     }
 }

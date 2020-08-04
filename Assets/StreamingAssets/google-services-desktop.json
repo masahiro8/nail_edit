@@ -1,0 +1,37 @@
+{
+  "client": [
+    {
+      "services": {
+        "appinvite_service": {
+          "status": 1
+        }, 
+        "analytics_service": {
+          "status": 0
+        }
+      }, 
+      "oauth_client": [
+        {
+          "client_id": "700718033228-t5h85q46gccu1cjk7gmv3l1fvkd6j2mq.apps.googleusercontent.com"
+        }
+      ], 
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh8XLRdmIiUxl4EoX5mVDKMbx6gZIwE30"
+        }
+      ], 
+      "client_info": {
+        "mobilesdk_app_id": "1:700718033228:ios:b5ca3f0111d7bd44b9c7e9", 
+        "android_client_info": {
+          "package_name": "nailholic.backham.me"
+        }
+      }
+    }
+  ], 
+  "configuration_version": "1", 
+  "project_info": {
+    "storage_bucket": "kose-nh-dev.appspot.com", 
+    "project_id": "kose-nh-dev", 
+    "firebase_url": "https://kose-nh-dev.firebaseio.com", 
+    "project_number": "700718033228"
+  }
+}

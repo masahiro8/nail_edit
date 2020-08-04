@@ -1,5 +1,86 @@
 --
 
+【Unity】RGBをHSVに変換して明るさとかを変えるシェーダー
+https://techblog.kayac.com/unity_advent_calendar_2018_15
+
+Getting A Web Cam to Play on UI Texture Image
+https://answers.unity.com/questions/909967/getting-a-web-cam-to-play-on-ui-texture-image.html
+
+UnityでDebug用に法線を表示する
+https://qiita.com/kitasenjudesign/items/f718e2b422c7032a2106
+
+UnityでiOSとAndrodのランタイムパーミッションの確認と要求を行う方法
+https://qiita.com/utibenkei/items/65b56c13f43ce5809561
+
+Integration Unity as a library in native iOS app
+https://forum.unity.com/threads/integration-unity-as-a-library-in-native-ios-app.685219/
+
+CoreML を使って画像認識、Objective-C で書くと・・・
+http://satoshi777jp.hatenablog.com/entry/2018/06/15/221631
+
+UnityでSwiftの自作「Static Library」を使う
+https://qiita.com/kumatta_ss/items/15152207cb05e54ad793
+
+UnityのiOSネイティブをSwiftで書く
+https://re-engines.com/2018/09/19/unityのiosネイティブをswiftで書く/
+
+iOSネイティブ機能をUnityから呼び出す~アプリ作りの作法
+https://jps-code.com/ios_unity
+
+How to intentionally "crash" Unity?
+https://www.reddit.com/r/Unity3D/comments/72w64k/how_to_intentionally_crash_unity/
+
+Unity アプリを Fabric Crashlytics から Firebase Crashlytics に移行する
+https://firebase.google.com/docs/crashlytics/migrate-from-fabric?hl=ja
+
+Errors in importing Firebase sdk package in unity #622
+https://github.com/firebase/quickstart-unity/issues/622
+
+How to take UIImage of AVCaptureVideoPreviewLayer instead of AVCapturePhotoOutput capture
+https://stackoverflow.com/questions/44682698/how-to-take-uiimage-of-avcapturevideopreviewlayer-instead-of-avcapturephotooutpu/44727608
+
+How to convert a UIView to an image
+https://stackoverflow.com/questions/30696307/how-to-convert-a-uiview-to-an-image
+
+Camera Sound Effects
+https://www.soundjay.com/camera-sound-effect.html
+
+【Unity】Androidでシャッター音を鳴らす
+https://teratail.com/questions/82202
+
+Unityで環境光のライティングをスクリプトから変更する
+https://bluebirdofoz.hatenablog.com/entry/2019/06/07/091715
+
+How to change material skybox at runtime ?
+https://answers.unity.com/questions/1518499/how-to-change-material-skybox-at-runtime.html
+
+How to Perform Object Detection With YOLOv3 in Keras
+https://machinelearningmastery.com/how-to-perform-object-detection-with-yolov3-in-keras/
+
+Nexusに最新のOSのシステムイメージを入れる
+https://qiita.com/taki4227/items/e57004ad3f173f76638d
+
+Indenting GUILayout objects
+https://forum.unity.com/threads/indenting-guilayout-objects.113494/
+
+Custom Attributes in Unity3D
+http://www.klonk-games.com/2014/10/custom-attributes-unity3d/
+
+【Unity】【エディタ拡張】Custom AttributeとCustom Property Drawerを組み合わせたらInspectorがうまく表示されなくなった件と対応方法
+https://light11.hatenadiary.com/entry/2019/03/24/012712
+
+【Unity】Inspector に区切りを入れる【小ネタ】
+http://atelierempress.blog.fc2.com/blog-entry-78.html?sp
+
+WebcamTexture always return "16" for width and height.
+https://forum.unity.com/threads/webcamtexture-always-return-16-for-width-and-height.327015/
+
+[Unity] Textコンポーネントでテキストを切り捨てずに全文表示させる方法
+https://qiita.com/lycoris102/items/219455968fbfd29fddc9
+
+UI panel without Image component as Raycast target? It is possible?
+https://answers.unity.com/questions/1091618/ui-panel-without-image-component-as-raycast-target.html
+
 【Unity】Inspector で並べ替え可能なリストを使用できる「Reorderable List」紹介
 http://baba-s.hatenablog.com/entry/2019/03/22/090000
 

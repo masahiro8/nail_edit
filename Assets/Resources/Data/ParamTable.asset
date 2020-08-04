@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3ad10fb0a1404b389497e4b12327033, type: 3}
   m_Name: ParamTable
   m_EditorClassIdentifier: 
-  colorName: _Color
-  subColorName: _SubColor
-  textureName: _Texture
-  normalTextureName: _NormalTexture
+  noUseAPI: 1
+  useDummyImage: 1
+  useDummyDetection: 0
   duration: 0.3
+  selectedBarDuration: 0.2
+  newInfoDays: 30
+  hideCategoryId: 9000
+  topcoatMetallicPer:
+  - 1
+  - 1.05
+  - 1.5
+  topcoatSmoothnessPer:
+  - 1
+  - 1
+  - 0

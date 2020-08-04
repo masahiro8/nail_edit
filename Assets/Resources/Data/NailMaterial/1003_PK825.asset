@@ -16,13 +16,13 @@ MonoBehaviour:
   - materialType: 0
     baseColor: {r: 0.735849, g: 0.4199893, b: 0.52828413, a: 0.9607843}
     subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 0.7075472, g: 0.43721077, b: 0.53066033, a: 0}
+    shadowColor: {r: 0.8018868, g: 0.4274208, b: 0.5737639, a: 0}
     normalHeight: 0
     normalSize: 0
     noise: 0
     emissionRate: 0
-    metallic: 0.65
-    smoothness: 0.8
+    metallic: 0.8
+    smoothness: 0.82
     textureType: 0
     minSize: 0
     maxSize: 0

@@ -17,13 +17,13 @@ public class SetCanvasBounds : MonoBehaviour {
 	{
 		var anchorMin = area.position;
 		var anchorMax = area.position + area.size;
-#if UNITY_EDITOR
-		// エディタ上でのiPhone Xのシミュレート
-		if ((float)Screen.height / (float)Screen.width > 2) {
-			anchorMin.y += Screen.height * 0.05f;
-			anchorMax.y -= Screen.height * 0.05f;
-		}
-#endif
+// #if UNITY_EDITOR
+// 		// エディタ上でのiPhone Xのシミュレート
+// 		if ((float)Screen.height / (float)Screen.width > 2) {
+// 			anchorMin.y += Screen.height * 0.05f;
+// 			anchorMax.y -= Screen.height * 0.05f;
+// 		}
+// #endif
 		anchorMin.x /= Screen.width;
 		anchorMin.y /= Screen.height;
 		anchorMax.x /= Screen.width;

@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - materialType: 0
-    baseColor: {r: 0.9716981, g: 0.93044674, b: 0.9696902, a: 0.6862745}
-    subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 0, g: 0, b: 0, a: 0}
-    normalHeight: 0
-    normalSize: 0.7
+    baseColor: {r: 0.93730384, g: 0.86743504, b: 0.9528302, a: 0.6862745}
+    subColor: {r: 1, g: 0.28773582, b: 0.8451598, a: 0}
+    shadowColor: {r: 0.9138681, g: 0.87655747, b: 0.9245283, a: 0}
+    normalHeight: 0.8
+    normalSize: 0.4
     noise: 0
-    emissionRate: 0.8
-    metallic: 0
+    emissionRate: 0
+    metallic: 0.8
     smoothness: 0.8
     textureType: 0
     minSize: 0
@@ -29,17 +29,47 @@ MonoBehaviour:
     randomSeed: 0
     randomCount: 0
   - materialType: 1
-    baseColor: {r: 1, g: 1, b: 1, a: 0.94509804}
-    subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 0, g: 0, b: 0, a: 0}
-    normalHeight: 0.3
-    normalSize: 0.7
+    baseColor: {r: 0.8962264, g: 0.6468049, b: 0.86666834, a: 0.7058824}
+    subColor: {r: 0.9150943, g: 0.38416696, b: 0.8701004, a: 1}
+    shadowColor: {r: 0.835492, g: 0.68436277, b: 0.8584906, a: 1}
+    normalHeight: 0
+    normalSize: 0
     noise: 0
-    emissionRate: 0.9
+    emissionRate: 0
     metallic: 0
-    smoothness: 0.4
+    smoothness: 0
     textureType: 3
-    minSize: 0.01
-    maxSize: 0.04
-    randomSeed: 12375
-    randomCount: 260
+    minSize: 0.02
+    maxSize: 0.02
+    randomSeed: 1
+    randomCount: 800
+  - materialType: 2
+    baseColor: {r: 0.8862745, g: 0.57254905, b: 0.8292862, a: 0.43137255}
+    subColor: {r: 1, g: 0.5801887, b: 0.8248575, a: 0.78431374}
+    shadowColor: {r: 0.7839933, g: 0.75686276, b: 0.92156863, a: 0}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0
+    smoothness: 0
+    textureType: 3
+    minSize: 0.02
+    maxSize: 0.02
+    randomSeed: 2
+    randomCount: 600
+  - materialType: 2
+    baseColor: {r: 0.8239254, g: 0.5730687, b: 0.8867924, a: 0.3137255}
+    subColor: {r: 0.9528302, g: 0.5977661, b: 0.9225197, a: 1}
+    shadowColor: {r: 0.7839933, g: 0.75686276, b: 0.92156863, a: 0}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0
+    smoothness: 0
+    textureType: 3
+    minSize: 0.02
+    maxSize: 0.02
+    randomSeed: 3
+    randomCount: 600

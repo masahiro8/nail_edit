@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - materialType: 0
-    baseColor: {r: 1, g: 0.8537736, b: 0.9089537, a: 0.6862745}
-    subColor: {r: 0.8301887, g: 0.55998576, b: 0.7448391, a: 0}
-    shadowColor: {r: 0, g: 0, b: 0, a: 0}
+    baseColor: {r: 0.9150943, g: 0.55682623, b: 0.69238716, a: 0.7058824}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0.9622642, g: 0.76708794, b: 0.838995, a: 0}
     normalHeight: 0
-    normalSize: 0.7
+    normalSize: 0
     noise: 0
-    emissionRate: 0.8
-    metallic: 0
+    emissionRate: 0
+    metallic: 0.7
     smoothness: 0.8
     textureType: 0
     minSize: 0
@@ -29,11 +29,11 @@ MonoBehaviour:
     randomSeed: 0
     randomCount: 0
   - materialType: 1
-    baseColor: {r: 1, g: 0.9198113, b: 0.950153, a: 0.94509804}
+    baseColor: {r: 1, g: 0.9198113, b: 0.950153, a: 0.78431374}
     subColor: {r: 0, g: 0, b: 0, a: 0}
     shadowColor: {r: 0, g: 0, b: 0, a: 0}
-    normalHeight: 0.3
-    normalSize: 0.7
+    normalHeight: 0
+    normalSize: 0
     noise: 0
     emissionRate: 0.9
     metallic: 0
@@ -41,5 +41,20 @@ MonoBehaviour:
     textureType: 3
     minSize: 0.01
     maxSize: 0.04
-    randomSeed: 12375
+    randomSeed: 1
     randomCount: 260
+  - materialType: 1
+    baseColor: {r: 0.9339623, g: 0.81501424, b: 0.85664606, a: 0.78431374}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0, g: 0, b: 0, a: 0}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0.9
+    metallic: 0
+    smoothness: 0.4
+    textureType: 3
+    minSize: 0.01
+    maxSize: 0.04
+    randomSeed: 2
+    randomCount: 200

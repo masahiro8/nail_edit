@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - materialType: 0
-    baseColor: {r: 0.9056604, g: 0.42919528, b: 0.12388753, a: 0.78431374}
+    baseColor: {r: 0.6792453, g: 0.29802513, b: 0.05446779, a: 0.78431374}
     subColor: {r: 0, g: 0, b: 0, a: 0}
-    shadowColor: {r: 0.8396226, g: 0.3791253, b: 0.1544589, a: 0}
+    shadowColor: {r: 0.8962264, g: 0.30725184, b: 0.029592399, a: 0}
     normalHeight: 0
     normalSize: 0
     noise: 0
     emissionRate: 0
     metallic: 0.7
-    smoothness: 0.8
+    smoothness: 0.85
     textureType: 0
     minSize: 0
     maxSize: 0

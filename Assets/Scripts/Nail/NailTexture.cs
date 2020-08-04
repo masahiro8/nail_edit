@@ -32,10 +32,12 @@ public class NailTexture : MonoBehaviour
         // テクスチャ作成
         patternTexture = new Texture2D(texWidth, texHeight);
         var pixels = patternTexture.GetPixels(0, 0, texWidth, texHeight);
+        patternTexture.wrapMode = TextureWrapMode.Clamp;
 
         // 法線マップ
         normalTexture = new Texture2D(texWidth, texHeight);
         var normals = normalTexture.GetPixels(0, 0, texWidth, texHeight);
+        normalTexture.wrapMode = TextureWrapMode.Clamp;
 
         // 塗りつぶして初期化
         var clearColor = new Color(1, 1, 1, 0);

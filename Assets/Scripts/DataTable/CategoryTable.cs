@@ -1,17 +1,37 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UniRx;
 
-[CreateAssetMenu(menuName = "Data Tables/CategoryTable", fileName = "CategoryTable")]
-public class CategoryTable : ScriptableObject
+public class CategoryTable
 {
     public CategoryRecord[] list;
 
     [System.NonSerialized] public CategoryRecord[] showList;
 
+    List<CategoryRecord> data = new List<CategoryRecord>();
+
+    public CategoryRecord GetCategory(int categoryId, string categoryName)
+    {
+        var res = data.Where(value => value.categoryId == categoryId).ToArray();
+        if (res.Length > 0) {
+            return res[0];
+        }
+        var res2 = new CategoryRecord();
+        res2.name = categoryName;
+        res2.categoryId = categoryId;
+        res2.show = categoryId < DataTable.Param.hideCategoryId;
+        data.Add(res2);
+        return res2;
+    }
+
     // 表示用インデックスの作成
     public void Reset()
     {
+        data.Sort((v1, v2) => v1.categoryId - v2.categoryId);
+        list = data.ToArray();
+        // Debug.Log("CategoryTable.list.Length: " + list.Length);
+
         // 表示用のインデックスリストを作成
         showList = list
             .Where(v => v.show)
@@ -31,12 +51,13 @@ public class CategoryTable : ScriptableObject
 
             // シリーズごとのネイルのインデックスリストを作成
             data.saveFlag
-                .Subscribe(b => {
-                    data.filter.Value = DataTable.NailInfo.list
-                        .Where(v => v.category == data && v.colorCategory.IsShow)
-                        .ToArray();
-                    // Debug.Log("CategoryTable." + data.name + ": " + data.filter.Value.Length);
-                })
+                .Subscribe(_ => data.UpdateShowList(DataTable.Param.filterType.Value))
+                .AddTo(DataTable.Instance.gameObject);
+
+            // フィルター変化時
+            DataTable.Param.filterType
+                .SkipLatestValueOnSubscribe()
+                .Subscribe(type => data.UpdateShowList(type))
                 .AddTo(DataTable.Instance.gameObject);
         }
 
@@ -53,5 +74,5 @@ public class CategoryTable : ScriptableObject
                 })
                 .AddTo(DataTable.Instance.gameObject);
         }
-    }
+    }   
 }
