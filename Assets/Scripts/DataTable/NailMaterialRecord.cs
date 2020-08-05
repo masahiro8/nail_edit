@@ -59,7 +59,7 @@ public class NailMaterialRecord
         randomCount = record.randomCount;
     }
 
-    public void SetMaterial(Renderer renderer)
+    public void SetMaterial(Renderer renderer, NailMaterialTable parent)
     {
         // マテリアル変更
         renderer.material = Resources.Load<Material>("Materials/" + materialType.GetFileType());
@@ -83,12 +83,12 @@ public class NailMaterialRecord
         // renderer.material.SetFloat("_Smoothness", smoothness);
         DataTable.Param.topcoatType
             .Subscribe(type => {
-                renderer.material.SetFloat("_Metallic", metallic * type.Metallic());
+                renderer.material.SetFloat("_Metallic", metallic * parent.Metallic(type));
             })
             .AddTo(renderer.gameObject);
         DataTable.Param.topcoatType
             .Subscribe(type => {
-                renderer.material.SetFloat("_Smoothness", smoothness * type.Smoothness());
+                renderer.material.SetFloat("_Smoothness", smoothness * parent.Smoothness(type));
             })
             .AddTo(renderer.gameObject);
     }

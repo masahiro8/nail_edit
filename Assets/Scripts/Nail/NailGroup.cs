@@ -81,7 +81,7 @@ public class NailGroup : MonoBehaviour
                 // nailObject.gameObject.AddComponent<NormalHelper>();
             }
             nailObject.gameObject.SetActive(true);
-            nailObject.UpdateData(this, nailData.list[i]);
+            nailObject.UpdateData(this, nailData, nailData.list[i]);
         }
 
         for (var i = nailData.list.Length; i < transform.childCount; i++) {
@@ -180,10 +180,10 @@ public class NailGroup : MonoBehaviour
 
         // Debug.Log(t);
         foreach (Transform t in transform) {
-            var obj = t.GetComponent<NailObject>();
-            var materialData = obj.materialData.Value;
-            materialData.SetMaterial(obj.meshRenderer);
-            materialData.SetTexture(obj.meshRenderer, obj.nailTexture);
+            var nObj = t.GetComponent<NailObject>();
+            var materialData = nObj.materialData;
+            materialData.SetMaterial(nObj.meshRenderer, nailData);
+            materialData.SetTexture(nObj.meshRenderer, nObj.nailTexture);
         }
     }
 }

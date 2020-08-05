@@ -9,20 +9,21 @@ public class NailObject : MonoBehaviour
     public MeshRenderer meshRenderer;
     public NailTexture nailTexture;
 
-    public ReactiveProperty<NailMaterialRecord> materialData = new ReactiveProperty<NailMaterialRecord>(null);
+    // public ReactiveProperty<NailMaterialRecord> materialData = new ReactiveProperty<NailMaterialRecord>(null);
+    public NailMaterialRecord materialData = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        materialData
-            .Where(data => data != null)
-            .Subscribe(data => {
-                // Debug.Log(data);
-                // ResetData(data);
-                data.SetMaterial(meshRenderer);
-                data.SetTexture(meshRenderer, nailTexture);
-            })
-            .AddTo(gameObject);
+        // materialData
+        //     .Where(data => data != null)
+        //     .Subscribe(data => {
+        //         // Debug.Log(data);
+        //         // ResetData(data);
+        //         data.SetMaterial(meshRenderer);
+        //         data.SetTexture(meshRenderer, nailTexture);
+        //     })
+        //     .AddTo(gameObject);
 
 // #if UNITY_EDITOR
 //         // エディタでは編集用に更新させるため
@@ -45,9 +46,16 @@ public class NailObject : MonoBehaviour
     // }
 
     // テクスチャを更新
-    public void UpdateData(NailGroup group, NailMaterialRecord data)
+    public void UpdateData(NailGroup group, NailMaterialTable nailData, NailMaterialRecord data)
     {
-        materialData.Value = data;
+        materialData = data;
+        if (data == null) {
+            return;
+        }
+
+        data.SetMaterial(meshRenderer, nailData);
+        data.SetTexture(meshRenderer, nailTexture);
+
         meshFilter.mesh = group.groupMesh.mesh;
         name = data.materialType.ToString();
         if (data.textureType == NailTextureType.Light) {

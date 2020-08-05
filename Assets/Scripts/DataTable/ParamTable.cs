@@ -25,11 +25,11 @@ public class ParamTable : ScriptableObject
     [SerializeField, HeaderAttribute("非表示にするカテゴリID")]
     public int hideCategoryId = 9000;
 
-    [SerializeField, HeaderAttribute("トップコートMetallic")]
-    public float[] topcoatMetallicPer;
+    // [SerializeField, HeaderAttribute("トップコートMetallic")]
+    // public float[] topcoatMetallicPer;
 
-    [SerializeField, HeaderAttribute("トップコートSmoothness")]
-    public float[] topcoatSmoothnessPer;
+    // [SerializeField, HeaderAttribute("トップコートSmoothness")]
+    // public float[] topcoatSmoothnessPer;
 
     public ReactiveProperty<NailInfoRecord> selectedNail = new ReactiveProperty<NailInfoRecord>(null);
     public ReactiveProperty<NailFilterType> filterType = new ReactiveProperty<NailFilterType>(NailFilterType.All);
