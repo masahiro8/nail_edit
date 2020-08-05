@@ -12,10 +12,22 @@ Sizeを変更すると個数を増減できます。
 
 ```Materials```のSizeを変更するとラメの個数を増やすことができます。
 
-## 基本データ
+## 全体データ
 
 - ```Reflection Intensity```
     環境マップの個別の透明度です。初期値は1.6です。
+
+- ```topcoatClearMetallicPer```
+    トップコート（クリア）時にMetallicの値に掛け合わせる割合です。1だと変化なしです。初期値は1.05です。
+
+- ```topcoatClearSmoothnessPer```
+    トップコート（クリア）時にSmoothnessの値に掛け合わせる割合です。1だと変化なしです。初期値は1です。
+
+- ```topcoatMatMetallicPer```
+    トップコート（マット）時にMetallicの値に掛け合わせる割合です。1だと変化なしです。初期値は1.5です。
+
+- ```topcoatMatSmoothnessPer```
+    トップコート（マット）時にSmoothnessの値に掛け合わせる割合です。1だと変化なしです。初期値は0です。
 
 ## 基本データ
 
