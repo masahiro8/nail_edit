@@ -14,16 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noUseAPI: 1
   useDummyImage: 1
-  useDummyDetection: 0
+  useDummyDetection: 1
   duration: 0.3
   selectedBarDuration: 0.2
   newInfoDays: 30
   hideCategoryId: 9000
-  topcoatMetallicPer:
-  - 1
-  - 1.05
-  - 1.5
-  topcoatSmoothnessPer:
-  - 1
-  - 1
-  - 0

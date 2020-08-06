@@ -1,4 +1,4 @@
-﻿// #define NAIL_EDIT
+﻿#define NAIL_EDIT
 
 using System.Collections;
 using System.Collections.Generic;
