@@ -21,7 +21,9 @@ public class ViewManager : MonoBehaviour
         SROptions.Current.ChangeFixedMode
             .Subscribe(flag => {
                 DataTable.Param.mainView.Value = flag
-                    ? MainViewType.FixedCamera
+                    ? (DataTable.Param.useDummyImage
+                            ? MainViewType.FixedEdit
+                            : MainViewType.FixedCamera)
                     : MainViewType.Movie;
             })
             .AddTo(gameObject);

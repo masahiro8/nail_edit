@@ -280,14 +280,7 @@ MonoBehaviour:
   outputHeight: 16
   fileName: face_detection_front
   compute: {fileID: 7200000, guid: fde654e1864474667a5b08f2408936e2, type: 3}
-  fileNames: []
-  checkmodeIndex: 4
-  changeCount: -1
-  nextCount: -1
-  fileNameText: {fileID: 0}
-  changeButton: {fileID: 0}
-  max: 5
-  debugNowProcess: 0
+  texView: {fileID: 1693290334}
 --- !u!1 &81006570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,6 +1547,7 @@ MonoBehaviour:
   backgroundImage: {fileID: 384691547}
   frameTransform: {fileID: 915391128}
   menuTransform: {fileID: 1378042638}
+  listOrg: []
 --- !u!1 &264625766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,8 +1709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ebb1d77ade54f1d8f79b90e350434c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  END_POINT: https://api.app.nailholic.net/api/v1
-  _Param: {fileID: 0}
 --- !u!4 &265641188
 Transform:
   m_ObjectHideFlags: 0
@@ -1743,10 +1735,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f6dfe75728548cd930f0baa01044f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  register: 
-  path_register: /users/register
-  path_favorite_nail: /users/favorite_nail
-  path_owned_nail: /users/owned_nail
 --- !u!1 &274391628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2949,9 +2937,6 @@ MonoBehaviour:
   nextCount: -1
   fileNameText: {fileID: 0}
   changeButton: {fileID: 0}
-  outputs33: []
-  tex2Texture: []
-  debugNowProcess: 0
 --- !u!1 &454605181
 GameObject:
   m_ObjectHideFlags: 0
@@ -3245,8 +3230,6 @@ MonoBehaviour:
   nextCount: -1
   fileNameText: {fileID: 0}
   changeButton: {fileID: 0}
-  max: 5
-  debugNowProcess: 0
 --- !u!1 &510157763
 GameObject:
   m_ObjectHideFlags: 0
@@ -3525,7 +3508,6 @@ MonoBehaviour:
   nextCount: -1
   fileNameText: {fileID: 0}
   changeButton: {fileID: 0}
-  debugNowProcess: 0
 --- !u!1 &543035205
 GameObject:
   m_ObjectHideFlags: 0
@@ -5232,8 +5214,6 @@ MonoBehaviour:
   nextCount: -1
   fileNameText: {fileID: 0}
   changeButton: {fileID: 0}
-  max: 5
-  debugNowProcess: 0
 --- !u!4 &861495299
 Transform:
   m_ObjectHideFlags: 0
@@ -6746,7 +6726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1017337494
 Transform:
   m_ObjectHideFlags: 0
@@ -6775,7 +6755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useQuant: 0
-  useDelayCamera: 0
+  useDelayCamera: 1
   canvasRect: {fileID: 1323305144}
   cameraView: {fileID: 1709041688}
   delayView: {fileID: 1555742583}
@@ -6785,7 +6765,12 @@ MonoBehaviour:
   - {fileID: 1002537271}
   drawDebug: {fileID: 2128773328}
   nailProcessing: {fileID: 1628971023}
+  shapeDetection: {fileID: 532878321}
+  objectDetection: {fileID: 451640953}
+  nailDetection: {fileID: 861495298}
+  nailDetectionQuant: {fileID: 504504702}
   mainMiniCam: {fileID: 403190432}
+  faceDetection: {fileID: 70167634}
   frameRect: {fileID: 1329906483}
   colorSelectView: {fileID: 1979876694328083968, guid: a36e1f2cc19274064beef91cab1e41f3,
     type: 3}

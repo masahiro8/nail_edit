@@ -235,13 +235,20 @@ public partial class SROptions {
     }
     public ReactiveProperty<bool> DispTfliteChangeButton = new ReactiveProperty<bool>();
 
-    [Category("チェックモード")]
+    [Category("アプリモード")]
     [DisplayName("静止画モード切り替え")]
     public bool _ChangeFixedMode {
         get { return ChangeFixedMode.Value; }
         set { ChangeFixedMode.Value = value; }
     }
     public ReactiveProperty<bool> ChangeFixedMode = new ReactiveProperty<bool>();
+
+    // [Category("アプリモード")]
+    // [DisplayName("エディタモード切り替え")]
+    // public bool ChangeEditorMode {
+    //     get;
+    //     set;
+    // }
 
     [Category("データ操作")]
     [DisplayName("強制的にアプリをクラッシュ")]

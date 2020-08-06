@@ -1,4 +1,4 @@
-﻿#define NAIL_EDIT
+﻿// #define NAIL_EDIT
 
 using System.Collections;
 using System.Collections.Generic;
@@ -109,7 +109,7 @@ public class DrawMain : MonoBehaviour
         //     .AddTo(gameObject);
 
         cameraView.gameObject.SetActive(true);
-        delayView.gameObject.SetActive(useDelayCamera);
+        delayView.gameObject.SetActive(useDelayCamera && !DataTable.Param.useDummyDetection);
         delayView.material = new Material(delayView.material);
         renderTexView.material = delayView.material;
     }
@@ -118,7 +118,7 @@ public class DrawMain : MonoBehaviour
     {
         if (DataTable.Param.useDummyImage) {
             // delayView.gameObject.SetActive(false);
-            cameraView.texture = Resources.Load(DebugPhoto.Instance.PhotoFileName) as Texture2D;
+            // cameraView.texture = Resources.Load(DebugPhoto.Instance.PhotoFileName) as Texture2D;
             // renderTexView.texture = cameraView.texture;
             foreach (var previewAspectFitter in previewAspectFitters) {
                 previewAspectFitter.aspectRatio = (float)cameraView.texture.width / (float)cameraView.texture.height;
@@ -178,6 +178,10 @@ public class DrawMain : MonoBehaviour
 #if !NAIL_EDIT
     void Invoke()
     {
+        if (DataTable.Param.useDummyDetection) {
+            return;
+        }
+
         var doInvoke = !isProcessing;
         var setDelayImmediately = false;
 
@@ -200,10 +204,6 @@ public class DrawMain : MonoBehaviour
                 // nailDetection.Invoke(delayView.texture, nailDetectionTest1.dot2Area);
             }
             // doInvoke = doInvoke && !nailCheckModeStop;
-        }
-
-        if (DataTable.Param.useDummyDetection) {
-            doInvoke = false;
         }
 
         if (doInvoke) {
@@ -258,6 +258,11 @@ public class DrawMain : MonoBehaviour
                 // if (camTex) {
                 // }
 // #endif
+
+                // 送信用の顔認識
+                faceDetection.Invoke(useTex, () => {
+                    Debug.Log("faceDetection end");
+                });
             } else {
                 isProcessing = false;
             }
@@ -266,10 +271,6 @@ public class DrawMain : MonoBehaviour
             // if (webcamTextures.Count == 0) {
             //     isProcessing = false;
             // }
-        }
-
-        if (DataTable.Param.useDummyDetection) {
-            nailProcessing.Invoke2(objectDetection, drawDebug.texView1[0].texture);
         }
     }
 
@@ -365,6 +366,10 @@ public class DrawMain : MonoBehaviour
 
         DebugPhoto.Instance.AddIndex();
         if (DataTable.Param.useDummyImage) {
+            cameraView.texture = Resources.Load(DebugPhoto.Instance.PhotoFileName) as Texture2D;
+            if (DataTable.Param.useDummyDetection) {
+                nailProcessing.Invoke2(cameraView.texture);
+            }
             return;
         }
         if (webcamTextures[webcamIndex].isPlaying) {
@@ -383,9 +388,6 @@ public class DrawMain : MonoBehaviour
         if (!isProcessing) {
             nailCheckModeStop = flag;
         }
-#if NAIL_EDIT
-        nailProcessing.Invoke2(cameraView.texture);
-#endif
     }
 
     public bool IsProcessing
