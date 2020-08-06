@@ -60,5 +60,23 @@ public class FixedEditView : MainBaseView
             //     })
             //     .AddTo(gameObject);
         }
+
+        // エディットモードではボタンを消す
+        if (DataTable.Param.useDummyImage) {
+            // foreach (var button in new Button[] { menuButton, cancelButton, saveButton }) {
+            //     if (button) {
+            //         button.gameObject.SetActive(false);
+            //     }
+            // }
+            if (menuButton) {
+                menuButton.gameObject.SetActive(false);
+            }
+            if (cancelButton) {
+                cancelButton.gameObject.SetActive(false);
+            }
+            if (saveButton) {
+                saveButton.gameObject.SetActive(false);
+            }
+        }
     }
 }
