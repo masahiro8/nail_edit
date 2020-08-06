@@ -30,6 +30,12 @@ public class TutorialList : MonoBehaviour
     {
         // 読み込みのため
         var _ = DataTable.Instance;
+
+        if (DataTable.Param.useDummyImage) {
+            SaveName.TutorialDone.SetBool(true);
+            SaveName.NavigationDone.SetBool(true);
+            SaveName.NavigationGuideDone.SetBool(true);
+        }
     }
 
     // Start is called before the first frame update
