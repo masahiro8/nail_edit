@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0845e4913537b47f791deb9698f44cae, type: 3}
+  m_Name: 1001_PK828
+  m_EditorClassIdentifier: 
+  reflectionIntensity: 0.3
+  topcoatClearMetallicPer: 1
+  topcoatClearSmoothnessPer: 0.99
+  topcoatMatMetallicPer: 1.5
+  topcoatMatSmoothnessPer: 0.25
+  list:
+  - materialType: 0
+    baseColor: {r: 0.8, g: 0.6392157, b: 0.67396986, a: 0.47058824}
+    subColor: {r: 0.75686276, g: 0.58431375, b: 0.61798674, a: 0}
+    shadowColor: {r: 0.7647059, g: 0.5294118, b: 0.6051156, a: 0}
+    normalHeight: 0.6
+    normalSize: 5
+    noise: 0.1
+    emissionRate: 0
+    metallic: 0.7
+    smoothness: 0.83
+    textureType: 0
+    minSize: 0
+    maxSize: 0
+    randomSeed: 0
+    randomCount: 0
+  - materialType: 1
+    baseColor: {r: 0.46431112, g: 0.74003565, b: 0.8867924, a: 0.7058824}
+    subColor: {r: 0, g: 0, b: 0, a: 1}
+    shadowColor: {r: 0.52156866, g: 0.7372549, b: 0.8705883, a: 0.7058824}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0.9
+    smoothness: 0.6
+    textureType: 3
+    minSize: 0.015
+    maxSize: 0.025
+    randomSeed: 1
+    randomCount: 150
+  - materialType: 1
+    baseColor: {r: 0.87843144, g: 0.8745099, b: 0.6039216, a: 0.39215687}
+    subColor: {r: 0, g: 0, b: 0, a: 1}
+    shadowColor: {r: 0.87843144, g: 0.8705883, b: 0.63529414, a: 0}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0.9
+    smoothness: 0.6
+    textureType: 3
+    minSize: 0.015
+    maxSize: 0.025
+    randomSeed: 2
+    randomCount: 200
+  - materialType: 1
+    baseColor: {r: 0.8490566, g: 0.67664903, b: 0.46057317, a: 0.7058824}
+    subColor: {r: 0, g: 0, b: 0, a: 1}
+    shadowColor: {r: 0.8588236, g: 0.7568628, b: 0.54901963, a: 0}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0.9
+    smoothness: 0.6
+    textureType: 3
+    minSize: 0.015
+    maxSize: 0.025
+    randomSeed: 3
+    randomCount: 150
+  - materialType: 1
+    baseColor: {r: 0.6403461, g: 0.45882353, b: 0.8509804, a: 0.7058824}
+    subColor: {r: 0, g: 0, b: 0, a: 1}
+    shadowColor: {r: 0.63906014, g: 0.54901963, b: 0.85882354, a: 0.7058824}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0.9
+    smoothness: 0.6
+    textureType: 3
+    minSize: 0.015
+    maxSize: 0.025
+    randomSeed: 3
+    randomCount: 200
+  - materialType: 1
+    baseColor: {r: 0.8490566, g: 0.67664903, b: 0.46057317, a: 0.39215687}
+    subColor: {r: 0, g: 0, b: 0, a: 1}
+    shadowColor: {r: 0.8588236, g: 0.7568628, b: 0.54901963, a: 0}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0.9
+    smoothness: 0.6
+    textureType: 3
+    minSize: 0.015
+    maxSize: 0.025
+    randomSeed: 3
+    randomCount: 200

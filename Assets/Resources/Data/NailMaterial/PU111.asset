@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0845e4913537b47f791deb9698f44cae, type: 3}
+  m_Name: 1005_PU111
+  m_EditorClassIdentifier: 
+  reflectionIntensity: 1
+  topcoatClearMetallicPer: 1.1
+  topcoatClearSmoothnessPer: 3
+  topcoatMatMetallicPer: 1.3
+  topcoatMatSmoothnessPer: 0.05
+  list:
+  - materialType: 0
+    baseColor: {r: 0.8962264, g: 0.81590426, b: 0.8877715, a: 0.9607843}
+    subColor: {r: 1, g: 1, b: 1, a: 0}
+    shadowColor: {r: 0.8490566, g: 0.7969918, b: 0.83864367, a: 0}
+    normalHeight: 0.7
+    normalSize: 2.5
+    noise: 0.08
+    emissionRate: 0
+    metallic: 0.78
+    smoothness: 0.85
+    textureType: 0
+    minSize: 0
+    maxSize: 0
+    randomSeed: 0
+    randomCount: 0
+  - materialType: 2
+    baseColor: {r: 1, g: 1, b: 1, a: 0.78431374}
+    subColor: {r: 1, g: 1, b: 1, a: 0.78431374}
+    shadowColor: {r: 0.8301887, g: 0.755785, b: 0.8208882, a: 0.5882353}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0
+    smoothness: 0
+    textureType: 3
+    minSize: 0.01
+    maxSize: 0.02
+    randomSeed: 1
+    randomCount: 150
+  - materialType: 2
+    baseColor: {r: 0.9150943, g: 0.75338984, b: 0.55682623, a: 0.78431374}
+    subColor: {r: 0.7266103, g: 0.8901961, b: 0.58431375, a: 0.78431374}
+    shadowColor: {r: 1, g: 1, b: 1, a: 0.5882353}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0
+    smoothness: 0
+    textureType: 3
+    minSize: 0.01
+    maxSize: 0.02
+    randomSeed: 2
+    randomCount: 100

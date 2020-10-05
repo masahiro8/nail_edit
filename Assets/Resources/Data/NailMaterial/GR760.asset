@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0845e4913537b47f791deb9698f44cae, type: 3}
+  m_Name: 2002_GR760
+  m_EditorClassIdentifier: 
+  reflectionIntensity: 1
+  topcoatClearMetallicPer: 1.1
+  topcoatClearSmoothnessPer: 1.6
+  topcoatMatMetallicPer: 1.5
+  topcoatMatSmoothnessPer: 0.2
+  list:
+  - materialType: 0
+    baseColor: {r: 0.4635628, g: 0.5943396, b: 0.40089887, a: 0.78431374}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0.6416279, g: 0.7169812, b: 0.5647918, a: 0}
+    normalHeight: 0.5
+    normalSize: 0.8
+    noise: 0
+    emissionRate: 0
+    metallic: 0.4
+    smoothness: 0.8
+    textureType: 0
+    minSize: 0
+    maxSize: 0
+    randomSeed: 0
+    randomCount: 0
+  - materialType: 1
+    baseColor: {r: 0.36205056, g: 0.6792453, b: 0.43550614, a: 1}
+    subColor: {r: 0.5308384, g: 0.745283, b: 0.5503333, a: 1}
+    shadowColor: {r: 0.33810964, g: 0.5471698, b: 0.3561321, a: 0}
+    normalHeight: 0.8
+    normalSize: 0.7
+    noise: 0
+    emissionRate: 0.8
+    metallic: 0
+    smoothness: 0.4
+    textureType: 3
+    minSize: 0.015
+    maxSize: 0.015
+    randomSeed: 1
+    randomCount: 1600

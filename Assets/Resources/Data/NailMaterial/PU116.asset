@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0845e4913537b47f791deb9698f44cae, type: 3}
+  m_Name: 1004_PU116
+  m_EditorClassIdentifier: 
+  reflectionIntensity: 0.45
+  topcoatClearMetallicPer: 1.05
+  topcoatClearSmoothnessPer: 0.99
+  topcoatMatMetallicPer: 1.5
+  topcoatMatSmoothnessPer: 0.25
+  list:
+  - materialType: 0
+    baseColor: {r: 0.8509804, g: 0.40392157, b: 0.8379625, a: 0.78431374}
+    subColor: {r: 0.1215686, g: 0.26923412, b: 0.8980392, a: 1}
+    shadowColor: {r: 0.3962264, g: 0.16260235, b: 0.33188385, a: 1}
+    normalHeight: 0.6
+    normalSize: 10
+    noise: 0.1
+    emissionRate: 0
+    metallic: 0.7
+    smoothness: 0.84
+    textureType: 0
+    minSize: 0
+    maxSize: 0
+    randomSeed: 0
+    randomCount: 0
+  - materialType: 1
+    baseColor: {r: 0, g: 1, b: 0.753031, a: 0}
+    subColor: {r: 0.16104485, g: 0.7264151, b: 0.4989802, a: 0.6666667}
+    shadowColor: {r: 0.3075337, g: 0.11764706, b: 0.74509805, a: 0.47058824}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0.6
+    metallic: 0
+    smoothness: 0
+    textureType: 3
+    minSize: 0.01
+    maxSize: 0.015
+    randomSeed: 1
+    randomCount: 500
+  - materialType: 2
+    baseColor: {r: 0.16464934, g: 0.6649618, b: 0.9433962, a: 0.39215687}
+    subColor: {r: 0, g: 0.9167206, b: 1, a: 1}
+    shadowColor: {r: 0, g: 0.6027398, b: 1, a: 0.39215687}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0
+    smoothness: 0
+    textureType: 3
+    minSize: 0.01
+    maxSize: 0.01
+    randomSeed: 2
+    randomCount: 400
+  - materialType: 2
+    baseColor: {r: 0, g: 1, b: 0.39602685, a: 0.39215687}
+    subColor: {r: 0, g: 1, b: 0.5723033, a: 0.627451}
+    shadowColor: {r: 0.18325028, g: 0.5471698, b: 0.45637465, a: 0.3137255}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0
+    smoothness: 0
+    textureType: 3
+    minSize: 0.01
+    maxSize: 0.015
+    randomSeed: 3
+    randomCount: 500

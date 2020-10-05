@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0845e4913537b47f791deb9698f44cae, type: 3}
+  m_Name: 2008_RO640
+  m_EditorClassIdentifier: 
+  reflectionIntensity: 0.9
+  topcoatClearMetallicPer: 0.95
+  topcoatClearSmoothnessPer: 0.99
+  topcoatMatMetallicPer: 1
+  topcoatMatSmoothnessPer: 0.5
+  list:
+  - materialType: 0
+    baseColor: {r: 0.754717, g: 0.33107865, b: 0.54661393, a: 0.9607843}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0.7529412, g: 0.4509804, b: 0.61315024, a: 0}
+    normalHeight: 0.6
+    normalSize: 5
+    noise: 0.1
+    emissionRate: 0
+    metallic: 0.4
+    smoothness: 0.7
+    textureType: 0
+    minSize: 0
+    maxSize: 0
+    randomSeed: 0
+    randomCount: 0
+  - materialType: 1
+    baseColor: {r: 0.50980395, g: 0.7058824, b: 0.91372555, a: 0.39215687}
+    subColor: {r: 0.54901963, g: 0.7019608, b: 0.8941177, a: 0.627451}
+    shadowColor: {r: 0.54901963, g: 0.7019608, b: 0.8941177, a: 0}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0.9
+    smoothness: 0.6
+    textureType: 3
+    minSize: 0.015
+    maxSize: 0.02
+    randomSeed: 1
+    randomCount: 200
+  - materialType: 1
+    baseColor: {r: 0.9056604, g: 0.33748665, b: 0.6563599, a: 0.39215687}
+    subColor: {r: 0.83921576, g: 0.3803922, b: 0.6431373, a: 0.627451}
+    shadowColor: {r: 0.6415094, g: 0.26931292, b: 0.5019357, a: 0}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0.9
+    smoothness: 0.6
+    textureType: 3
+    minSize: 0.015
+    maxSize: 0.02
+    randomSeed: 2
+    randomCount: 200
+  - materialType: 1
+    baseColor: {r: 0.90588236, g: 0.8384963, b: 0.3372549, a: 0.50980395}
+    subColor: {r: 0.8980393, g: 0.8352942, b: 0.41960788, a: 0.43137255}
+    shadowColor: {r: 0.8980393, g: 0.8352942, b: 0.41960788, a: 0}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0.9
+    smoothness: 0.6
+    textureType: 3
+    minSize: 0.015
+    maxSize: 0.02
+    randomSeed: 3
+    randomCount: 200

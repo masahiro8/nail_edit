@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0845e4913537b47f791deb9698f44cae, type: 3}
+  m_Name: 2006_GD083
+  m_EditorClassIdentifier: 
+  reflectionIntensity: 1
+  topcoatClearMetallicPer: 1.1
+  topcoatClearSmoothnessPer: 1
+  topcoatMatMetallicPer: 1.1
+  topcoatMatSmoothnessPer: 0.8
+  list:
+  - materialType: 0
+    baseColor: {r: 0.57254905, g: 0.5411765, b: 0.44705886, a: 0.78431374}
+    subColor: {r: 0.6886792, g: 0.6667519, b: 0.6009701, a: 0}
+    shadowColor: {r: 0.57254905, g: 0.5411765, b: 0.45882356, a: 1}
+    normalHeight: 0.6
+    normalSize: 2.3
+    noise: 0.12
+    emissionRate: 0
+    metallic: 0.6
+    smoothness: 0.28
+    textureType: 0
+    minSize: 0
+    maxSize: 0
+    randomSeed: 0
+    randomCount: 0
+  - materialType: 1
+    baseColor: {r: 0.754717, g: 0.68453443, b: 0.50907797, a: 1}
+    subColor: {r: 0, g: 0, b: 0, a: 0}
+    shadowColor: {r: 0.5660378, g: 0.498079, b: 0.3764685, a: 0}
+    normalHeight: 0.43
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0.6
+    smoothness: 0
+    textureType: 3
+    minSize: 0.015
+    maxSize: 0.025
+    randomSeed: 1
+    randomCount: 600
+  - materialType: 2
+    baseColor: {r: 0.8962264, g: 0.84203774, b: 0.6975347, a: 0.78431374}
+    subColor: {r: 0.8431373, g: 0.8235295, b: 0.7686275, a: 0.627451}
+    shadowColor: {r: 0.7075472, g: 0.65454006, b: 0.5573603, a: 0.3137255}
+    normalHeight: 0
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0
+    smoothness: 0
+    textureType: 3
+    minSize: 0.015
+    maxSize: 0.023
+    randomSeed: 1
+    randomCount: 800
+  - materialType: 1
+    baseColor: {r: 0.46226418, g: 0.44713703, b: 0.381586, a: 0.627451}
+    subColor: {r: 0, g: 0, b: 0, a: 0.627451}
+    shadowColor: {r: 0.35686275, g: 0.30588236, b: 0.20392159, a: 0.627451}
+    normalHeight: 0.43
+    normalSize: 0
+    noise: 0
+    emissionRate: 0
+    metallic: 0.6
+    smoothness: 0
+    textureType: 3
+    minSize: 0.015
+    maxSize: 0.02
+    randomSeed: 3
+    randomCount: 300

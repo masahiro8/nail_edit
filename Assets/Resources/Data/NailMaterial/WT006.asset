@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0845e4913537b47f791deb9698f44cae, type: 3}
+  m_Name: 1017_WT006
+  m_EditorClassIdentifier: 
+  reflectionIntensity: 1
+  topcoatClearMetallicPer: 1
+  topcoatClearSmoothnessPer: 1.2
+  topcoatMatMetallicPer: 1.3
+  topcoatMatSmoothnessPer: 0.1
+  list:
+  - materialType: 0
+    baseColor: {r: 0.9215687, g: 0.9058824, b: 0.8313726, a: 0.78431374}
+    subColor: {r: 0.990566, g: 0.9695398, b: 0.9111338, a: 1}
+    shadowColor: {r: 0.9528302, g: 0.9312221, b: 0.84046817, a: 0}
+    normalHeight: 0.5
+    normalSize: 1.5
+    noise: 0.1
+    emissionRate: 0
+    metallic: 0.8
+    smoothness: 0.75
+    textureType: 0
+    minSize: 0
+    maxSize: 0
+    randomSeed: 0
+    randomCount: 0

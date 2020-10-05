@@ -58,7 +58,8 @@ public class NailInfoRecord
     }
 
     public string fileName2 {
-        get { return category.categoryId + "_" + colorNumber; }
+        get { return colorNumber; }
+        // get { return category.categoryId + "_" + colorNumber; }
     }
 
     public Texture2D sampleTexture {

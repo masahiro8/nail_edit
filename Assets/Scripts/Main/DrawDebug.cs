@@ -93,9 +93,9 @@ public class DrawDebug : MonoBehaviour
         // ネイル
         SROptions.Current.NailEdgeTransparent = true;
         SROptions.Current.NailEdge1TransparentPer = 100; // 100で割って使用
-        SROptions.Current.NailEdge2TransparentPer = 110; // 100で割って使用
-        SROptions.Current.NailMeshRoundX = 80;
-        SROptions.Current.NailMeshRoundY = 20;
+        SROptions.Current.NailEdge2TransparentPer = 120; // 100で割って使用
+        SROptions.Current.NailMeshRoundX = 100;
+        SROptions.Current.NailMeshRoundY = 25;
         SROptions.Current.NailRotateAdjust = true;
 
         SROptions.Current.NailCombineDetect = true;
