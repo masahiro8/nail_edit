@@ -10,6 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0845e4913537b47f791deb9698f44cae, type: 3}
-  m_Name: 9000_SP041
+  m_Name: SP041
   m_EditorClassIdentifier: 
+  reflectionIntensity: 1.6
+  topcoatClearMetallicPer: 1.05
+  topcoatClearSmoothnessPer: 1
+  topcoatMatMetallicPer: 1.5
+  topcoatMatSmoothnessPer: 0
   list: []

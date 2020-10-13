@@ -10,8 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0845e4913537b47f791deb9698f44cae, type: 3}
-  m_Name: 2003_PU150
+  m_Name: PU150
   m_EditorClassIdentifier: 
+  reflectionIntensity: 1.6
+  topcoatClearMetallicPer: 1.05
+  topcoatClearSmoothnessPer: 1
+  topcoatMatMetallicPer: 1.5
+  topcoatMatSmoothnessPer: 0
   list:
   - materialType: 0
     baseColor: {r: 0.8372462, g: 0.7168476, b: 0.8396226, a: 0.7058824}

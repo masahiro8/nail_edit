@@ -10,8 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0845e4913537b47f791deb9698f44cae, type: 3}
-  m_Name: 2003_GY050
+  m_Name: GY050
   m_EditorClassIdentifier: 
+  reflectionIntensity: 1.6
+  topcoatClearMetallicPer: 1.05
+  topcoatClearSmoothnessPer: 1
+  topcoatMatMetallicPer: 1.5
+  topcoatMatSmoothnessPer: 0
   list:
   - materialType: 0
     baseColor: {r: 0.8679245, g: 0.85739714, b: 0.83107865, a: 0.6862745}
