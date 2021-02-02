@@ -165,7 +165,8 @@ public class NailInfoRecord
 
     public bool IsSaleDone()
     {
-        return endDate < System.DateTime.Now;
+        // return endDate < System.DateTime.Now;
+        return false; // エディタ用に販売期間判定を無効
     }
 
     public bool IsMyList(MyListType type)
