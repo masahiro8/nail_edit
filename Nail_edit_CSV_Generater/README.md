@@ -1,4 +1,6 @@
-##Unity 用 CSV 変換
+# Unity Edit 用 CSV 変換
+
+
 
 csv変換する前にネイルチップとボトルの画像の名前を正しいものに変更する
 
@@ -33,4 +35,52 @@ node index.js
 unityの /Assets/Resources/CSV/ の中の、NailProduct.csvとNailCategory.csvの最後に追加して保存して完了
 
 **※ 以降何か変更するときはcsvファイルをエクセルで開いて修正すればOK**
+
+
+
+# APIのnailsからアプリ内で使うシリーズid対応表を変換する
+
+
+
+### 1.POSTMANでApi の nailsからデータをとってくる
+
+```
+https://api.app-dev.nailholic.net/api/v1/nails?os_type=2&app_version=1.0.4
+```
+
+
+
+### 2.とってきたjsonをコピペして保存
+
+```
+./master_json/nails.json
+```
+
+
+
+### 3.変換
+
+```
+node nailsToApp.js
+```
+
+
+
+###4.変換されたデータをjson形式に保存
+
+```
+./json/out_nails_table.txt
+```
+
+
+
+### 5.Unityのソースを書き換え
+
+```
+Assets/Scripts/HTTP/apiNails.cs
+```
+
+の25行目から書き換える
+
+
 
