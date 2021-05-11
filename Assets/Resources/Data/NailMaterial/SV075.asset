@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: SV075
   m_EditorClassIdentifier: 
   reflectionIntensity: 0.1
-  topcoatClearMetallicPer: 0.7
+  topcoatClearMetallicPer: 0.8
   topcoatClearSmoothnessPer: 4.3
-  topcoatMatMetallicPer: 1
-  topcoatMatSmoothnessPer: 0.7
+  topcoatMatMetallicPer: 0.9
+  topcoatMatSmoothnessPer: 0.5
   list:
   - materialType: 0
     baseColor: {r: 0.764151, g: 0.7605465, b: 0.7605465, a: 0.47058824}
-    subColor: {r: 0.8000001, g: 0.8000001, b: 0.8000001, a: 0}
-    shadowColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0}
+    subColor: {r: 0.7075472, g: 0.69085974, b: 0.69085974, a: 0}
+    shadowColor: {r: 0.4245283, g: 0.42252582, b: 0.42252582, a: 0}
     normalHeight: 0.6
     normalSize: 2.3
     noise: 0.1

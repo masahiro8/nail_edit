@@ -16,7 +16,7 @@ MonoBehaviour:
   topcoatClearMetallicPer: 0.8
   topcoatClearSmoothnessPer: 4.3
   topcoatMatMetallicPer: 1
-  topcoatMatSmoothnessPer: 0.7
+  topcoatMatSmoothnessPer: 0.5
   list:
   - materialType: 0
     baseColor: {r: 0.6117647, g: 0.45882353, b: 0.50795865, a: 0.47058824}

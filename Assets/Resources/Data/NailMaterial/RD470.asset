@@ -15,8 +15,8 @@ MonoBehaviour:
   reflectionIntensity: 0.5
   topcoatClearMetallicPer: 1.03
   topcoatClearSmoothnessPer: 1
-  topcoatMatMetallicPer: 1.3
-  topcoatMatSmoothnessPer: 0.35
+  topcoatMatMetallicPer: 1.2
+  topcoatMatSmoothnessPer: 0.23
   list:
   - materialType: 0
     baseColor: {r: 0.62352943, g: 0.37254903, b: 0.4140388, a: 0.5882353}

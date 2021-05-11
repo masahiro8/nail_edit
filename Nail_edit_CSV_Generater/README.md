@@ -1,7 +1,5 @@
 # Unity Edit 用 CSV 変換
 
-
-
 csv変換する前にネイルチップとボトルの画像の名前を正しいものに変更する
 
 ### 1.ファイル名を変換
@@ -24,6 +22,8 @@ rename 's/(.*)_(.*)_color.png/$1_$2.png/' ./*
 
 名前変更したファイルをGUI上で選択して、./csv/newList.csvを空にしてから、中でペーストするとファイル名の一覧が作られる。そのまま上書き保存。
 
+もしくは、YUMEMIからもらったエクセルをもとに、/work_files/テクスチャ名一覧作成用ファイル.xlsx を使って、そこから./csv/newList.csvを作る
+
 ### 3.csv変換
 
 ```
@@ -35,6 +35,16 @@ node index.js
 unityの /Assets/Resources/CSV/ の中の、NailProduct.csvとNailCategory.csvの最後に追加して保存して完了
 
 **※ 以降何か変更するときはcsvファイルをエクセルで開いて修正すればOK**
+
+
+
+# ダミーのシェーダファイルを作成する
+
+/csv/newlist.csvを最新にする
+
+```
+node material_rename.js
+```
 
 
 

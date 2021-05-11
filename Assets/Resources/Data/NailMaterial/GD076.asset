@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0845e4913537b47f791deb9698f44cae, type: 3}
   m_Name: GD076
   m_EditorClassIdentifier: 
-  reflectionIntensity: 0.1
-  topcoatClearMetallicPer: 0.8
+  reflectionIntensity: 0.15
+  topcoatClearMetallicPer: 0.82
   topcoatClearSmoothnessPer: 4.3
   topcoatMatMetallicPer: 1
   topcoatMatSmoothnessPer: 0.7
