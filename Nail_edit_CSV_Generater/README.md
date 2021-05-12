@@ -8,13 +8,15 @@ csv変換する前にネイルチップとボトルの画像の名前を正し�
 DLMI_BL923_color.png -> DLMI_BL923.png
 ```
 
-ここはbrewのrenameでコマンドから実行する
+sc_png_rename.jsを開き、画像パスを設定してnodeコマンド
 
 ```
-rename 's/(.*)_(.*)_color.png/$1_$2.png/' ./*
+node sc_png_rename.js
 ```
 
-こんな感じで正規表現でマッチさせて置き換えする
+で変換完了
+
+ちなみに sc_png_rename.jsを実行すると、このあとに使用する**newList.csv**を書き換えるための**out_newList.csv**も一緒に作成する
 
 
 
